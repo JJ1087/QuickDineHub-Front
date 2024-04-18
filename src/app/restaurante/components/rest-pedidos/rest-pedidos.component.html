@@ -39,7 +39,7 @@
                             <!-- Botón de cancelar -->
                             <button class="cancel-button" (click)="cancelOrder(pedido, detalle)" [ngClass]="{ 'active': pedido.cancelButtonActive }">Cancelar</button>
                         </div>
-                        <p style="font-size: smaller;">{{'Especificaciones: '+ pedido.especificaciones}}</p>
+                        <p style="font-size: smaller;">{{'Especificaciones: '+ detalle.especificaciones}}</p>
                         <!-- Otros detalles del producto -->
 
 
@@ -71,8 +71,8 @@
             <div class="order-buttons">
                 <button class="accept-button" (click)="acceptOrder(pedido)" [disabled]="pedido.botonesDeshabilitados">ACEPTAR</button>
                 <button class="reject-button" (click)="rejectOrder(pedido)" [disabled]="pedido.botonesDeshabilitados">RECHAZAR</button>
-                <button class=" complete-button " *ngIf="pedido.isAccepted " (click)="completeOrder(pedido) ">COMPLETADA</button>
-                <button class="camino-button " *ngIf="pedido.iscompleted " (click)="camino(pedido) ">EN CAMINO</button>
+                <button class=" complete-button " *ngIf=" pedido.estadoOrden === 4 || pedido.estadoOrden === 5  " (click)="completeOrder(pedido) ">COMPLETADA</button>
+                <button class="camino-button " *ngIf=" pedido.estadoOrden === 5" (click)="camino(pedido) ">EN CAMINO</button>
             </div>
 
             <div class="order-message " *ngIf="pedido.isAccepted ">
