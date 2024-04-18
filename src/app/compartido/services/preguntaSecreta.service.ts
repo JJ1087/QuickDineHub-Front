@@ -44,5 +44,12 @@ export class PreguntaSecretaService {
     return this.HttpClient.post<any>(`${this.apiUrl}/enviar-correo`, { email, codigo });
   }
 
+  agregarLogAutenticacion(email: string, tipoEdicion: string): Observable<any> {
+    console.log('email:', email, 'edicion:', tipoEdicion);
+    const logData = { userCorreo: email, tipoEdicion: tipoEdicion };
+    const url = `${this.apiUrl}/agregar-log-autentificacion`; // Ruta específica para agregar log de autenticación
+    return this.HttpClient.post<any>(url, logData);
+  }
+
   
 }

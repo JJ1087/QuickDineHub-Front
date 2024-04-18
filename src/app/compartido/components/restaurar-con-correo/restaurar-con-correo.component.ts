@@ -122,6 +122,9 @@ export class RestaurarConCorreoComponent implements OnInit {
             this.router.navigate(['/login-clientes']);
             console.log('Contraseña cambiada exitosamente');
             alert('La contraseña ha sido cambiada con éxito.');
+
+            //llamar al registro de mi log
+            this.agregarLogAutentificacion(email, "Cambio contraseña");
           },
           error => {
             console.error('Error al cambiar la contraseña:', error);
@@ -164,5 +167,18 @@ export class RestaurarConCorreoComponent implements OnInit {
 
   volverAFase1(): void {
     this.faseActual = 0;
+  }
+
+  //Funcion para guardar logs de autentificacion "cambio de contraseña"----------------------------------------------
+  agregarLogAutentificacion(email: string, tipoEdicion: string): void {
+    this.preguntaSecretaService.agregarLogAutenticacion(email, tipoEdicion).subscribe(
+      () => {
+        console.log('Registro de log de autenticación agregado con éxito');
+        //FUNCION PARA ENVIAR CORREO AL CLIENTE SOBRE ADVERTENCIA DE ACTUALIZACION DE CONTRASEÑA
+      },
+      error => {
+        console.error('Error al agregar el registro de log de autenticación:', error);
+      }
+    );
   }
 }

@@ -110,7 +110,7 @@ export class RestaurarConCorreoRestauranteComponent {
       console.log('Formulario de fase 2 no válido');
     }
   }
-  
+
     onFase3Submit(): void {
       if (this.fase3Form.valid) {
         const email = this.recuperarCuentaForm.get('email')?.value;
@@ -165,4 +165,8 @@ export class RestaurarConCorreoRestauranteComponent {
   volverAFase1(): void {
     this.faseActual = 0;
   }
+
+
+
+  
 }
