@@ -8,6 +8,15 @@
   margin-left: 3.5%;
 }
 
+#claveAutenticacion {
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%; /* Ajusta el ancho según sea necesario */
+}
+
 .breadcrumbs a {
   text-decoration: none;
   color: #3498db;
@@ -121,7 +130,7 @@ footer{
 .error-message {
   color: red;
   font-size: 14px;
-  margin-top: -15px; /* Ajusta la posición vertical de los mensajes de error */
+  margin-top: 5px; /* Ajusta la posición vertical de los mensajes de error */
 }
 
 /* Estilos para el combo box */
@@ -141,6 +150,21 @@ footer{
   background-color: #fff;
   width: 100%;
   font-size: 16px;
+}
+
+.next-button {
+  background-color: #00B14F;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.next-button:hover {
+  background-color: #008c3b; /* Cambia el color al pasar el ratón */
 }
 
 .custom-select-wrapper select:focus {
