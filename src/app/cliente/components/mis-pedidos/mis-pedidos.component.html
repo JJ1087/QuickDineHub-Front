@@ -1,7 +1,7 @@
 <!-- mis-pedidos.component.html -->
 <app-header-cliente></app-header-cliente>
 <nav>
-    <a routerLink="/inicio-cliente" >Inicio</a>
+    <a routerLink="/inicio-cliente">Inicio</a>
     <a routerLink="/cli-restaurantes">Restaurantes</a>
     <a routerLink="/cli-envios">Envíos</a>
     <a routerLink="/cli-ofertas">Ofertas</a>
@@ -22,17 +22,17 @@
             <strong>Nombre del producto:</strong> {{ pedido.nombreProducto }} <br>
             <strong>Descripción:</strong> {{ pedido.descripcionProducto }}
         </div>
-        <!-- Imagen --> 
-        <div class="pedido-imagen" >
-            <img [src]="productos[i]?.imagen[0]" [alt]="productos[i]?.nombre">
+        <!-- Imagen -->
+        <div class="pedido-imagen">
+            <img [src]="getImageUrl(productos[i]?.imagen[0])" [alt]="productos[i]?.nombre">
         </div>
 
-        
+
         <!-- Botón para ver detalles -->
         <button class="ver-detalles-button" (click)="verDetalles(detalleOrdenes[i]?.idOrden, ordenes[i].idCliente, ordenes[i].idRestaurante, ordenes[i].idDireccion, ordenes[i].idCuentaBanco, detalleOrdenes[i].nombreProducto, detalleOrdenes[i].descripcionProducto, ordenes[i]?.estadoOrden, ordenes[i].createdAt, detalleOrdenes[i].costoUnidad)">Ver detalles de compra</button>
     </div>
 </div>
 
 <footer class="footer">
-<app-footer></app-footer>
+    <app-footer></app-footer>
 </footer>

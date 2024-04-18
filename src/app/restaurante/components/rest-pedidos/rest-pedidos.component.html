@@ -39,13 +39,19 @@
                             <!-- Botón de cancelar -->
                             <button class="cancel-button" (click)="cancelOrder(pedido, detalle)" [ngClass]="{ 'active': pedido.cancelButtonActive }">Cancelar</button>
                         </div>
-                        <p style="font-size: smaller;">{{'. Descripcion: '+ detalle.descripcionProducto +'. Especificaciones: '+ pedido.especificaciones}}</p>
+                        <p style="font-size: smaller;">{{'Especificaciones: '+ pedido.especificaciones}}</p>
                         <!-- Otros detalles del producto -->
 
 
                         <!-- Estado del pedido -->
-                        <p [ngClass]="{'pedido-espera': pedido.estadoOrden === 0}">{{ pedido.estadoOrden === 0 ? 'Estado: En espera' : 'Estado: Tomado' }}</p>
-
+                        <p [ngClass]="{
+                            'pedido-solicitado': pedido.estadoOrden === 0,
+                            'pedido-espera': pedido.estadoOrden === 2,
+                            'pedido-proceso': pedido.estadoOrden === 4,
+                            'pedido-completado': pedido.estadoOrden === 5
+                          }">
+                            {{ pedido.estadoOrden === 0 ? 'Estado: Solicitados' : pedido.estadoOrden === 2 ? 'Estado: En espera' : pedido.estadoOrden === 4 ? 'Estado: En proceso' : pedido.estadoOrden === 5 ? 'Estado: Completado' : 'Estado Desconocido' }}
+                        </p>
                     </div>
 
                 </div>
