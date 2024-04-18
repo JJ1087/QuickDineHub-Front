@@ -1,0 +1,59 @@
+/* not-found.component.css */
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e74c3c; /* Fondo rojo */
+}
+  
+  .error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Para posicionar las líneas decorativas */
+
+  }
+  
+  .logo {
+    max-width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
+    margin-bottom: 1px;
+    border-radius: 10%;
+  }
+  .ico {
+    max-width: 50px; /* Ajusta el tamaño del logo según tus necesidades */
+    margin-bottom: 1px;
+    border-radius: 10%;
+  }
+  
+  .error-message {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #3498db; /* Borde azul */
+    border-radius: 20px; /* Curvas redondeadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra */
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente */
+  }
+  
+  .error-message h2 {
+    color: #e74c3c; /* Rojo oscuro */
+  }
+  
+  .error-message p {
+    color: #34495e; /* Gris oscuro */
+    margin-bottom: 10px;
+  }
+  
+  .error-message a {
+    color: #2ecc71; /* Verde claro */
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .error-message a:hover {
+    color: #27ae60; /* Cambio de color al pasar el mouse sobre el enlace */
+  }
+ 

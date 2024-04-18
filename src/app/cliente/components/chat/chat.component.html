@@ -1,0 +1,23 @@
+<!-- chat.component.html -->
+
+<div class="chat-container">
+    <h2 class="chat-title">Chatbot de Preguntas Frecuentes</h2>
+
+    <div class="chat-messages">
+      <div *ngIf="options.length === 0">Cargando opciones...</div>
+      
+      <div *ngFor="let message of chatHistory" class="chat-message">
+        <div class="user-message">{{ message.user }}</div>
+        <div class="bot-response">{{ message.bot }}</div>
+      </div>
+  
+      <div *ngIf="selectedOption !== ''" class="user-message">{{ selectedOption }}</div>
+    </div>
+  
+    <div class="options-container">
+      <div *ngFor="let option of options" class="option" (click)="selectedOption = option; onSelectOption()">
+        {{ option }}
+      </div>
+    </div>
+  </div>
+  

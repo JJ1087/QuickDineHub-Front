@@ -1,0 +1,77 @@
+.registro-container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+.next-button {
+    margin-top: 10px;
+}
+#claveAutenticacion, #email, #respuestaSecreta, #nuevaContraseña, #confirmacionContraseña {
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.next-button {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 2%;
+}
+
+/* Estilos para el combo box */
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .custom-select-wrapper select:focus {
+    outline: none;
+    border-color: #007bff; /* Cambia el color del borde al enfocar */
+  }
+  
+  /* Flecha desplegable */
+  .custom-select-wrapper::after {
+    content: '\25BC';
+    position: absolute;
+    top: 55%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  /* Estilos para el texto de la opción seleccionada */
+  .custom-select-wrapper option {
+    font-size: 16px;
+  }

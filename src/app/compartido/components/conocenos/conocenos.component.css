@@ -1,0 +1,18 @@
+/* conocenos.component.css */
+
+/* Agrega estilos según sea necesario */
+.contenido {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-bottom: 5%; /* Ajusta este valor según tus necesidades */
+
+  }
+  
+  .contenido h1 {
+    color: #00B14F;
+ }
+  
+  /* Otros estilos según sea necesario */
+  

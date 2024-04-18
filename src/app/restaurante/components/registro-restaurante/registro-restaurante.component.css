@@ -1,0 +1,606 @@
+/* registro-cliente.component.css */
+
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    margin-top: 1.5%;
+    margin-left: 3.5%;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.registro-container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 60px;
+    /* Ajusta este valor según tus necesidades */
+}
+
+.mensaje-dialog {
+    text-align: center;
+}
+
+.small-error {
+    color: red;
+}
+
+.registro-container h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* registro-restaurante.component.css */
+
+.nombre-encargado {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nombre-encargado input {
+    width: 48%;
+    /* Ajusta el ancho según tus preferencias */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.registro-button {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.registro-form button:hover {
+    background-color: #207cca;
+}
+
+.login-link {
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #00B14F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/*¨*/
+
+.back-button {
+    cursor: pointer;
+    background-color: #007bff;
+    /* Cambia el color de fondo según tu preferencia */
+    color: #fff;
+    /* Color del texto */
+    padding: 8px 12px;
+    /* Espaciado interno */
+    border: none;
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    /* Transición suave al cambiar el color de fondo */
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.back-button .material-icons {
+    margin-right: 8px;
+    /* Espaciado entre el icono y el texto */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 70%;
+    /* Ajustar la posición vertical */
+    right: 15px;
+    /* Ajustar la posición horizontal */
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1;
+    /* Asegurar que esté por encima del input */
+}
+
+.toggle-password mat-icon {
+    font-size: 20px;
+    /* Ajustar el tamaño del icono según sea necesario */
+    color: #000;
+    /* Color del icono */
+}
+
+
+/*contraseña*/
+
+.password-container {
+    position: relative;
+}
+
+
+/*¨*/
+
+.back-button {
+    cursor: pointer;
+    background-color: #007bff;
+    /* Cambia el color de fondo según tu preferencia */
+    color: #fff;
+    /* Color del texto */
+    padding: 8px 12px;
+    /* Espaciado interno */
+    border: none;
+    border-radius: 4px;
+    /* Esquinas redondeadas */
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    /* Transición suave al cambiar el color de fondo */
+    display: inline-flex;
+    align-items: center;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.back-button .material-icons {
+    margin-right: 8px;
+    /* Espaciado entre el icono y el texto */
+}
+
+
+/* voz alta */
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+#modalAvisosPrivacidad {
+    width: 80%;
+    /* Ajusta el ancho según tus necesidades */
+    max-height: 80vh;
+    /* Establece una altura máxima en viewport height */
+    overflow-y: auto;
+    /* Agrega un scroll vertical si es necesario */
+    margin: auto;
+    /* Centra el contenedor horizontalmente */
+    padding: 20px;
+    /* Agrega un espacio interno al contenedor */
+    background-color: #fff;
+    /* Cambia el color de fondo según tu diseño */
+    border: 1px solid #ccc;
+    /* Agrega un borde para resaltar el contorno */
+    border-radius: 8px;
+    /* Agrega bordes redondeados */
+}
+
+
+/* registro-repartidor.component.css */
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#modalAvisosPrivacidad {
+    width: 80%;
+    /* Ajusta el ancho según tus necesidades */
+    max-height: 80vh;
+    /* Establece una altura máxima en viewport height */
+    overflow-y: auto;
+    /* Agrega un scroll vertical si es necesario */
+    margin: auto;
+    /* Centra el contenedor horizontalmente */
+    padding: 20px;
+    /* Agrega un espacio interno al contenedor */
+    background-color: #fff;
+    /* Cambia el color de fondo según tu diseño */
+    border: 1px solid #ccc;
+    /* Agrega un borde para resaltar el contorno */
+    border-radius: 8px;
+    /* Agrega bordes redondeados */
+}
+
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    margin-top: 1.5%;
+    margin-left: 3.5%;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 10%;
+    height: auto;
+    border-radius: 10px;
+    /* Añadido para borde redondeado */
+    margin-left: -80%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.registro-container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.registro-container h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input,
+.checkbox-group input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.checkbox-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    margin-left: 5px;
+}
+
+.next-button {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #00B14F;
+}
+
+.color-rojo {
+    color: red;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    /* Ajusta el tamaño según sea necesario */
+}
+
+.aviso-link {
+    color: #007bff;
+    /* Cambia el color según tu preferencia */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.aviso-link:hover {
+    text-decoration: none;
+    /* Elimina el subrayado al pasar el mouse */
+}
+
+
+/* ... Otros estilos ... */
+
+.tipo-vehiculo-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tipo-vehiculo-button {
+    flex: 0 0 30%;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    /* Agregado para la transición de color */
+    height: 70%;
+}
+
+.tipo-vehiculo-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tipo-vehiculo-button mat-icon {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#claveAutenticacion {
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+
+/* ... Otros estilos ... */
+
+
+/* Añade este bloque al estilo de tu componente o a tu hoja de estilos global */
+
+.formulario-identificacion,
+.formulario-licencia,
+.formulario-clave-interbancaria,
+.formulario-foto-perfil {
+    border: 5px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.formulario-identificacion h3,
+.formulario-licencia h3,
+.formulario-clave-interbancaria h3,
+.formulario-foto-perfil h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.info-icon {
+    font-size: 18px;
+    color: #007bff;
+}
+
+
+/* Modificación del estilo para manejar el despliegue */
+
+.contenido-desplegable {
+    display: none;
+}
+
+.formulario-identificacion .contenido-desplegable,
+.formulario-licencia .contenido-desplegable,
+.formulario-clave-interbancaria .contenido-desplegable,
+.formulario-foto-perfil .contenido-desplegable {
+    display: block;
+}
+
+.contenido-desplegable p {
+    margin-bottom: 8px;
+}
+
+
+/*////////*/
+
+
+/* voz alta */
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+
+/* Estilos para el combo box */
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 100%;
+    font-size: 16px;
+}
+
+.custom-select-wrapper select:focus {
+    outline: none;
+    border-color: #007bff;
+    /* Cambia el color del borde al enfocar */
+}
+
+
+/* Flecha desplegable */
+
+.custom-select-wrapper::after {
+    content: '\25BC';
+    position: absolute;
+    top: 70%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+/* Estilos para el texto de la opción seleccionada */
+
+.custom-select-wrapper option {
+    font-size: 16px;
+}

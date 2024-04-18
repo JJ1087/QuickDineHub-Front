@@ -1,0 +1,259 @@
+/* rest-pedidos.component.css */
+
+.orders-container {
+    text-align: center;
+    /* Alinea el contenido al centro */
+    padding-bottom: 60px;
+}
+
+.orders-container .orders-title {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pedidos-container {
+    width: 70%;
+    margin: 0 auto;
+    /* Centra el contenedor en la página */
+}
+
+.order-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    /* Añade posición relativa para posicionar elementos hijos */
+}
+
+.order-item h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order-item p {
+    margin: 5px 0;
+}
+
+.order-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2ecc71;
+}
+
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.order-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.accept-button {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.reject-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.complete-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.camino-button {
+    background-color: orange;
+    color: #fff;
+}
+
+.order-message {
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* rest-pedidos.component.css */
+
+.orders-container {
+    text-align: center;
+    /* Alinea el contenido al centro */
+}
+
+.orders-container .orders-title {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pedidos-container {
+    width: 70%;
+    margin: 0 auto;
+    /* Centra el contenedor en la página */
+}
+
+.order-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    /* Añade posición relativa para posicionar elementos hijos */
+}
+
+.order-item h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order-item p {
+    margin: 5px 0;
+}
+
+.order-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2ecc71;
+}
+
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.order-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.accept-button {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.reject-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.complete-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.order-message {
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.admin-current-page {
+    background-color: #00B14F;
+}
+
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+
+.admin-welcome {
+    text-align: center;
+    margin: 20px;
+}
+
+
+/* voz alta */
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.pedido-espera {
+    color: gray;
+    /* Color para indicar que está en espera */
+    font-style: italic;
+    /* Estilo de fuente para indicar que está en espera */
+}
+
+.pedido-info {
+    display: flex;
+    justify-content: center;
+    /* Alinear elementos horizontalmente */
+    align-items: center;
+    /* Alinear elementos verticalmente */
+}
+
+.cancel-button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    /* Ajusta el ancho automáticamente según el contenido */
+    background-color: #e74c3c;
+    color: #fff;
+    margin-left: 10px;
+    /* Ajustar el margen izquierdo para separar del texto */
+}
+
+.cancel-button.active {
+    background-color: orange;
+    /* Cambiar a color naranja cuando está activo */
+}

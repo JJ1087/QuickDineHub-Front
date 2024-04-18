@@ -1,0 +1,225 @@
+/* login-clientes.component.css */
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+/* login-cliente.component.css */
+a{
+    color: #134667;
+}
+a:hover{
+    color: #3498db;
+}
+
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    margin-top: 13%;
+    margin-left: 3.5%;
+  }
+  
+  .breadcrumbs a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #00B14F;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: padding 0.45s;
+}
+
+
+.logo img {
+    max-width: 10%;
+    height: auto;
+    border-radius: 10px; /* Añadido para borde redondeado */
+    margin-left:-80%;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.login-container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.login-container h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.login-button {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #00743F; /* Cambia el color al hacer hover */
+    color: #fff; /* Cambia el color del texto al hacer hover */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #00B14F;
+}
+/* voz alta */
+  
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+
+.form-container {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.tipo-recuperacion-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tipo-recuperacion-button {
+    flex: 0 0 30%;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    height: 70%;
+    margin-right: 2%;
+}
+
+.recuperacion-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+/*contraseña*/
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: calc(100% - 40px); /* Restar el ancho del icono */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 60%;
+    right: 35px; /* Ajustar la posición según sea necesario */
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1; /* Asegurar que esté por encima del input */
+}
+
+.toggle-password mat-icon {
+    font-size: 24px; /* Ajustar según sea necesario */
+    color: #000; /* Color del icono */
+}

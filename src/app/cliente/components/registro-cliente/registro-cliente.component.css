@@ -1,0 +1,200 @@
+/* registro-cliente.component.css */
+
+.breadcrumbs {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+  margin-top: 1.5%;
+  margin-left: 3.5%;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+
+}
+
+.registro-container {
+  width: 50%;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+  .mensaje-dialog {
+    text-align: center;
+  }
+  .small-error {
+    color: red;
+  }  
+
+.registro-container h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .registro-button {
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 1.5%;
+  }
+  .registro-form button:hover {
+    background-color: #207cca;
+  }
+  .login-link {
+    margin-top: 20px;
+  }.login-link a {
+    color: #00B14F;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  /* voz alta */
+  
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#enableVozAlta {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
+}
+
+footer{
+  padding-top: 2%;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px; /* Ajusta la posición vertical de los mensajes de error */
+}
+
+/* Estilos para el combo box */
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  font-size: 16px;
+}
+
+.custom-select-wrapper select:focus {
+  outline: none;
+  border-color: #007bff; /* Cambia el color del borde al enfocar */
+}
+
+/* Flecha desplegable */
+.custom-select-wrapper::after {
+  content: '\25BC';
+  position: absolute;
+  top: 70%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Estilos para el texto de la opción seleccionada */
+.custom-select-wrapper option {
+  font-size: 16px;
+}
+
+.color-alerta {
+  color: red;
+  text-align: center;
+}
+
+.form-group label a {
+  color: #007BFF; /* Cambia el color según tus preferencias */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-group label a:hover {
+  text-decoration: none; /* Evita que el subrayado aparezca cuando se pasa el ratón sobre el enlace */
+}
+
+#modalAvisosPrivacidad {
+  width: 80%; /* Ajusta el ancho según tus necesidades */
+  max-height: 80vh; /* Establece una altura máxima en viewport height */
+  overflow-y: auto; /* Agrega un scroll vertical si es necesario */
+  margin: auto; /* Centra el contenedor horizontalmente */
+  padding: 20px; /* Agrega un espacio interno al contenedor */
+  background-color: #fff; /* Cambia el color de fondo según tu diseño */
+  border: 1px solid #ccc; /* Agrega un borde para resaltar el contorno */
+  border-radius: 8px; /* Agrega bordes redondeados */
+}
+
+.aviso-link {
+  color: #007bff; /* Cambia el color según tu preferencia */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.aviso-link:hover {
+  text-decoration: none; /* Elimina el subrayado al pasar el mouse */
+}

@@ -1,0 +1,372 @@
+<!-- registro-repartidor.component.html -->
+<header>
+    <app-header></app-header>
+</header>
+
+    <div class="breadcrumbs">
+    <a routerLink="/">Home</a>
+    <span> > </span>
+    <span>Registro de Repartidores</span>
+    </div>
+
+    <div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+
+    <div *ngIf="faseActual === 1" class="registro-container">
+    <div class="icon">
+        <mat-icon>local_shipping</mat-icon>
+    </div>
+
+    <h2>Registro de Repartidores</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registroForm">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" formControlName="nombre" required>
+            <div *ngIf="registroForm.get('nombre')?.invalid && (registroForm.get('nombre')?.dirty || registroForm.get('nombre')?.touched)">
+                <ng-container *ngIf="registroForm.get('nombre')?.errors as nombreErrors">
+                    <small class="color-alerta color-rojo" *ngIf="nombreErrors['required']">Completa el campo Nombre</small>
+                </ng-container>
+            </div>
+        </div>
+        
+        <!-- Apellidos -->
+        <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" formControlName="apellidos" required>
+            <div *ngIf="registroForm.get('apellidos')?.invalid && (registroForm.get('apellidos')?.dirty || registroForm.get('apellidos')?.touched)">
+                <ng-container *ngIf="registroForm.get('apellidos')?.errors as apellidosErrors">
+                    <small class="color-alerta color-rojo" *ngIf="apellidosErrors['required']">Completa el campo Apellidos</small>
+                </ng-container>
+            </div>
+        </div>
+        
+        <!-- Ciudad -->
+        <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" formControlName="ciudad" required>
+            <div *ngIf="registroForm.get('ciudad')?.invalid && (registroForm.get('ciudad')?.dirty || registroForm.get('ciudad')?.touched)">
+                <ng-container *ngIf="registroForm.get('ciudad')?.errors as ciudadErrors">
+                    <small class="color-alerta color-rojo" *ngIf="ciudadErrors['required']">Completa el campo Ciudad</small>
+                </ng-container>
+            </div>  
+        </div>
+        
+        <!-- Número de teléfono -->
+        <div class="form-group">
+            <label for="telefono">Número de Teléfono</label>
+            <input type="number" id="telefono" formControlName="telefono" required>
+            <div *ngIf="registroForm.get('telefono')?.invalid && (registroForm.get('telefono')?.dirty || registroForm.get('telefono')?.touched)">
+                <ng-container *ngIf="registroForm.get('telefono')?.errors as telefonoErrors">
+                    <small class="color-alerta color-rojo" *ngIf="telefonoErrors['required']">Completa el campo Número de Teléfono</small>
+                    <small class="color-alerta color-rojo" *ngIf="telefonoErrors['pattern']">Ingresa un número de teléfono válido</small>
+                </ng-container>
+            </div>
+        </div>
+        
+        <!-- Correo electrónico -->
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" formControlName="email" required>
+            <div *ngIf="registroForm.get('email')?.invalid && (registroForm.get('email')?.dirty || registroForm.get('email')?.touched)">
+                <ng-container *ngIf="registroForm.get('email')?.errors as emailErrors">
+                    <small class="color-alerta color-rojo" *ngIf="emailErrors['required']">Completa el campo Correo Electrónico</small>
+                    <small class="color-alerta color-rojo" *ngIf="emailErrors['email']">Ingresa un correo electrónico válido</small>
+                </ng-container>
+            </div>
+        </div>
+        
+        <!-- contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" formControlName="contrasena">
+            <div class="error">{{ getErrorMessage('contrasena') }}</div>
+        </div>
+        
+        <!-- pregunta secreta -->
+        <div class="form-group custom-select-wrapper">
+            <label for="preguntaSecreta">Pregunta Secreta (servirá para restablacer tu contraseña en caso de olvidarla)</label>
+            <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+            <option value="" disabled selected>Selecciona una pregunta secreta</option>
+            <option value="mascota">¿Cuál es nombre de tu primer mascota?</option>
+            <option value="cancion">¿Cúal es tu canción favorita?</option>
+            <option value="pelicula">¿Cuál es tu película favorita?</option>
+            <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+            <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="respuestaSecreta">Respuesta Secreta</label>
+            <input type="text" formControlName="respuestaSecreta" id="respuestaSecreta" class="form-control">
+        </div>
+
+
+        <div id="modalAvisosPrivacidad"class="aviso-privacidad">
+            <input type="checkbox" id="aceptarPrivacidad" formControlName="aceptarPrivacidad">
+            <label for="aceptarPrivacidad">
+                He leído y acepto el 
+                <a (click)="mostrarAvisosPrivacidad()" class="aviso-link">aviso de privacidad</a>
+            </label>
+            <div class="error">{{ getErrorMessage('aceptarPrivacidad') }}</div>
+        </div>
+        
+        <app-avisos-privacidad *ngIf="mostrarModalAvisosPrivacidad" (cerrarAvisoEvent)="cerrarAvisosPrivacidad()"></app-avisos-privacidad>                  
+
+        <re-captcha (resolved)="handleCaptchaChange($event)" [siteKey]="recaptchaSiteKey"></re-captcha>
+        <div class="error">{{ !isCaptchaVerified ? 'Por favor, complete el captcha.' : '' }}</div>
+
+        <button type="submit" class="next-button" [disabled]="!registroForm.valid || !isCaptchaVerified">Siguiente</button>
+    </form>
+</div>
+<!-- Fase 2 -->
+<div *ngIf="faseActual === 2" class="registro-container">
+    <div class="icon">
+        <mat-icon>local_shipping</mat-icon>
+    </div>
+
+    <h2>Fase 2: Selecciona el tipo de vehículo</h2>
+
+    <div class="tipo-vehiculo-container">
+        <!-- Convierte las opciones en botones con estilos similares a los anteriores apartados -->
+        <button mat-raised-button color="primary" class="tipo-vehiculo-button" (click)="seleccionarTipoVehiculo('motocicleta')">
+            <mat-icon class="vehiculo-icon">two_wheeler</mat-icon>
+            <span>Motocicleta</span>
+        </button>
+        <button mat-raised-button color="primary" class="tipo-vehiculo-button" (click)="seleccionarTipoVehiculo('carro')">
+            <mat-icon class="vehiculo-icon">directions_car</mat-icon>
+            <span>Carro</span>
+        </button>
+        <button mat-raised-button color="primary" class="tipo-vehiculo-button" (click)="seleccionarTipoVehiculo('bicicleta')">
+            <mat-icon class="vehiculo-icon">directions_bike</mat-icon>
+            <span>Bicicleta</span>
+        </button>   
+    </div>
+</div>
+
+    <!-- Fase 3: Información del Vehículo (Carro) -->
+    <div *ngIf="faseActual === 3" class="registro-container">
+        <div class="icon">
+          <mat-icon>local_shipping</mat-icon>
+        </div>
+      
+        <h2>Fase 3: Información del Vehículo (Carro)</h2>
+      
+        <form (ngSubmit)="onFase3Submit()" [formGroup]="fase2Form">
+            <div class="form-group">
+                <label for="marcaCarro">Marca del Carro</label>
+                <input type="text" id="marcaCarro" formControlName="marcaCarro" required>
+                <div *ngIf="fase2Form.get('marcaCarro')?.invalid && (fase2Form.get('marcaCarro')?.dirty || fase2Form.get('marcaCarro')?.touched)">
+                    <ng-container *ngIf="fase2Form.get('marcaCarro')?.hasError('required')">
+                        <small class="color-alerta color-rojo">Completa el campo Marca del Carro</small>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <!-- Modelo del Carro -->
+            <div class="form-group">
+                <label for="modeloCarro">Modelo del Carro</label>
+                <input type="text" id="modeloCarro" formControlName="modeloCarro" required>
+                <div *ngIf="fase2Form.get('modeloCarro')?.invalid && (fase2Form.get('modeloCarro')?.dirty || fase2Form.get('modeloCarro')?.touched)">
+                    <ng-container *ngIf="fase2Form.get('modeloCarro')?.hasError('required')">
+                        <small class="color-alerta color-rojo">Completa el campo Modelo del Carro</small>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <!-- Año del Carro -->
+            <div class="form-group">
+                <label for="anioCarro">Año del Carro</label>
+                <input type="number" id="anioCarro" formControlName="anioCarro" required>
+                <div *ngIf="fase2Form.get('anioCarro')?.invalid && (fase2Form.get('anioCarro')?.dirty || fase2Form.get('anioCarro')?.touched)">
+                    <ng-container *ngIf="fase2Form.get('anioCarro')?.hasError('required')">
+                        <small class="color-alerta color-rojo">Completa el campo Año del Carro</small>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <!-- Matrícula del Carro -->
+            <div class="form-group">
+                <label for="matriculaCarro">Matrícula del Carro</label>
+                <input type="text" id="matriculaCarro" formControlName="matriculaCarro" required>
+                <div *ngIf="fase2Form.get('matriculaCarro')?.invalid && (fase2Form.get('matriculaCarro')?.dirty || fase2Form.get('matriculaCarro')?.touched)">
+                    <ng-container *ngIf="fase2Form.get('matriculaCarro')?.hasError('required')">
+                        <small class="color-alerta color-rojo">Completa el campo Matrícula del Carro</small>
+                    </ng-container>
+                </div>
+            </div>
+      
+          <button type="submit" class="next-button" [disabled]="!fase2Form.valid">Siguiente</button>
+          <div class="aviso-final">
+            <p>Aviso: Al enviar la presente información, certifico que es cierta y se encuentra vigente. Asimismo, me comprometo a informar sobre cualquier cambio relacionado con los datos de mi vehículo de forma inmediata.</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Fase 4: Información del Vehículo (Motocicleta) -->
+<div *ngIf="faseActual === 4" class="registro-container">
+    <div class="icon">
+      <mat-icon>local_shipping</mat-icon>
+    </div>
+  
+    <h2>Fase 4: Información del Vehículo (Motocicleta)</h2>
+  
+    <form (ngSubmit)="onFase4Submit()" [formGroup]="fase4Form">
+      <!-- Marca de la Moto -->
+      <div class="form-group">
+        <label for="marcaMoto">Marca de la Moto</label>
+        <input type="text" id="marcaMoto" formControlName="marcaMoto" required>
+        <div *ngIf="fase4Form.get('marcaMoto')?.invalid && (fase4Form.get('marcaMoto')?.dirty || fase4Form.get('marcaMoto')?.touched)">
+          <ng-container *ngIf="fase4Form.get('marcaMoto')?.hasError('required')">
+            <small class="color-alerta color-rojo">Completa el campo Marca de la Moto</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <!-- Modelo de la Moto -->
+      <div class="form-group">
+        <label for="modeloMoto">Modelo de la Moto</label>
+        <input type="text" id="modeloMoto" formControlName="modeloMoto" required>
+        <div *ngIf="fase4Form.get('modeloMoto')?.invalid && (fase4Form.get('modeloMoto')?.dirty || fase4Form.get('modeloMoto')?.touched)">
+          <ng-container *ngIf="fase4Form.get('modeloMoto')?.hasError('required')">
+            <small class="color-alerta color-rojo">Completa el campo Modelo de la Moto</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <!-- Año de la Moto -->
+      <div class="form-group">
+        <label for="anioMoto">Año de la Moto</label>
+        <input type="number" id="anioMoto" formControlName="anioMoto" required>
+        <div *ngIf="fase4Form.get('anioMoto')?.invalid && (fase4Form.get('anioMoto')?.dirty || fase4Form.get('anioMoto')?.touched)">
+          <ng-container *ngIf="fase4Form.get('anioMoto')?.hasError('required')">
+            <small class="color-alerta color-rojo">Completa el campo Año de la Moto</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <!-- Matrícula de la Moto -->
+      <div class="form-group">
+        <label for="matriculaMoto">Matrícula de la Moto</label>
+        <input type="text" id="matriculaMoto" formControlName="matriculaMoto" required>
+        <div *ngIf="fase4Form.get('matriculaMoto')?.invalid && (fase4Form.get('matriculaMoto')?.dirty || fase4Form.get('matriculaMoto')?.touched)">
+          <ng-container *ngIf="fase4Form.get('matriculaMoto')?.hasError('required')">
+            <small class="color-alerta color-rojo">Completa el campo Matrícula de la Moto</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <button type="submit" class="next-button" (click)="onFase4Submit()">Siguiente</button>
+
+      <div class="aviso-final">
+        <p>Aviso: Al enviar la presente información, certifico que es cierta y se encuentra vigente. Asimismo, me comprometo a informar sobre cualquier cambio relacionado con los datos de mi vehículo de forma inmediata.</p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Fase 5: Configuración de Cuenta -->
+<div *ngIf="faseActual === 5" class="registro-container">
+    <form (ngSubmit)="onFase5Submit()" [formGroup]="fase5Form">
+    <div class="icon">
+        <mat-icon>assignment_ind</mat-icon>
+    </div>
+
+    <h2>Configuremos tu cuenta</h2>
+
+    <!-- Identificación Oficial -->
+    <div class="formulario-identificacion">
+        <h3 (click)="toggleDesplegable('identificacion')">
+            <span>Identificación Oficial con CURP visible (IFE o INE)</span>
+            <mat-icon class="info-icon">info</mat-icon>
+        </h3>
+        <input (change)="capturarIdentificacion($event)" type="file" accept="image/*" formControlName="identificacion" required>
+        <div class="contenido-desplegable" *ngIf="desplegables['identificacion']">
+            <p>Carga una foto de tu ID oficial con el CURP visible y presta atención a los siguientes aspectos:</p>
+        <ul>
+            <li>Debe estar VIGENTE</li>
+            <li>Asegúrate de que el documento sea el original</li>
+            <li>En la imagen debe verse claramente toda la información</li>
+            <li>Ten cuidado con el flash al sacar la foto, ya que el reflejo podría impedir que veamos todos los datos con claridad</li>
+        </ul>
+        </div>
+</div>
+
+<!-- Licencia para Conducir -->
+<div class="formulario-licencia">
+    <h3 (click)="toggleDesplegable('licencia')">
+        <span>Licencia para Conducir Vigente</span>
+        <mat-icon class="info-icon">info</mat-icon>
+    </h3>
+    <input (change)="capturarLicencia($event)" type="file" accept="image/*" formControlName="licencia" required>
+    <div class="contenido-desplegable" *ngIf="desplegables['licencia']">
+        <p>Carga una foto de tu licencia de conducir y presta atención a lo siguiente:</p>
+        <ul>
+            <li>Debe estar VIGENTE</li>
+            <li>Asegúrate de que el documento sea el original</li>
+            <li>En la imagen deben verse claramente toda la información y la foto del Socio Conductor</li>
+            <li>Ten cuidado con el flash al sacar la foto, ya que el reflejo podría impedir que veamos todos los datos con claridad</li>
+        </ul>
+        </div>
+</div>
+
+<!-- Foto de Perfil -->
+<div class="formulario-foto-perfil">
+    <h3 (click)="toggleDesplegable('fotoPerfil')">
+        <span>Foto de Perfil</span>
+        <mat-icon class="info-icon">info</mat-icon>
+    </h3>
+    <ul>
+        <li><input (change)="capturarFotoPerfilFrontal($event)"type="file" accept="image/*" formControlName="fotoPerfilFrontal" required/> Vista Frontal</li>
+        <li><input (change)="capturarFotoPerfilIzquierdo($event)"type="file" accept="image/*" formControlName="fotoPerfilIzquierdo" required/> Perfil Izquierdo</li>
+        <li><input (change)="capturarFotoPerfilDerecho($event)"type="file" accept="image/*" formControlName="fotoPerfilDerecho" required/> Perfil Derecho</li>
+    </ul>
+    <div class="contenido-desplegable" *ngIf="desplegables['fotoPerfil']">
+        <p>Carga 3 fotos diferentes, siendo la primera de una vista frontal, la segunda de perfil izquierdo y la tercera, de perfil derecho</p>
+        <ul>
+            <li>Mira a la cámara directamente y verifica que los ojos y la boca se vean con claridad.</li>
+            <li>Asegúrate de que la foto esté enfocada, bien iluminada y sin reflejos de luz.</li>
+            <li>No se permiten fotos de una foto, filtros ni modificaciones.</li>
+            <li>Tu foto de perfil ayuda a que las personas te reconozcan. Ten en cuenta que una vez que envías la foto de perfil, no puedes cambiarla.</li>
+        </ul>
+    </div>
+</div>
+<!-- Clave Interbancaria -->
+<div class="formulario-clave-interbancaria">
+    <h3 (click)="toggleDesplegable('claveInterbancaria')">
+        <span>Clave Interbancaria</span>
+        <mat-icon class="info-icon">info</mat-icon>
+    </h3>
+    <input type="text" formControlName="claveInterbancaria" placeholder="Ingresa tu clave interbancaria" required>
+    <div class="contenido-desplegable" *ngIf="desplegables['claveInterbancaria']">
+        <p>Ingresa tu clave interbancaria, la cual se utilizará para realizar los pagos correspondientes a tus servicios como repartidor. Asegúrate de proporcionar la clave correcta, ya que será la vía principal para recibir tus ingresos.</p>
+        <ul>
+            <li>Al ingresar la clave, verifica cuidadosamente que esté correcta. Los errores en la clave interbancaria pueden resultar en problemas al recibir tus pagos.</li>
+            <li>La clave interbancaria es una información sensible, así que asegúrate de mantenerla confidencial y no compartirla con nadie más. Si tienes dudas sobre dónde encontrar tu clave interbancaria, puedes consultar con tu entidad bancaria.</li>
+        </ul>
+    </div>
+</div>
+
+    <button type="submit" class="next-button">Finalizar</button>
+
+</form>
+</div>
+<!-- Fase 6: Autenticación con clave de 6 dígitos -->
+<div *ngIf="faseActual === 6" class="registro-container">
+    <h2>Fase 6: Autenticación con clave de 6 dígitos</h2>
+    <p>Se te ha enviado una clave de autenticación al correo proporcionado.</p>
+    <form (ngSubmit)="onFase6Submit()" [formGroup]="fase6Form">
+        <!-- Campo para la autenticación con la clave de 6 dígitos -->
+        <label for="claveAutenticacion">Clave de 6 dígitos:</label>
+        <input type="text" id="claveAutenticacion" formControlName="claveAutenticacion" maxlength="6" [required]="true">
+        <!-- Mensaje de error si la clave de autenticación no se ha ingresado -->
+        <div *ngIf="fase6Form.get('claveAutenticacion')?.errors?.['required']" class="error-message">
+            La clave de autenticación es requerida.
+        </div>
+        <!-- Botón de enviar -->
+        <button type="submit" class="next-button">Enviar</button>
+    </form>
+</div>
+
+
+    
+<app-footer></app-footer>

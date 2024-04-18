@@ -1,0 +1,82 @@
+<!-- login-restaurante.component.html -->
+<header>
+    <app-header></app-header>
+  </header>
+  
+  <div class="breadcrumbs">
+    <a routerLink="/">Home</a>
+    <span> > </span>
+    <span>Inicio de Sesión - Restaurante</span>
+  </div>
+  
+  <div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+  
+  <form [formGroup]="loginForm" *ngIf="!mostrarSegundaFase" (ngSubmit)="login()">
+    <div class="login-container">
+        <div class="icon">
+            <mat-icon>local_dining</mat-icon>
+        </div>
+      <h2>Login para Restaurante</h2>
+      <div class="form-group">
+        <label for="nombreRestaurante">Nombre del Restaurante:</label>
+        <input type="text" id="nombreRestaurante" formControlName="nombreRestaurante">
+        <div *ngIf="loginForm.get('nombreRestaurante')?.invalid && (loginForm.get('nombreRestaurante')?.dirty || loginForm.get('nombreRestaurante')?.touched)">
+          <small class="color-alerta" *ngIf="loginForm.get('nombreRestaurante')?.errors?.['required']">Nombre del Restaurante es obligatorio</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="correoRestaurante">Correo Electrónico</label>
+        <input type="email" id="correoRestaurante" formControlName="correoRestaurante">
+        <div *ngIf="loginForm.get('correoRestaurante')?.invalid && (loginForm.get('correoRestaurante')?.dirty || loginForm.get('correoRestaurante')?.touched)">
+          <ng-container *ngIf="loginForm.get('correoRestaurante')?.errors as emailErrors">
+            <small class="color-alerta" *ngIf="emailErrors['required']">Correo Electrónico es obligatorio</small>
+            <small class="color-alerta" *ngIf="emailErrors['email']">Correo Electrónico no válido</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <div class="password-container">
+          <input type="{{ hidePassword ? 'password' : 'text' }}" id="contrasena" formControlName="contrasena">
+          <div class="toggle-password" (click)="togglePasswordVisibility()">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </div>
+        </div>
+        <div *ngIf="loginForm.get('contrasena')?.invalid && (loginForm.get('contrasena')?.dirty || loginForm.get('contrasena')?.touched)">
+          <ng-container *ngIf="loginForm.get('contrasena')?.errors as passwordErrors">
+            <small class="color-alerta" *ngIf="passwordErrors['required']">Contraseña es obligatoria</small>
+          </ng-container>
+        </div>
+      </div>
+  
+      <button type="submit" class="login-button">Iniciar Sesión</button>
+      <p>¿Aún no tienes una cuenta? <a routerLink="/registro-restaurante">Regístrate ahora</a>.</p>
+      <p>¿Olvidaste tu contraseña? <a href="javascript:void(0)" (click)="mostrarSegundaFaseRecuperacion()">Restáurala ahora</a>.</p>
+    </div>
+  </form>
+  
+  <div *ngIf="mostrarSegundaFase" class="form-container">
+    <h2>Recuperar Contraseña</h2>
+    <p>Selecciona tu método de restauración de contraseña:</p>
+    <form>
+        <div class="tipo-recuperacion-container">
+            <button mat-raised-button color="primary" class="tipo-recuperacion-button" routerLink="/restaurar-con-correo-restaurante" >
+                <mat-icon class="recuperacion-icon">email</mat-icon>
+                <span>Por correo electrónico</span>
+            </button>
+            <button mat-raised-button color="primary" class="tipo-recuperacion-button" routerLink="/restaurar-con-pregunta-restaurante" >
+                <mat-icon class="recuperacion-icon">help</mat-icon>
+                <span>Por pregunta secreta</span>
+            </button>
+        </div>
+        <button type="button" class="login-button" (click)="regresarAFase1()">Regresar a la Fase 1</button>
+    </form>
+  </div>
+  
+  <app-footer></app-footer>
+  

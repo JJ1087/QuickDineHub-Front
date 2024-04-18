@@ -1,0 +1,369 @@
+/* home.component.css */
+
+/* Estilos para el checkbox */
+.voz-alta-container {
+    margin-top: 10px;
+    margin-bottom: 1%;
+}
+/* home.component.css */
+
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    margin-top: 12.5%;
+    margin-left: 3.5%;
+  }
+  
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+/* Otros estilos para la página de inicio */
+.mensaje-bienvenida {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1px;
+
+}
+
+.mensaje-bienvenida h1 {
+    color: #00B14F;
+    font-size: 2em;
+}
+
+.mensaje-bienvenida p {
+    color: #555;
+    font-size: 1.1em;
+}
+
+
+.imagenes-container {
+    display: flex;
+    justify-content:end;
+    margin-top: 20px;
+    background-color: #555;
+}
+
+.imagen {
+    margin-right: 20px;
+}
+
+.imagen img {
+    max-width: 60%; /* Reducimos el tamaño máximo de la imagen a un 60% */
+  max-height: 60%; /* Reducimos la altura máxima de la imagen a un 60% */
+}
+/* ------- */
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #00B14F;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Asegura que el header esté encima de otros elementos */
+    transition: padding 0.45s; /* Agregamos una transición para el cambio de padding */
+}
+.logo img {
+    height: auto;
+    border-radius: 10px; /* Añadido para borde redondeado */
+    max-width: .5%; /* Reducimos aún más el tamaño del logo */
+  margin-left: -8%; /* Ajustamos el margen izquierdo */
+  transition: all 0.9s; /* Agregamos una transición para suavizar los cambios */
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/**/
+
+/* styles.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px; /* Ajusta según sea necesario */
+    margin-top: 70px; /* Ajusta según la altura de tu header */
+
+  }
+  
+  .main-content {
+    width: 70%; /* Ajusta según sea necesario */
+    text-align: center;
+    margin-bottom: 20px; /* Ajusta según sea necesario */
+  }
+  
+  .chatbot-container {
+    width: 70%; /* Ajusta según sea necesario */
+    display: flex;
+    justify-content: center;
+  }
+  .centro{
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+    padding-bottom: 5%;
+  }
+  
+  /* home.component.css */
+
+/* Añade estos estilos al final del archivo */
+
+.repartidores-section,
+.restaurantes-section,
+.clientes-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px; /* Reduce el margen superior */
+    margin-bottom: 10px; /* Reduce el margen inferior */
+}
+
+.repartidores-text,
+.restaurantes-text,
+.clientes-text {
+    flex: 1;
+    text-align: center;
+
+    background: linear-gradient(to right, #00B14F, #e3ece6); /* Degradado de colores */
+
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.repartidores-image,
+.restaurantes-image,
+.clientes-image {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.repartidores-image img,
+.restaurantes-image img,
+.clientes-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.repartidores-text h2,
+.restaurantes-text h2,
+.clientes-text h2 {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.repartidores-text p,
+.restaurantes-text p,
+.clientes-text p {
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.repartidores-text a,
+.restaurantes-text a,
+.clientes-text a {
+    color: #00B14F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.repartidores-text a:hover,
+.restaurantes-text a:hover,
+.clientes-text a:hover {
+    text-decoration: underline;
+}
+
+.chatbot-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.chatbot-text {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: #00B14F;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-text h2 {
+    color: #fff;
+    font-size: 32px; /* Aumentado el tamaño del título */
+    font-weight: bold; /* Agregada negrita al título */
+    margin-bottom: 20px; /* Espaciado inferior para el título */
+}
+
+.chatbot-text p {
+    color: #fff;
+    font-size: 18px; /* Aumentado el tamaño del texto */
+    line-height: 1.6; /* Aumentado el espacio entre líneas */
+    margin-bottom: 10px; /* Espaciado inferior para los párrafos */
+}
+
+.chatbot-container {
+    flex: 1;
+    margin-left: 20px;
+}
+.mensaje-bienvenida,
+.repartidores-text,
+.restaurantes-text,
+.clientes-text,
+.chatbot-text {
+    margin-bottom: 20px; /* Reduce el margen inferior para estos elementos */
+}
+
+/* home.component.css */
+
+.restaurantes-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.restaurantes-text {
+    flex: 1;
+    text-align: center;
+    background: linear-gradient(to right, #00B14F, #e3ece6);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.restaurantes-image {
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 20px; /* Agrega un margen derecho para separar de la imagen */
+}
+
+.restaurantes-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.restaurantes-text h2 {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.restaurantes-text p {
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.restaurantes-text a {
+    color: #00B14F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.restaurantes-text a:hover {
+    text-decoration: underline;
+}
+
+
+.restaurantes-section,
+.clientes-section,
+.chatbot-section {
+    opacity: 0;
+    transform: translateY(20px); /* Desplaza los elementos hacia abajo */
+    transition: opacity 1.5s ease, transform 1.5s ease; /* Agrega transiciones */
+}
+
+/* Establece las propiedades de opacidad y transformación a 1 y 0 respectivamente cuando la clase 'visible' está presente */
+
+.restaurantes-section.visible,
+.clientes-section.visible,
+.chatbot-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*¨*/
+header.scrolled {
+    padding: 0.00002px; /* Reducimos el padding cuando el usuario ha hecho scroll hacia abajo */
+  }
+  
+  header.scrolled .logo img {
+    max-width: 0.03%; /* Reducimos aún más el tamaño del logo cuando se ha hecho scroll hacia abajo */
+    margin-left: -20%; /* Ajustamos el margen izquierdo cuando se ha hecho scroll hacia abajo */
+    transition: all 0.9s; /* Agregamos una transición para suavizar los cambios */
+  }
+  
+  nav ul li a {
+    font-size: .5px; /* Reducimos el tamaño del texto del enlace */
+  }
+  
+  header.scrolled nav ul li a {
+    font-size: .5px; /* Reducimos aún más el tamaño del texto del enlace cuando se ha hecho scroll hacia abajo */
+  }

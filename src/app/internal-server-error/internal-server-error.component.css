@@ -1,0 +1,56 @@
+/* internal-server-error.component.css */
+.internal-server-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e74c3c; /* Fondo rojo */
+  }
+  
+  .error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    max-width: 150px;
+    margin-bottom: 1px;
+    border-radius: 10%;
+  }
+  .ico {
+    max-width: 50px; /* Ajusta el tamaño del logo según tus necesidades */
+    margin-bottom: 1px;
+    border-radius: 10%;
+  }
+  .error-message {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e74c3c; /* Borde rojo */
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .error-message h2 {
+    color: #e74c3c;
+  }
+  
+  .error-message p {
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  .error-message a {
+    color: #2ecc71;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .error-message a:hover {
+    color: #27ae60;
+  }
+  

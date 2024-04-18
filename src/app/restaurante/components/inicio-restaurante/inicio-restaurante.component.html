@@ -1,0 +1,27 @@
+<!-- inicio-restaurante.component.html -->
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante" class="admin-current-page">Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a href="reseñas-restaurante.html">Reseñas</a>
+
+</div>
+<div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+</div>
+<div class="admin-welcome">
+    <h1>Hola restaurante "{{ nombreRestaurante }}"</h1>
+    <p>En este espacio dedicado exclusivamente a tu restaurante, podrás acceder y gestionar toda la información relevante para ofrecer una experiencia culinaria excepcional a nuestros clientes. Tu restaurante es una parte esencial de nuestra plataforma,
+        y aquí puedes destacar lo mejor de lo que tienes para ofrecer.</p>
+</div>
+
+<!-- inicio-restaurante.component.html -->
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>

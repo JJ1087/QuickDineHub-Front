@@ -1,0 +1,411 @@
+.main-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre columnas */
+    margin: 20px auto;
+    max-width: 1200px; /* Ancho máximo */
+}
+.carrito-container {
+    flex-basis: 50%; /* Ocupa la mitad del espacio disponible */
+    border: 5px solid #ccc; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #efefef; /* Fondo claro para el formulario */
+    margin-bottom: 6%;
+    margin-right: 3%;
+    margin-left: 0.2%;
+}
+
+.columna-derecha {
+    flex-basis: 50%; /* Ocupa la mitad del espacio disponible */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6%;
+
+}
+
+.productos-container {
+    flex-basis: 60%; /* Ocupa el 60% del espacio disponible */
+    border: 5px solid #ccc; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #ffffff; /* Fondo claro para el formulario */
+    margin-bottom: 3%;
+}
+
+.resumen-container,
+.comprar-container {
+    border: 5px solid #ccc; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #efefef; /* Fondo claro para el formulario */
+    margin-bottom: 20px; /* Espacio al final de cada contenedor */
+    
+}
+.info-container {
+    flex-basis: calc(40% - 150px); /* Ocupa el 40% del espacio disponible, restando el margen */
+    border: 5px solid #ccc; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #efefef; /* Fondo claro para el formulario */
+    margin-top: 20px; /* Espacio entre contenedores */
+}
+/* Estilos adicionales para cada contenedor */
+
+.producto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid #e4aa63; /* Borde para visualización */
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo claro para el formulario */
+    margin-bottom: 20px;
+}
+
+.producto input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.producto input[type="text"]:hover,
+.producto input[type="text"]:focus {
+    border-color: #4CAF50; /* Cambia el color del borde al interactuar */
+    outline: none; /* Elimina el contorno al enfocar para estilos personalizados */
+}
+
+
+.info-producto {
+    flex: 1;
+}
+
+.nombre {
+    font-weight: bold;
+}
+
+.detalles {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.cantidad-container {
+    width: 100px;
+    text-align: center;
+}
+
+.cantidad-container input {
+    width: 50px;
+}
+.subtotal {
+    font-weight: bold;
+    color: green;
+}
+
+.cantidad-select {
+    margin-left: 10px;
+}
+
+.comprar-button {
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 12px 24px; /* Espaciado interno */
+    border: none; /* Borde */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cursor al pasar */
+    text-align: center; /* Alineación de texto */
+    text-decoration: none; /* Decoración de texto */
+    display: block; /* Mostrar como bloque */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición de color al pasar */
+}
+
+.comprar-button:hover {
+    background-color: #45a049; /* Cambio de color al pasar el mouse */
+}
+
+/*contenedor de resumen*/
+.resumen-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Espaciado entre ítems */
+}
+
+.resumen-item span:first-child {
+    font-weight: bold; /* Texto en negrita para la etiqueta */
+}
+.resumen-item-container{
+    flex-basis: 60%; /* Ocupa el 60% del espacio disponible */
+    border: 3px solid #e4aa63; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #ffffff; /* Fondo claro para el formulario */
+
+}
+
+/*contenedor de compra*/
+
+/* Estilos previos para botón y combobox */
+.boton-combo {
+    margin-bottom: 20px; /* Espacio entre botón/combo y el siguiente elemento */
+}
+
+.boton-combo button {
+    background-color: #007bff; /* Ajusta el color de fondo según tu guía de estilos */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Espacio entre el botón y el combobox */
+}
+
+.boton-combo button:hover {
+    background-color: #0056b3; /* Oscurece el botón al pasar el mouse */
+}
+
+.boton-combo select,.cuenta-combobox select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Estilos para el formulario de dirección */
+.formulario-direccion,.formulario-cuenta{
+    background-color: #f8f9fa; /* Fondo claro para el formulario */
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
+    position: fixed;
+    top: 50%; /* Posiciona el formulario en el centro verticalmente */
+    left: 50%; /* Posiciona el formulario en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* Centra el formulario */
+    z-index: 999; /* Asegura que el formulario esté en la parte superior */
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+.formulario-direccion h3, .formulario-cuenta h3 {
+    color: #333; /* Color oscuro para el título */
+    margin-bottom: 15px; /* Espacio debajo del título */
+}
+
+.formulario-direccion label, .formulario-cuenta label {
+    display: block; /* Asegura que cada input tenga su propia línea */
+    margin-bottom: 5px;
+    color: #666; /* Color gris para los labels */
+}
+
+.formulario-direccion input, .formulario-cuenta input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px; /* Espacio entre inputs */
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Borde sutil */
+}
+
+/* Estilos para botones dentro del formulario */
+.formulario-direccion button, .formulario-cuenta button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* Espacio entre botones */
+}
+
+/* Botón de agregar con el color primario */
+.formulario-direccion button:first-child, .formulario-cuenta button:first-child{
+    background-color: #28a745; /* Color verde */
+    color: white;
+}
+
+/* Botón de cancelar con color secundario */
+.formulario-direccion button:last-child, .formulario-cuenta button:last-child {
+    background-color: #dc3545; /* Color rojo */
+    color: white;
+}
+
+.formulario-direccion button:hover, .formulario-cuenta button:hover {
+    opacity: 0.9; /* Efecto al pasar el mouse */
+}
+
+/* Estilo mejorado para el botón de agregar dirección */
+.comprar-container button {
+    background-color: #4CAF50; /* Un verde vibrante */
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px; /* Tamaño de fuente adecuado */
+    border: none;
+    border-radius: 5px; /* Bordes redondeados para un look moderno */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Suavizado de transición para el hover */
+    margin-bottom: 3%;
+}
+
+.comprar-container button:hover, .comprar-container button:focus {
+    background-color: #45a049; /* Un tono ligeramente más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación sutil */
+    outline: none; /* Eliminar el contorno al enfocar para estilos personalizados */
+}
+
+/* Estilo para el combobox */
+.comprar-container select, .cuenta-combobox select {
+    width: 100%; /* Aprovechar el ancho disponible */
+    padding: 8px 10px;
+    font-size: 16px; /* Tamaño de fuente coherente con el botón */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: white;
+    color: #333; /* Texto oscuro para contraste */
+    cursor: pointer;
+    transition: border-color 0.3s; /* Suavizar la transición del borde */
+    margin-bottom: 8%
+}
+
+.comprar-container select:hover, .comprar-container select:focus {
+    border-color: #4CAF50; /* Resaltar el combobox al interactuar */
+    outline: none; /* Eliminar el contorno al enfocar */
+}
+
+/**/
+/* Estilos para el botón "Agregar una cuenta bancaria" */
+.agregar-cuenta-button {
+    background-color: #007bff; /* Color azul para el botón */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave al cambiar de color */
+    font-weight: bold; /* Texto en negrita para el botón */
+    margin-right: 10px; /* Espacio entre botones */
+}
+
+.agregar-cuenta-button:hover {
+    background-color: #0056b3; /* Oscurece el botón al pasar el mouse */
+}
+
+/* Estilos para el contenedor de COMPRA EXITOSA */
+.mensaje-exitoso {
+    position: fixed; /* Posición fija en la ventana */
+    top: 50%; /* Ubicar en la mitad vertical de la ventana */
+    left: 50%; /* Ubicar en la mitad horizontal de la ventana */
+    transform: translate(-50%, -50%); /* Centrar el mensaje */
+    background-color: #4CAF50; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Alinear texto al centro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 40%;
+    height: 40%;
+}
+
+/* Estilo para el icono dentro del mensaje emergente */
+.mensaje-exitoso i {
+    font-size: 60px; /* Tamaño del icono */
+    margin-bottom: 20px; /* Espacio debajo del icono */
+}
+.mensaje{
+    font-size: 120%;
+}
+/* Estilo para el botón dentro del mensaje emergente */
+.mensaje-exitoso button {
+    background-color: rgb(25, 123, 221); /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de apuntar */
+    font-size: 20px; /* Tamaño de fuente */
+    margin-top: 20px; /* Espacio encima del botón */
+}
+
+/* Estilo para el botón al pasar el mouse */
+.mensaje-exitoso button:hover {
+    background-color: #d6dce1; /* Cambio de color al pasar el mouse */
+}
+
+.resumen-container, .comprar-container {
+    border: 5px solid #ccc; /* Borde para visualización */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px;
+    background-color: #efefef; /* Fondo claro para el formulario */
+    margin-bottom: 20px; /* Espacio al final de la columna */
+    margin-top: 1%;
+}
+
+/*NAV*/
+nav {
+    background-color: #ffdbac;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a.cart-icon-link:hover {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+nav a.current {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+.cart-icon-container {
+    margin-top: 15%;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    z-index: 9999;
+    font-size: 24px;
+}
+
+nav a.cart-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+nav a.cart-icon-link i {
+    margin-right: 5px;
+}
+
+.breadcrumbs {
+    margin: 10px 0;
+    font-size: 17px;
+    color: #555;
+    margin-top: 1%;
+    margin-left: 3.5%;
+  }
+  
+  .breadcrumbs a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }

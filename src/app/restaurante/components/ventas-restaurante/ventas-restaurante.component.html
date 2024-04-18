@@ -1,0 +1,154 @@
+<!-- ventas-restaurante.component.html -->
+
+<app-header-restaurante></app-header-restaurante>
+<!-- ventas-restaurante.component.html -->
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante" >Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante"class="admin-current-page">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a href="reseñas-restaurante.html">Reseñas</a>
+  </div>
+  <div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+<div class="sales-container">
+    <div class="sales-title">
+      <span>📊 Gestión de Ventas</span>
+    </div>
+  
+    <div class="filters-container">
+      <div>FILTROS<span class="material-icons filter-icon">filter_alt</span></div>
+      <div class="filter-group">
+    <label for="search">Primera Búsqueda:</label>
+    <input type="text" id="search" (input)="filterTable()" placeholder="Ingrese término de búsqueda">
+    <label for="searchColumn">Buscar en primera columna:</label>
+    <select id="searchColumn" (change)="filterTable()">
+      <option value="0">Producto adquirido</option>
+      <option value="1">Cantidad</option>
+      <option value="2">Costo total</option>
+      <option value="3">Fecha de venta</option>
+      <option value="4">Dirección local o remota</option>
+      <option value="5">Folio</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="search2">Segunda Búsqueda:</label>
+    <input type="text" id="search2" (input)="filterTable()" placeholder="Ingrese término de búsqueda">
+    <label for="searchColumn2">Buscar en segunda columna:</label>
+    <select id="searchColumn2" (change)="filterTable()">
+      <option value="0">Producto adquirido</option>
+      <option value="1">Cantidad</option>
+      <option value="2">Costo total</option>
+      <option value="3">Fecha de venta</option>
+      <option value="4">Dirección local o remota</option>
+      <option value="5">Folio</option>
+    </select>
+  </div>
+<p></p>
+      <div class="filter-group">
+
+    <label for="search3">Tercera Búsqueda:</label>
+    <input type="text" id="search3" (input)="filterTable()" placeholder="Ingrese término de búsqueda">
+    <label for="searchColumn3">Buscar en tercera columna:</label>
+<select id="searchColumn3" (change)="filterTable()">
+  <option value="0">Producto adquirido</option>
+  <option value="1">Cantidad</option>
+  <option value="2">Costo total</option>
+  <option value="3">Fecha de venta</option>
+  <option value="4">Dirección local o remota</option>
+  <option value="5">Folio</option>
+</select>
+</div>
+
+<div class="filter-group">
+<label for="search4">Cuarta Búsqueda:</label>
+<input type="text" id="search4" (input)="filterTable()" placeholder="Ingrese término de búsqueda">
+<label for="searchColumn4">Buscar en cuarta columna:</label>
+<select id="searchColumn4" (change)="filterTable()">
+  <option value="0">Producto adquirido</option>
+  <option value="1">Cantidad</option>
+  <option value="2">Costo total</option>
+  <option value="3">Fecha de venta</option>
+  <option value="4">Dirección local o remota</option>
+  <option value="5">Folio</option>
+</select>
+</div>
+</div>
+
+    
+    <div>
+      <br>
+    </div>
+    
+    <span>🛒</span>
+  
+    <button class="add-sale-button" (click)="toggleAddSaleForm()">Agregar Venta</button>
+    <div class="add-sale-form" id="addSaleForm">
+      <form id="saleForm" (submit)="addSale($event)">
+        <label for="product">Productos adquiridos:</label>
+        <input type="text" id="product" name="product" required><br>
+  
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" step="any" required><br>
+  
+        <label for="totalCost">Costo Total:</label>
+        <input type="number" id="totalCost" name="totalCost" step="any" required><br>
+  
+        <label for="saleDate">Fecha de venta:</label>
+        <input type="date" id="saleDate" name="saleDate" required><br>
+  
+        <label for="saleLocation">Dirección local o remota:</label>
+        <input type="text" id="saleLocation" name="saleLocation" required><br>
+  
+        <input type="submit" value="Agregar">
+      </form>
+      <button type="button" (click)="cancelAdd()">Cancelar</button>
+    </div>
+  
+    <table class="sales-table" id="salesTable">
+      <thead>
+        <tr>
+          <th>Producto adquirido</th>
+          <th>Cantidad</th>
+          <th>Costo total</th>
+          <th>Fecha de venta</th>
+          <th>Dirección local o remota</th>
+          <th>Folio</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se añadirán dinámicamente las filas de la tabla -->
+      </tbody>
+    </table>
+  
+    <div class="edit-sale-form" id="editSaleForm">
+      <form (submit)="saveEditedSale($event)">
+        <!-- Contenido del formulario de edición -->
+        <label for="editedProduct">Productos adquiridos:</label>
+        <input type="text" id="editedProduct" name="editedProduct" required><br>
+  
+        <label for="editedQuantity">Cantidad:</label>
+        <input type="number" id="editedQuantity" name="editedQuantity" step="any" required><br>
+  
+        <label for="editedTotalCost">Costo Total:</label>
+        <input type="number" id="editedTotalCost" name="editedTotalCost" step="any" required><br>
+  
+        <label for="editedSaleDate">Fecha de venta:</label>
+        <input type="date" id="editedSaleDate" name="editedSaleDate" required><br>
+  
+        <label for="editedSaleLocation">Dirección local o remota:</label>
+        <input type="text" id="editedSaleLocation" name="editedSaleLocation" required><br>
+  
+        <input type="submit" value="Guardar Cambios">
+        <button type="button" (click)="cancelEdit()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+  
+    
+    <app-footer-restaurante></app-footer-restaurante>

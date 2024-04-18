@@ -1,0 +1,121 @@
+/* mis-pedidos.component.css */
+
+.pedidos-container {
+    max-width: 80%; /* Ancho máximo del contenedor de pedidos */
+    margin: 2% auto ; /* Agregar margen inferior para separar del fondo */
+    border-style: groove;
+    border-width: 10px;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #efefef;
+}
+
+.pedido {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+    display: flex; /* Usar flexbox para alinear elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+}
+
+.footer{
+    padding-top: 2.5%;
+}
+.pedido-info {
+    margin-left: 1%; /* Espacio entre el contenido y la imagen */
+    margin-right: 90px; /* Espacio entre el contenido y la imagen */
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    max-height: 100px; /* Altura máxima de la descripción */
+    overflow: auto; /* Agregar desbordamiento si excede la altura máxima */
+    width: calc(100% - 150px); /* Ancho del contenedor de la descripción */
+}
+.pedido-info strong {
+    display: block; /* Convertir el elemento strong en un bloque para separar líneas */
+    margin-bottom: 5px; /* Agregar espacio debajo de cada título */
+    margin-top: 5px;
+}
+.pedido-imagen {
+    width: 100px; /* Ancho fijo de la imagen */
+    height: 100px; /* Altura fija de la imagen */
+    border-radius: 4px;
+    object-fit: cover; /* Ajustar la imagen para cubrir el contenedor */
+    display: inline-block; /* Mostrar la imagen como un elemento en línea */
+    vertical-align: top; /* Alinear la imagen en la parte superior */
+    margin-right: 25px; /* Espacio a la derecha */
+}
+
+.pedido-imagen img {
+    width: 100px; /* Ancho fijo de la imagen */
+    height: 100px; /* Altura fija de la imagen */
+    border-radius: 4px;
+    object-fit: cover; /* Ajustar la imagen para cubrir el contenedor */
+    display: block; /* Mostrar la imagen como bloque */
+    margin-right: 25px;
+}
+
+.ver-detalles-button {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espaciado interno del botón */
+    cursor: pointer; /* Cursor de apuntar */
+}
+
+.ver-detalles-button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+
+/*NAV*/
+nav {
+    background-color: #ffdbac;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a.cart-icon-link:hover {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+nav a.current {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+.cart-icon-container {
+    margin-top: 15%;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    z-index: 9999;
+    font-size: 24px;
+}
+
+nav a.cart-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+nav a.cart-icon-link i {
+    margin-right: 5px;
+}

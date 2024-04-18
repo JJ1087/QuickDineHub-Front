@@ -1,0 +1,153 @@
+<app-header-cliente></app-header-cliente>
+<nav>
+    <a routerLink="/inicio-cliente" >Inicio</a>
+    <a routerLink="/cli-restaurantes">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos" >Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link" >
+        <i class="fas fa-shopping-cart" ></i> Carrito
+    </a>
+</nav>
+<div class="breadcrumbs">
+    <a routerLink="../inicio-cliente">Inicio</a>
+    <span> > </span>
+    <span>Carrito</span>
+  </div>
+
+<div class="main-container">
+
+<div class="carrito-container">
+
+    <!-- Contenedor de productos -->
+    <div class="productos-container">
+        <h2>Producto</h2>
+        <div class="producto">
+            <div class="info-producto">
+                <div class="nombre">{{ product?.nombre }}</div>
+                <div class="detalles">{{ product?.descripcion }}</div>
+                <!-- Espesificaciones del pedido dentro del div.producto -->
+                <label for="">Indica especificaciones del pedido (Omisión de ingredientes, etc.) al restaurante:</label>
+                <input type="text" [(ngModel)]="especificaciones" name="especificaciones">
+            </div>
+            <div class="cantidad-container">
+                <label for="" >cantidad:</label>
+                <input type="number" value="1" min="1" max="100" [(ngModel)]="cantidadSeleccionada" (input)="actualizarCantidad()">
+                <!-- Subtotal -->
+                <label for="" class="nombre">Subtotal:</label>
+                <div class="subtotal">{{ subTotal | currency }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+           
+<!-- RESUMEN PEDIDO----------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="columna-derecha">
+    <!-- Contenedor de resumen del pedido -->
+    <div class="resumen-container">
+        <h2>Resumen del Pedido</h2>
+        <div class="resumen-item-container">
+
+        <div class="resumen-item">
+            <span>Cantidad de productos:</span>
+            <span>{{ cantidadSeleccionada }}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
+        </div>
+        <div class="resumen-item">
+            <span>Precio Unitario:</span>
+            <span>${{ product?.precio.$numberDecimal }}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
+        </div>
+        <div class="resumen-item">
+            <span>Costo envío:</span>
+            <span>${{ product?.costoEnvio.$numberDecimal }}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
+        </div>
+        <div class="resumen-item">
+            <span>Precio Total:</span>
+            <span>${{ precioTotal }}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
+        </div>
+    </div>
+    </div>
+
+
+<!-- Contenedor de botón comprar -------------------------------------------------------------------------------------------------------->
+    <div class="comprar-container">
+        <h2>Comprar</h2>
+        <button class="agregar-cuenta-button"(click)="mostrarFormularioDireccion = true" [disabled]="compraRealizada">Agregar una dirección</button>
+        <select [disabled]="compraRealizada" #direccionSelect>
+            <!-- Opciones dinámicas basadas en las direcciones agregadas -->
+            <option *ngFor="let direccion of direcciones" [value]="direccion._id">
+                {{ direccion.colonia }}, {{ direccion.calle }}, {{ direccion.noCasa }}, ({{ direccion.datoExtra }})
+            </option>
+        </select>
+        
+        
+<!-- Formulario para agregar dirección ----------------------------------------------------------------------------------------------------->
+        <div *ngIf="mostrarFormularioDireccion" class="formulario-direccion">
+            <h3>Agrega una dirección:</h3>
+            <label for="colonia">Colonia</label>
+            <input type="text" id="colonia" [(ngModel)]="nuevaDireccion.colonia">
+    
+            <label for="calle">Calle</label>
+            <input type="text" id="calle" [(ngModel)]="nuevaDireccion.calle">
+    
+            <label for="noCasa">Número de casa</label>
+            <input type="number" id="noCasa" [(ngModel)]="nuevaDireccion.noCasa">
+
+            <label for="datoExtra">Datos Extra (Caracteristicas especificas)</label>
+            <input type="text" id="datoExtra" [(ngModel)]="nuevaDireccion.datoExtra">
+    
+            <button (click)="agregarDireccion()">Agregar</button>
+            <button (click)="mostrarFormularioDireccion = false">Cancelar</button>
+        </div>
+
+
+<!-- Botón "Agregar cuenta bancaria" ------------------------------------------------------------------------------------------------------->
+        <button class="agregar-cuenta-button" (click)="mostrarFormularioCuenta = true"[disabled]="compraRealizada">Agregar una cuenta bancaria</button>
+        <!-- Combobox para las cuentas bancarias -->
+        <div class="cuenta-combobox">
+            <select [disabled]="compraRealizada" #cuentaSelect>
+                <!-- Opciones dinámicas basadas en las cuentas bancarias agregadas -->
+                <option *ngFor="let cuenta of cuentas" [value]="cuenta._id">
+                    {{ cuenta.noTarjeta }}, {{ cuenta.nombreTitular }}, {{ cuenta.fechaVencimiento | date:'yyyy-MM-dd'}}, {{ cuenta.cvv }}
+                </option>
+            </select>
+
+        </div>
+
+<!-- Formulario para agregar cuenta bancaria ----------------------------------------------------------------------->
+        <div *ngIf="mostrarFormularioCuenta" class="formulario-cuenta">
+            <h3>Agregar cuenta bancaria:</h3>
+            <label for="noTarjeta">Número de tarjeta</label>
+            <input type="number" id="noTarjeta" [(ngModel)]="nuevaCuenta.noTarjeta">
+
+            <label for="nombreTitular">Nombre completo del titular</label>
+            <input type="text" id="nombreTitular" [(ngModel)]="nuevaCuenta.nombreTitular">
+
+            <label for="fechaVencimiento">Fecha de vencimiento</label>
+            <input type="date" id="fechaVencimiento" [(ngModel)]="nuevaCuenta.fechaVencimiento">
+
+            <label for="cvv">Código de seguridad (CVV)</label>
+            <input type="number" id="cvv" [(ngModel)]="nuevaCuenta.cvv">
+
+            <button (click)="agregarCuenta()">Agregar</button>
+            <button (click)="mostrarFormularioCuenta = false">Cancelar</button>
+
+        </div>
+        <button class="comprar-button" (click)="realizarCompra()">Comprar</button>
+
+    </div>
+</div>
+
+
+<!-- Contenedor de compra exitosa ----------------------------------------------------------------------->
+        <div *ngIf="mostrarCompraExitosa" class="mensaje-exitoso">
+            <i class="fas fa-check-circle"></i>
+            <p class="mensaje">¡Compra exitosa!</p>
+            <p class="mensaje">¡Que difrutes la comida, buen provecho!</p>
+            <button (click)="seguirComprando()">Seguir comprando</button>
+        </div>
+
+        
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,97 @@
+<app-header></app-header>
+
+<!-- registro-repartidor.component.html -->
+<div *ngIf="faseActual === 0" class="registro-container">
+    <!-- Fase de recuperar cuenta -->
+    <h2>Recupera tu cuenta</h2>
+    <p>Ingresa tu correo electrónico</p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="recuperarCuentaForm">
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" formControlName="email" required>
+        <div *ngIf="recuperarCuentaForm.get('email')?.errors?.['required']" class="error-message">
+            El correo electrónico es requerido.
+        </div>
+        <!-- Puedes agregar más validaciones para el formato del correo electrónico si lo deseas -->
+        <button type="submit" class="next-button">Enviar</button>
+    </form>
+</div>
+
+<div *ngIf="faseActual === 1" class="registro-container">
+    <form (ngSubmit)="onFase1Submit()" [formGroup]="fase1Form">
+        <h2>Selecciona una pregunta secreta e ingresa la respuesta</h2>
+        <!-- pregunta secreta -->
+        <p>Selecciona la pregunta secreta que elegiste al momento de registrarte</p>
+        <div class="form-group custom-select-wrapper">
+            <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+            <option value="" disabled selected>Selecciona una pregunta secreta</option>
+            <option value="mascota">¿Cuál es el nombre de tu primer mascota?</option>
+            <option value="cancion">¿Cuál es tu canción favorita?</option>
+            <option value="pelicula">¿Cuál es tu película favorita?</option>
+            <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+            <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="respuestaSecreta">Respuesta Secreta: </label>
+            <input type="text" formControlName="respuestaSecreta" id="respuestaSecreta" class="form-control">
+        </div>
+        <div *ngIf="errorFase1" class="error-message">
+            La respuesta a la pregunta secreta es incorrecta o no se ha seleccionado la pregunta adecuada. Por favor, inténtalo de nuevo.
+        </div>
+        <!-- Botón de enviar -->
+        <button type="submit" class="next-button">Enviar</button>
+
+    </form>
+    <!-- Botón para regresar a la fase de recuperar cuenta -->
+    <button type="button" class="next-button" (click)="volverAFase1()">Regresar a la Fase 1</button>
+
+</div>
+
+<div *ngIf="faseActual === 2" class="registro-container">
+    <!-- Autenticación con clave de 6 dígitos -->
+    <h2>Fase 6: Autenticación con clave de 6 dígitos</h2>
+    <p>Se te ha enviado un correo a tu correo.</p>
+    <form (ngSubmit)="onFase2Submit()" [formGroup]="fase2Form">
+        <!-- Campo para la autenticación con la clave de 6 dígitos -->
+        <label for="claveAutenticacion">Clave de 6 dígitos:</label>
+        <input type="text" id="claveAutenticacion" formControlName="claveAutenticacion" maxlength="6" [required]="true">
+        <!-- Mensaje de error si la clave de autenticación no se ha ingresado -->
+        <div *ngIf="fase2Form.get('claveAutenticacion')?.errors?.['required']" class="error-message">
+            La clave de autenticación es requerida.
+        </div>
+        <!-- Botón de enviar -->
+        <button type="submit" class="next-button">Enviar</button>
+    </form>
+    <div *ngIf="errorFase2" class="error-message">
+        La clave de autenticación ingresada es incorrecta. Por favor, inténtalo de nuevo.
+    </div>
+
+</div>
+
+<div *ngIf="faseActual === 3" class="registro-container">
+    <h2>Cambia tu contraseña</h2>
+    <p>En esta sección puedes cambiar la contraseña de tu cuenta. Por favor, ingresa una nueva contraseña y confírmala para completar el proceso.</p>
+    <form (ngSubmit)="onFase3Submit()" [formGroup]="fase3Form">
+        <div class="form-group">
+            <label for="nuevaContraseña">Nueva contraseña:</label>
+            <input type="password" formControlName="nuevaContraseña" id="nuevaContraseña" required>
+            <div *ngIf="fase3Form.get('nuevaContraseña')?.errors?.['required']" class="error-message">
+                La contraseña es requerida.
+            </div>
+            <div *ngIf="fase3Form.get('nuevaContraseña')?.errors?.['pattern']" class="error-message">
+                La contraseña debe tener entre 8 y 16 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial (&#64;, $, !, %, *, ?, &).
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmacionContraseña">Confirmar Contraseña:</label>
+            <input type="password" formControlName="confirmacionContraseña" id="confirmacionContraseña" required>
+            <div *ngIf="fase3Form.errors?.['noCoinciden']" class="error-message">
+                Las contraseñas no coinciden.
+            </div>
+        </div>
+        <button type="submit" class="next-button">Cambiar Contraseña</button>
+    </form>
+</div>
+
+
+<app-footer></app-footer>

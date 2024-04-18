@@ -1,0 +1,69 @@
+<app-header-cliente></app-header-cliente>
+
+<nav>
+    <a routerLink="/inicio-cliente" >Inicio</a>
+    <a routerLink="/cli-restaurantes">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos" >Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+
+<div class="breadcrumbs">
+    <a routerLink="../inicio-cliente">Inicio</a>
+    <span> > </span>
+    <a routerLink="../mis-pedidos">Mis pedidos</a>
+    <span> > </span>
+    <span>Estado de la compra</span>
+</div>
+
+<div class="estado-envio-container">
+    <div class="estado-envio-header">
+        <i class="fas fa-shopping-cart"></i>
+        <h2>Estado de la Compra</h2>    
+    </div>
+
+    <div class="info-container">
+        <div class="product-info">
+            <div class="info-title"><i class="fas fa-box-open"></i> Información del Producto</div>
+            <div class="info-field"><strong>Nombre:</strong> {{ orderInfo.nombreProducto }}</div>
+            <div class="info-field"><strong>Descripción:</strong> {{orderInfo.descripcionProducto}}</div>
+            <div class="info-field"><strong>Nombre del restaurante:</strong> {{restaurante?.nombreRestaurante}}</div>
+            <!-- <div class="info-field"><strong>Dirección:</strong> {{orderInfo.direccion}}</div> -->
+        </div>
+
+        <div class="order-status">
+            <div class="info-title"><i class="fas fa-check-circle"></i> Estado del Pedido</div>
+            <div class="info-field"><strong>Estado:</strong> {{obtenerEstado(orderInfo?.estadoOrden)}}</div>
+            <div class="info-field"><strong>Fecha de Pedido:</strong> {{orderInfo?.fechaPedido | date:'dd/MM/yyyy'}}</div>
+            <div class="info-field"><strong>Estimado de Entrega:</strong> {{orderInfo.estimatedDelivery}}</div>
+        </div>
+    </div>
+
+    <div class="info-container">
+        <div class="shipping-info">
+            <div class="info-title"><i class="fas fa-shipping-fast"></i> Información de Envío</div>
+            <div class="info-field"><strong>Nombre del cliente:</strong> {{cliente?.nombre}}</div>
+            <div class="info-field"><strong>Dirección:</strong> {{direccion?.colonia}}, {{direccion?.calle}}, {{direccion?.noCasa}}, {{direccion?.datoExtra}}</div>
+            <div class="info-field"><strong>Ciudad:</strong> {{direccion?.ciudad}}</div>
+            <div class="info-field"><strong>Código Postal:</strong> {{direccion?.cp}}</div>
+        </div>
+
+        <div class="payment-info">
+            <div class="info-title"><i class="fas fa-credit-card"></i> Información de Pago</div>
+            <div class="info-field"><strong>Número de Tarjeta:</strong> {{cuenta?.noTarjeta}}</div>
+            <div class="info-field"><strong>Fecha de la Compra:</strong>  {{orderInfo?.fechaPedido | date:'dd/MM/yyyy'}}</div>
+            <div class="info-field"><strong>Costo Producto:</strong> {{orderInfo?.costoUnidad}}</div>
+            <div class="info-field"><strong>Costo de Envío:</strong> {{costoEnvio}}</div>
+            <div class="info-field"><strong>Costo Total:</strong> {{precioTotal}}</div>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+<app-footer></app-footer>
+</footer>

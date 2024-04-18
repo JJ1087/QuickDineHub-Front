@@ -1,0 +1,296 @@
+/* rest-productos.component.css */
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+}
+
+.productos-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+footer {
+    padding-top: 3%;
+}
+
+.orders-title {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.producto-item {
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+
+.producto-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.agregar-producto-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    /* Agrega esta línea */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 80vh;
+    /* Establece un ancho máximo */
+    width: auto;
+    /* Establece el ancho automático para adaptarse al contenido */
+    text-align: center;
+    z-index: 100;
+    /* Asegúrate de que tenga un valor mayor que el resto de la página */
+    overflow-y: auto;
+    /* Agrega desplazamiento vertical */
+}
+
+.popup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.popup input,
+.popup textarea,
+.popup select {
+    margin-bottom: 15px;
+    width: calc(100% - 20px);
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.popup-checkbox {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.popup-button {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1.5%;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.etiquetas-container {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.etiquetas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.etiquetas-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.popup-checkbox {
+    margin-right: 90%;
+}
+
+#contenedorProductos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+
+/* rest-productos.component.css */
+
+
+/* ... (otros estilos) */
+
+.popup-button,
+.eliminar-producto-button,
+.edit-producto-button {
+    /* Estilos comunes para los botones */
+    background-color: #4CAF50;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    border: none;
+    /* Sin borde */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor en forma de mano al pasar el ratón */
+    margin-right: 10px;
+    /* Espaciado derecho entre botones */
+}
+
+.popup-button:hover,
+.eliminar-producto-button:hover,
+.edit-producto-button:hover {
+    /* Estilos al pasar el ratón por encima */
+    background-color: #45a049;
+    /* Color de fondo más oscuro */
+}
+
+.eliminar-producto-button {
+    /* Estilos específicos para el botón de eliminar */
+    background-color: #f44336;
+    /* Color de fondo rojo */
+}
+
+.eliminar-producto-button:hover {
+    /* Estilos al pasar el ratón por encima del botón de eliminar */
+    background-color: #d32f2f;
+    /* Color de fondo rojo más oscuro */
+}
+
+
+/**/
+
+.admin-current-page {
+    background-color: #00B14F;
+}
+
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+
+.admin-welcome {
+    text-align: center;
+    margin: 20px;
+}
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#enableVozAlta {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.imagen-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    overflow: hidden;
+    /* Oculta cualquier contenido que se desborde */
+    transition: box-shadow 0.3s ease;
+    /* Transición suave de la sombra */
+}
+
+.imagen-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Aumenta la sombra al pasar el ratón */
+}
+
+.imagenes-preview {
+    display: flex;
+    /* Utiliza Flexbox para alinear las imágenes horizontalmente */
+    justify-content: flex-start;
+    /* Alinea las imágenes al principio del contenedor */
+    gap: 20px;
+    /* Espacio entre las imágenes */
+    overflow-x: auto;
+    /* Agrega una barra de desplazamiento horizontal si las imágenes no caben en el contenedor */
+    padding: 20px;
+    /* Añade un espacio interno alrededor de las imágenes */
+}
+
+.zoomable-image {
+    transition: transform 0.3s ease;
+    /* Añade una transición suave */
+}
+
+.imagen-preview:hover .zoomable-image {
+    transform: scale(2.2);
+    /* Hace que la imagen se agrande en un 10% cuando se pasa el cursor sobre ella */
+}
+
+.imagen-container {
+    width: 200px;
+    /* Ancho deseado para la imagen */
+    height: 200px;
+    /* Alto deseado para la imagen */
+    overflow: hidden;
+    /* Oculta cualquier parte de la imagen que exceda los límites del contenedor */
+}

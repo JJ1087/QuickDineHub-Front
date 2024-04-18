@@ -1,0 +1,16 @@
+<!-- inicio-repartidor.component.html -->
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidores" class="admin-current-page">Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-reseñas">Reseñas</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/rep-historial">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+</div>
+
+<div class="admin-welcome">
+    <h1>Hola {{ nombreUsuario }}</h1>
+    <p>Este espacio está dedicado exclusivamente a repartidores. Aquí podrás acceder y gestionar toda la información sobre los pedidos que desees solventar, así como las distintas herramientas que te permitirán realizar la entrega en el menor tiempo posible de forma eficiente.</p>
+</div>
+<app-footer></app-footer>

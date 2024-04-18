@@ -1,0 +1,69 @@
+<!-- inicio-cliente.component.html -->
+<app-header-cliente></app-header-cliente>
+
+<nav>
+    <a routerLink="/inicio-cliente" class="current">Inicio</a>
+    <a routerLink="/cli-restaurantes">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos">Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+
+<div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+
+  <app-notificaciones></app-notificaciones>
+
+<!-- Carrusel de productos -->
+<div class="carousel-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <button (click)="prevImage()" class="prev">&#10094;</button>
+    <div class="carousel-images">
+        <div *ngFor="let image of images.slice(currentIndex, currentIndex + 4); let i = index">
+            <img [src]="image" alt="Product Image {{ i }}" class="product-image">
+        </div>
+    </div>
+    <button (click)="nextImage()" class="next">&#10095;</button>
+</div>
+
+
+<div class="products-container">
+    <div *ngFor="let product of products" class="product"><!---->
+        <img [src]="getImageUrl(product.imagen[0])" [alt]="product?.nombre">
+        <h3>{{ product?.nombre }}</h3>
+        <p class="product-description">{{ product?.descripcion }}</p>
+        <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
+        <div class="product-tags">Etiquetas: {{ product?.etiquetas }}</div>
+        <div class="action-buttons">
+            <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
+            <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
+            <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Mensaje emergente -->
+    <div *ngIf="showMessage" class="message-container">
+    <i class="fas fa-exclamation-circle icon"></i>
+    <p class="message">Producto agregado al carrito</p>
+    <i class="fas fa-shopping-cart"></i>
+    <a (click)="goToCart()" class="link" >Ir al carrito</a>
+  </div>
+
+  <!-- Mensaje emergente -->
+  <div *ngIf="showMessage1" class="message-container">
+    <i class="fas fa-exclamation-circle icon"></i>
+    <p class="message">El producto ya se encuentra en el carrito</p>
+    <i class="fas fa-shopping-cart"></i>
+    <a (click)="goToCart()" class="link" >Ir al carrito</a>
+  </div>
+
+<app-footer></app-footer>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

@@ -1,0 +1,56 @@
+<header>
+    <app-header-cliente></app-header-cliente>
+    </header>
+    <nav>
+        <a routerLink="/inicio-cliente" >Inicio</a>
+        <a routerLink="/cli-restaurantes">Restaurantes</a>
+        <a routerLink="/cli-envios">Envíos</a>
+        <a routerLink="/cli-ofertas">Ofertas</a>
+        <a routerLink="/mis-pedidos" >Mis pedidos</a>
+        <!-- Icono del carrito dentro del nav -->
+        <a routerLink="/carrito-cliente" class="cart-icon-link" >
+            <i class="fas fa-shopping-cart" ></i> Carrito
+        </a>
+    </nav>
+    
+    <div class="breadcrumbs">
+        <a routerLink="../inicio-cliente">Inicio</a>
+        <span> > </span>
+        <span>Info. del producto</span>
+    </div>
+    
+    
+    <div class="carousel-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+        <button (click)="prevImage()" class="prev">&#10094;</button>
+        <!--<img [src]="images[currentIndex]" alt="Product Image" class="product-image">-->
+        <img [src]="product?.imagen[currentIndex]" alt="Product Image" class="product-image">
+        <button (click)="nextImage()" class="next">&#10095;</button>
+      </div>
+    
+      
+        
+       
+      
+    
+    <div class="product-info-container">
+        <div class="product-details">
+            
+            <h2>{{ product?.nombre }}</h2>
+            <p class="product-description">{{ product?.descripcion }}.</p>
+            <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
+            <div class="categoria">CATEGORIA: {{ product?.categoria }}</div>
+            <div class="product-tags">Etiquetas: {{ product?.etiquetas }}</div>
+            <!-- Botón de Comprar -->
+            <!--<a routerLink="/comprar" class="buy-button">Comprar</a>-->
+            <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
+        </div>
+    </div>
+    
+    <div class="back-to-products">
+        <a routerLink="/inicio-cliente" class="back-button">Volver a la lista de productos</a>
+    </div>
+    
+    <footer>
+    <app-footer></app-footer>
+    </footer>
+    

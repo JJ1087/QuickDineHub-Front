@@ -1,0 +1,65 @@
+<!-- login-repartidores.component.html -->
+<header>
+    <app-header></app-header>
+  </header>
+  
+  <div class="breadcrumbs">
+    <a routerLink="/">Home</a>
+    <span> > </span>
+    <span>Inicio de Sesión - Repartidores</span>
+  </div>
+  <div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+  
+
+  <form #loginForm="ngForm" *ngIf="!mostrarSegundaFase" (ngSubmit)="onSubmit(loginForm)">
+    <div class="login-container">
+    <div class="icon">
+      <mat-icon>local_shipping</mat-icon>
+    </div>
+  
+    <h2>Iniciar Sesión - Repartidores</h2>
+      <div class="form-group">
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correoRepartidor" name="correoRepartidor" [(ngModel)]="correoRepartidor" #correoRepartidorField="ngModel" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <div class="password-container">
+          <input type="{{ hidePassword ? 'password' : 'text' }}" id="contrasena" name="contrasena" [(ngModel)]="contrasena" #contrasenaField="ngModel" required>
+          <div class="toggle-password" (click)="togglePasswordVisibility()">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="login-button" [disabled]="!loginForm.valid">Iniciar Sesión</button>
+      <p>¿Aún no tienes una cuenta? <a routerLink="/registro-repartidor">Regístrate ahora</a>.</p>
+      <p>¿Olvidaste tu contraseña? <a href="javascript:void(0)" (click)="mostrarSegundaFaseRecuperacion()">Restáurala ahora</a>.</p>
+  </div>
+</form>
+
+<div *ngIf="mostrarSegundaFase" class="form-container">
+  <h2>Recuperar Contraseña</h2>
+  <p>Selecciona tu método de restauración de contraseña:</p>
+  <form>
+      <div class="tipo-recuperacion-container">
+          <button mat-raised-button color="primary" class="tipo-recuperacion-button"routerLink="/restaurar-con-correo-repartidor" >
+              <mat-icon class="recuperacion-icon">email</mat-icon>
+              <span>Por correo electrónico</span>
+          </button>
+          <button mat-raised-button color="primary" class="tipo-recuperacion-button"routerLink="/restaurar-con-pregunta-repartidor" >
+              <mat-icon class="recuperacion-icon">help</mat-icon>
+              <span>Por pregunta secreta</span>
+          </button>
+      </div>
+      <button type="button" class="login-button" (click)="regresarAFase1()">Regresar a la Fase 1</button>
+  </form>
+</div>
+
+  
+  <app-footer></app-footer>
+  

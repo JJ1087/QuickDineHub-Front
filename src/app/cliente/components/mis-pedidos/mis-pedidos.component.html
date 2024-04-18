@@ -1,0 +1,38 @@
+<!-- mis-pedidos.component.html -->
+<app-header-cliente></app-header-cliente>
+<nav>
+    <a routerLink="/inicio-cliente" >Inicio</a>
+    <a routerLink="/cli-restaurantes">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos" class="current">Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+
+<div class="pedidos-container">
+    <h2>Pedidos realizados</h2>
+    <!-- Contenedores de pedidos -->
+    <div class="pedido" *ngFor="let pedido of detalleOrdenes; let i = index">
+        <!-- Nombre del producto/s y Descripción -->
+        <div class="pedido-info">
+            <strong>Estado:</strong> {{ obtenerEstado(ordenes[i]?.estadoOrden) }} <br>
+            <strong>Nombre del producto:</strong> {{ pedido.nombreProducto }} <br>
+            <strong>Descripción:</strong> {{ pedido.descripcionProducto }}
+        </div>
+        <!-- Imagen --> 
+        <div class="pedido-imagen" >
+            <img [src]="productos[i]?.imagen[0]" [alt]="productos[i]?.nombre">
+        </div>
+
+        
+        <!-- Botón para ver detalles -->
+        <button class="ver-detalles-button" (click)="verDetalles(detalleOrdenes[i]?.idOrden, ordenes[i].idCliente, ordenes[i].idRestaurante, ordenes[i].idDireccion, ordenes[i].idCuentaBanco, detalleOrdenes[i].nombreProducto, detalleOrdenes[i].descripcionProducto, ordenes[i]?.estadoOrden, ordenes[i].createdAt, detalleOrdenes[i].costoUnidad)">Ver detalles de compra</button>
+    </div>
+</div>
+
+<footer class="footer">
+<app-footer></app-footer>
+</footer>

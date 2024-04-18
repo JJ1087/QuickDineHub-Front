@@ -1,0 +1,192 @@
+<!-- admin-activacion-perfiles.component.html -->
+
+<app-header-admin></app-header-admin>
+
+<nav>
+    <a routerLink="/inicio-clientes" >Inicio</a>
+    <a routerLink="/admin-activacion-perfiles"class="current">Activacion/Desactivación</a>
+    <a routerLink="/admin-perfiles">acceso de clientes</a>
+
+</nav>
+<mat-card class="profile-card">
+<mat-card class="activation-profiles-card">
+  <mat-card-title>Activación/Desactivación de Perfiles</mat-card-title>
+  <mat-card-content>
+    <div class="activation-perfiles-container">
+      <h3>Clientes</h3>
+      <table mat-table [dataSource]="dataSourceClientes" class="mat-elevation-z8">
+        <!-- Nombre del Usuario Column -->
+        <ng-container matColumnDef="nombreUsuario">
+          <th mat-header-cell *matHeaderCellDef> Nombre del Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombreUsuario}} </td>
+        </ng-container>
+
+        <!-- Tipo de Perfil Column -->
+        <ng-container matColumnDef="tipoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Perfil </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipoPerfil}} </td>
+        </ng-container>
+
+        <!-- Info del Perfil Button/Column -->
+        <ng-container matColumnDef="infoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Info. del Perfil </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button routerLink="/info-registro-cliente">Ver Info</button>
+          </td>
+        </ng-container>
+
+        <!-- Fecha de Registro Column -->
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaRegistro | date}} </td>
+        </ng-container>
+
+        <!-- Estado del Acceso Combo Column -->
+        <ng-container matColumnDef="estadoAccesoCombo">
+          <th mat-header-cell *matHeaderCellDef> Estado de Acceso </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field appearance="fill">
+              <mat-label>Acceso</mat-label>
+              <mat-select [(value)]="element.estadoAcceso">
+                <mat-option value="activado">Activado</mat-option>
+                <mat-option value="desactivado">Desactivado</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <!-- Botón de Accesos Column -->
+        <ng-container matColumnDef="botonAccesos">
+          <th mat-header-cell *matHeaderCellDef> Botón de Accesos </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="cambiarEstadoAccesoCliente(element)">Aceptar</button>
+            <button mat-button color="warn" (click)="cambiarEstadoAccesoCliente(element)">Rechazar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    
+    <!-- Repartidores -->
+    <div class="activation-perfiles-container">
+      <h3>Repartidores</h3>
+      <table mat-table [dataSource]="dataSourceRepartidores" class="mat-elevation-z8">
+        <!-- Nombre del Usuario Column -->
+        <ng-container matColumnDef="nombreUsuario">
+          <th mat-header-cell *matHeaderCellDef> Nombre del Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombreUsuario}} </td>
+        </ng-container>
+
+        <!-- Tipo de Perfil Column -->
+        <ng-container matColumnDef="tipoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Perfil </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipoPerfil}} </td>
+        </ng-container>
+
+        <!-- Info del Perfil Button/Column -->
+        <ng-container matColumnDef="infoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Info. del Perfil </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button routerLink="/info-registro-repartidor">Ver Info</button>
+          </td>
+        </ng-container>
+
+        <!-- Fecha de Registro Column -->
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaRegistro | date}} </td>
+        </ng-container>
+
+        <!-- Estado del Acceso Combo Column -->
+        <ng-container matColumnDef="estadoAccesoCombo">
+          <th mat-header-cell *matHeaderCellDef> Estado de Acceso </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field appearance="fill">
+              <mat-label>Acceso</mat-label>
+              <mat-select [(value)]="element.estadoAcceso">
+                <mat-option value="activado">Activado</mat-option>
+                <mat-option value="desactivado">Desactivado</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <!-- Botón de Accesos Column -->
+        <ng-container matColumnDef="botonAccesos">
+          <th mat-header-cell *matHeaderCellDef> Botón de Accesos </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="cambiarEstadoAccesoRepartidor(element)">Aceptar</button>
+            <button mat-button color="warn" (click)="cambiarEstadoAccesoRepartidor(element)">Rechazar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+
+    <!-- TABLA Restaurantes -->
+    <div class="activation-perfiles-container">
+      <h3>Restaurantes</h3>
+      <table mat-table [dataSource]="dataSourceRestaurantes" class="mat-elevation-z8">
+        <!-- Nombre del Usuario Column -->
+        <ng-container matColumnDef="nombreUsuario">
+          <th mat-header-cell *matHeaderCellDef> Nombre del Usuario </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombreUsuario}} </td>
+        </ng-container>
+
+        <!-- Tipo de Perfil Column -->
+        <ng-container matColumnDef="tipoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Perfil </th>
+          <td mat-cell *matCellDef="let element"> {{element.tipoPerfil}} </td>
+        </ng-container>
+
+        <!-- Info del Perfil Button/Column -->
+        <ng-container matColumnDef="infoPerfil">
+          <th mat-header-cell *matHeaderCellDef> Info. del Perfil </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button routerLink="/info-registro-restaurante">Ver Info</button>
+          </td>
+        </ng-container>
+
+        <!-- Fecha de Registro Column -->
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaRegistro | date}} </td>
+        </ng-container>
+
+        <!-- Estado del Acceso Combo Column -->
+        <ng-container matColumnDef="estadoAccesoCombo">
+          <th mat-header-cell *matHeaderCellDef> Estado de Acceso </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-form-field appearance="fill">
+              <mat-label>Acceso</mat-label>
+              <mat-select [(value)]="element.estadoAcceso">
+                <mat-option value="activado">Activado</mat-option>
+                <mat-option value="desactivado">Desactivado</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <!-- Botón de Accesos Column -->
+        <ng-container matColumnDef="botonAccesos">
+          <th mat-header-cell *matHeaderCellDef> Botón de Accesos </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="cambiarEstadoAccesoRestaurante(element)">Aceptar</button>
+            <button mat-button color="warn" (click)="cambiarEstadoAccesoRestaurante(element)">Rechazar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+</mat-card>

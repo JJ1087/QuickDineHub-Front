@@ -1,0 +1,16 @@
+<div class="notification-container" [class.expanded]="expanded">
+    <div class="notification-icon" (click)="toggleExpanded()">
+      <i class="fas fa-bell"></i> <!-- Icono de la campana -->
+      <div class="notification-badge">!</div> 
+    </div>
+    <div class="notification-content">
+    <div class="close-btn" (click)="closeNotifications()">&times;</div>
+      <div class="notification">
+        <p>Tu producto <strong>{{ nombreProducto }}</strong> del pedido de la fecha <strong>{{ fechaPedido }}</strong> ha sido cancelado por el restaurante.</p>
+        <p>¿Deseas proceder con la compra sin este producto o cancelar todo el pedido?</p>
+        <button class="btn-proceder" (click)="procederCompra()">Proceder con la compra</button>
+        <button class="btn-cancelar" (click)="cancelarPedido()">Cancelar pedido</button>
+      </div>
+    </div>
+  </div>
+  

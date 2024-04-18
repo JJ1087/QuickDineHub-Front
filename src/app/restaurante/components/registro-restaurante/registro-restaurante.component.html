@@ -1,0 +1,305 @@
+<!-- registro-restaurante.component.html -->
+<header>
+    <app-header></app-header>
+</header>
+
+<div class="breadcrumbs">
+    <a routerLink="/">Home</a>
+    <span> > </span>
+    <a routerLink="/login-restaurante">Inicio de Sesión</a>
+    <span> > </span>
+    <span>Registro</span>
+</div>
+<div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+</div>
+<div class="registro-container">
+    <h2>Registro de Restaurante <span class="material-icons icon">person_add</span></h2>
+    <form *ngIf="faseActual === 'primera'" [formGroup]="registroForm" (ngSubmit)="registrar()">
+        <!-- Nombre del restaurante -->
+        <div class="form-group">
+            <label for="nombreRestaurante">Nombre del Restaurante:</label>
+            <input type="text" id="nombreRestaurante" formControlName="nombreRestaurante">
+            <div *ngIf="registroForm.get('nombreRestaurante')?.invalid && (registroForm.get('nombreRestaurante')?.dirty || registroForm.get('nombreRestaurante')?.touched)">
+                <small *ngIf="registroForm.get('nombreRestaurante')?.errors?.['required']">Nombre del Restaurante es obligatorio</small>
+            </div>
+        </div>
+
+        <!-- Correo del restaurante -->
+        <div class="form-group">
+            <label for="correoRestaurante">Correo Electrónico:</label>
+            <input type="email" id="correoRestaurante" formControlName="correoRestaurante">
+            <div *ngIf="registroForm.get('correoRestaurante')?.invalid && (registroForm.get('correoRestaurante')?.dirty || registroForm.get('correoRestaurante')?.touched)">
+                <ng-container *ngIf="registroForm.get('correoRestaurante')?.errors as correoErrors">
+                    <small *ngIf="correoErrors['required']">Correo Electrónico es obligatorio</small>
+                    <small *ngIf="correoErrors['email']">Correo Electrónico no válido</small>
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- Teléfono del restaurante -->
+        <div class="form-group">
+            <label for="telefonoRestaurante">Número telefonico de Teléfono:</label>
+            <input type="number" id="telefonoRestaurante" formControlName="telefonoRestaurante">
+            <div *ngIf="registroForm.get('telefonoRestaurante')?.invalid && (registroForm.get('telefonoRestaurante')?.dirty || registroForm.get('telefonoRestaurante')?.touched)">
+                <ng-container *ngIf="registroForm.get('telefonoRestaurante')?.errors as telefonoErrors">
+                    <small *ngIf="telefonoErrors['required']">Número de Teléfono es obligatorio</small>
+                    <small *ngIf="telefonoErrors['pattern']">Número de Teléfono no válido (debe tener 10 dígitos)</small>
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- Encargado del restaurante -->
+        <div class="form-group">
+            <div class="nombre-encargado">
+                <label for="encargadoRestaurante">Nombre del Encargado:</label>
+                <input type="text" id="encargadoRestaurante" formControlName="encargadoRestaurante">
+                <div *ngIf="registroForm.get('encargadoRestaurante')?.invalid && (registroForm.get('encargadoRestaurante')?.dirty || registroForm.get('encargadoRestaurante')?.touched)">
+                    <ng-container *ngIf="registroForm.get('encargadoRestaurante')?.errors as encargadoErrors">
+                        <small *ngIf="encargadoErrors['required']">Nombre del Encargado es obligatorio</small>
+                        <small *ngIf="encargadoErrors['minlength']">Nombre del Encargado debe tener al menos 3 caracteres</small>
+                        <small *ngIf="encargadoErrors['maxlength']">Nombre del Encargado no debe tener más de 15 caracteres</small>
+                    </ng-container>
+                </div>
+                <!-- Encargado del restaurante apellido -->
+                <label for="apellidoEncargado">Apellido del Encargado:</label>
+                <input type="text" id="apellidoEncargado" formControlName="apellidoEncargado">
+                <div *ngIf="registroForm.get('apellidoEncargado')?.invalid && (registroForm.get('apellidoEncargado')?.dirty || registroForm.get('apellidoEncargado')?.touched)">
+                    <small *ngIf="registroForm.get('apellidoEncargado')?.errors?.['required']">Apellido del Encargado es obligatorio</small>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Dirección del restaurante -->
+        <div class="form-group">
+            <label for="direccionRestaurante">Dirección del Restaurante:</label>
+            <input type="text" id="direccionRestaurante" formControlName="direccionRestaurante">
+            <div *ngIf="registroForm.get('direccionRestaurante')?.invalid && (registroForm.get('direccionRestaurante')?.dirty || registroForm.get('direccionRestaurante')?.touched)">
+                <small *ngIf="registroForm.get('direccionRestaurante')?.errors?.['required']">Dirección del Restaurante es obligatoria</small>
+            </div>
+        </div>
+
+        <!-- contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <div class="password-container">
+                <input type="{{ hidePassword ? 'password' : 'text' }}" id="contrasena" formControlName="contrasena">
+                <div class="toggle-password" (click)="togglePasswordVisibility()">
+                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </div>
+            </div>
+            <div *ngIf="registroForm.get('contrasena')?.invalid && (registroForm.get('contrasena')?.dirty || registroForm.get('contrasena')?.touched)">
+                <ng-container *ngIf="registroForm.get('contrasena')?.errors as contrasenaErrors">
+                    <small class="color-alerta" *ngIf="contrasenaErrors['required']">Contraseña es obligatoria</small>
+                    <small class="color-alerta" *ngIf="contrasenaErrors['pattern']">La contraseña debe tener al menos 8 caracteres, una mayúscula, 
+                      una minúscula, un número y un caracter especial de estos (# $ & *)</small>
+                </ng-container>
+            </div>
+        </div>
+        
+        <div class="form-group custom-select-wrapper">
+            <label for="preguntaSecreta">Pregunta Secreta (servirá para restablacer tu contraseña en caso de olvidarla)</label>
+            <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+            <option value="" disabled selected>Selecciona una pregunta secreta</option>
+            <option value="mascota">¿Cuál es nombre de tu primer mascota?</option>
+            <option value="cancion">¿Cúal es tu canción favorita?</option>
+            <option value="pelicula">¿Cuál es tu película favorita?</option>
+            <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+            <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="respuestaSecreta">Respuesta Secreta</label>
+            <input type="text" formControlName="respuestaSecreta" id="respuestaSecreta" class="form-control">
+        </div>
+
+        <re-captcha (resolved)="handleCaptchaChange($event)" [siteKey]="recaptchaSiteKey"></re-captcha>
+        <div class="error">{{ !isCaptchaVerified ? 'Por favor, complete el captcha.' : '' }}</div>
+
+        <button type="submit" class="registro-button" [disabled]="registroForm.invalid || !isCaptchaVerified">Continuar</button>
+        <p><a routerLink="/login-restaurante">Ya tengo una cuenta</a></p>
+
+    </form>
+
+    <div *ngIf="faseActual === 'segunda'">
+        <h2>Datos Adicionales del Restaurante <span class="material-icons icon">add</span></h2>
+        <form [formGroup]="segundaFaseForm" (ngSubmit)="registrarFaseDos()">
+            <!-- Número del restaurante -->
+            <div class="form-group">
+                <label for="numeroRestaurante">Número del Restaurante:</label>
+                <input type="text" id="numeroRestaurante" formControlName="numeroRestaurante">
+                <div *ngIf="segundaFaseForm.get('numeroRestaurante')?.invalid && (segundaFaseForm.get('numeroRestaurante')?.dirty || segundaFaseForm.get('numeroRestaurante')?.touched)">
+                    <small *ngIf="segundaFaseForm.get('numeroRestaurante')?.errors?.['required']">Número del Restaurante es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Razón social -->
+            <div class="form-group">
+                <label for="razonSocial">Razón Social:</label>
+                <input type="text" id="razonSocial" formControlName="razonSocial">
+                <div *ngIf="segundaFaseForm.get('razonSocial')?.invalid && (segundaFaseForm.get('razonSocial')?.dirty || segundaFaseForm.get('razonSocial')?.touched)">
+                    <small *ngIf="segundaFaseForm.get('razonSocial')?.errors?.['required']">Razón Social es obligatoria</small>
+                </div>
+            </div>
+
+            <!-- Domicilio fiscal -->
+            <div class="form-group">
+                <label for="domicilioFiscal">Domicilio Fiscal:</label>
+                <input type="text" id="domicilioFiscal" formControlName="domicilioFiscal">
+                <div *ngIf="segundaFaseForm.get('domicilioFiscal')?.invalid && (segundaFaseForm.get('domicilioFiscal')?.dirty || segundaFaseForm.get('domicilioFiscal')?.touched)">
+                    <small *ngIf="segundaFaseForm.get('domicilioFiscal')?.errors?.['required']">Domicilio Fiscal es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Aviso de Privacidad -->
+
+            <div id="modalAvisosPrivacidad" class="aviso-privacidad">
+                <input type="checkbox" id="aceptarPrivacidad" formControlName="aceptarPrivacidad">
+                <label for="aceptarPrivacidad">
+              He leído y acepto el 
+              <a (click)="mostrarAvisosPrivacidad()" class="aviso-link">aviso de privacidad</a>
+          </label>
+                <div class="error">{{ getErrorMessage('aceptarPrivacidad') }}</div>
+            </div>
+
+            <app-avisos-privacidad *ngIf="mostrarModalAvisosPrivacidad" (cerrarAvisoEvent)="cerrarAvisosPrivacidad()"></app-avisos-privacidad>
+
+            <!-- Menú por imagen -->
+            <div class="form-group">
+                <label for="menuImagen">Menú por Imagen:</label>
+                <input type="file" id="menuImagen" (change)="capturarImagenmenu($event)" accept=" image/* " formControlName="menuImagen">
+                <img [src]="prevMenu" alt="Imagen del menú" *ngIf="prevMenu" width="200px" height="100px">
+                <!-- Puedes agregar validaciones adicionales si es necesario -->
+            </div>
+
+            <!-- ... (Agrega aquí otros campos del segundo formulario) -->
+
+            <button type="submit" class="registro-button" [disabled]="segundaFaseForm.invalid ">Continuar</button>
+            <br>
+            <br>
+            <div class="back-button" (click)="volverAFaseAnterior() ">&#9665; Volver</div>
+
+        </form>
+
+    </div>
+
+    <div *ngIf="faseActual==='tercera'">
+        <h2>Información Bancaria del Restaurante <span class="material-icons icon">account_balance</span></h2>
+        <form [formGroup]="terceraFaseForm" (ngSubmit)="registrarFaseTres() ">
+            <!-- Nombre del titular de la cuenta -->
+            <div class="form-group">
+                <label for="nombreTitular">Nombre del Titular de la Cuenta:</label>
+                <input type="text " id="nombreTitular" formControlName="nombreTitular">
+                <div *ngIf="terceraFaseForm.get( 'nombreTitular')?.invalid && (terceraFaseForm.get( 'nombreTitular')?.dirty || terceraFaseForm.get( 'nombreTitular')?.touched) ">
+                    <small *ngIf="terceraFaseForm.get( 'nombreTitular')?.errors?.[ 'required'] ">Nombre del Titular es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Dirección -->
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text " id="direccion" formControlName="direccion">
+                <div *ngIf="terceraFaseForm.get( 'direccion')?.invalid && (terceraFaseForm.get( 'direccion')?.dirty || terceraFaseForm.get( 'direccion')?.touched) ">
+                    <small *ngIf="terceraFaseForm.get( 'direccion')?.errors?.[ 'required'] ">Dirección es obligatoria</small>
+                </div>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <input type="text " id="ciudad" formControlName="ciudad">
+                <div *ngIf="terceraFaseForm.get( 'ciudad')?.invalid && (terceraFaseForm.get( 'ciudad')?.dirty || terceraFaseForm.get( 'ciudad')?.touched) ">
+                    <small *ngIf="terceraFaseForm.get( 'ciudad')?.errors?.[ 'required'] ">Ciudad es obligatoria</small>
+                </div>
+            </div>
+
+            <!-- Código postal -->
+            <div class="form-group">
+                <label for="codigoPostal">Código Postal:</label>
+                <input type="number " id="codigoPostal" formControlName="codigoPostal">
+                <div *ngIf="terceraFaseForm.get( 'codigoPostal')?.invalid && (terceraFaseForm.get( 'codigoPostal')?.dirty || terceraFaseForm.get( 'codigoPostal')?.touched) ">
+                    <small *ngIf="terceraFaseForm.get( 'codigoPostal')?.errors?.[ 'required'] ">Código Postal es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Número CLABE -->
+            <div class="form-group">
+                <label for="numeroCLABE">Número CLABE:</label>
+                <input type="number" id="numeroCLABE" formControlName="numeroCLABE">
+                <div *ngIf="terceraFaseForm.get( 'numeroCLABE')?.invalid && (terceraFaseForm.get('numeroCLABE')?.dirty || terceraFaseForm.get( 'numeroCLABE')?.touched) ">
+                    <small *ngIf="terceraFaseForm.get( 'numeroCLABE')?.errors?.[ 'required'] ">Número CLABE es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Agrega otros campos si es necesario -->
+
+            <button type="submit" class="registro-button" [disabled]="terceraFaseForm.invalid" (click)="navegarACuartaFase()">Continuar a Documentos</button>
+            <br>
+            <br>
+            <div class="back-button" (click)="volverAFaseAnterior()">&#9665; Volver</div>
+        </form>
+    </div>
+    <div *ngIf="faseActual==='cuarta'">
+        <h2>Documentos del Restaurante <span class="material-icons icon ">description</span></h2>
+        <form [formGroup]="cuartaFaseForm " (ngSubmit)="registrarFaseCuatro() ">
+            <!-- Identificación Oficial -->
+            <div class="form-group">
+                <label for="identificacionOficial ">Identificación Oficial (INE o Pasaporte):</label>
+                <p class="descripcion ">
+                    Toma una foto del documento con buena iluminación. Asegúrate de que el texto sea claro y legible antes de enviarlo.
+                </p>
+                <input type="file" id="identificacionOficial" (change)="capturarImagenidentificacionOficial($event)" formControlName="identificacionOficial" accept="image/*">
+                <img [src]="previdentificacionOficial" alt="Imagen de identificacion" *ngIf="previdentificacionOficial" width="200px" height="100px">
+            </div>
+
+            <!-- Constancia Fiscal -->
+            <div class="form-group">
+                <label for="constanciaFiscal">Constancia Fiscal:</label>
+                <p class="descripcion ">
+                    Toma una foto del documento con buena iluminación. Asegúrate de que el texto sea claro y legible antes de enviarlo.
+                </p>
+                <input type="file" id="constanciaFiscal" (change)="capturarImagenconstanciaFiscal($event)" formControlName="constanciaFiscal" accept="image/*">
+                <img *ngIf="prevconstanciaFiscal" [src]="prevconstanciaFiscal" alt="Imagen del constanciaFiscal " width="200 " height="200 ">
+                <!-- Puedes agregar validaciones adicionales si es necesario -->
+            </div>
+
+            <!-- Estado de Cuenta Bancaria -->
+            <div class="form-group">
+                <label for="estadoCuentaBancaria">Estado de Cuenta Bancaria:</label>
+                <p class="descripcion ">
+                    Toma una foto de la parte superior del documento con información del beneficiario de la cuenta. Asegúrate de que el texto sea claro y legible antes de enviarlo.
+                </p>
+                <input type="file" (change)="capturarImagenestadoCuentaBancaria($event)" id="estadoCuentaBancaria" formControlName="estadoCuentaBancaria" accept="image/*">
+                <img *ngIf="prevestadoCuentaBancaria " [src]="prevestadoCuentaBancaria " alt="Imagen del estadoCuentaBancaria " width="200 " height="200 ">
+                <!-- Puedes agregar validaciones adicionales si es necesario -->
+            </div>
+
+            <!-- Licencia de Funcionamiento -->
+            <div class="form-group">
+                <label for="licenciaFuncionamiento ">Licencia de Funcionamiento para Venta de Alcohol:</label>
+                <p class="descripcion">
+                    En caso de no vender alcohol, sube un documento con la leyenda "No vendemos alcohol a través de la plataforma ". Toma una foto del documento con buena iluminación. Asegúrate de que el texto sea claro y legible antes de enviarlo.
+                </p>
+                <input type="file" (change)="capturarImagenlicenciaFuncionamiento($event)" id="licenciaFuncionamiento" formControlName="licenciaFuncionamiento" accept="image/* ">
+                <img *ngIf="prevlicenciaFuncionamiento " [src]="prevlicenciaFuncionamiento" alt="Imagen del licenciaFuncionamiento " width="200 " height="200 ">
+                <!-- Puedes agregar validaciones adicionales si es necesario -->
+            </div>
+
+            <button type="submit" class="registro-button" [disabled]="cuartaFaseForm.invalid">Registrar</button>
+            <br>
+            <br>
+            <div class="back-button" (click)="volverAFaseAnterior() ">&#9665; Volver</div>
+        </form>
+    </div>
+
+    <!-- Enlace de inicio de sesión -->
+    <div class="login-link">
+        <!-- Puedes agregar un enlace para redirigir al inicio de sesión de restaurantes -->
+    </div>
+</div>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

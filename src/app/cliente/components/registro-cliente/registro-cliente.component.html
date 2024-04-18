@@ -1,0 +1,137 @@
+<!-- registro-cliente.component.html -->
+<header>
+<app-header></app-header>
+</header>
+<div class="breadcrumbs">
+  <a routerLink="/">Home</a>
+  <span> > </span>
+  <a routerLink="/login-clientes">Inicio de Sesión</a>
+  <span> > </span>
+  <span>Registro</span>
+</div>
+<div class="voz-alta-container">
+  <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+  <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+</div>
+
+<div *ngIf="faseActual === 1" class="registro-container">
+  <h2>Registro de Cliente <span class="material-icons icon">person_add</span></h2>
+  <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+      <div class="form-group">
+          <label for="nombreCompleto">Nombre Completo:</label>
+          <input type="text" id="nombreCompleto" formControlName="nombreCompleto">
+          <div *ngIf="registroForm.get('nombreCompleto')?.invalid && (registroForm.get('nombreCompleto')?.dirty || registroForm.get('nombreCompleto')?.touched)">
+              <small *ngIf="registroForm.get('nombreCompleto')?.errors?.['required']">Nombre Completo es obligatorio</small>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" id="correo" formControlName="correo">
+          <div *ngIf="registroForm.get('correo')?.invalid && (registroForm.get('correo')?.dirty || registroForm.get('correo')?.touched)">
+              <ng-container *ngIf="registroForm.get('correo')?.errors as correoErrors">
+                  <small *ngIf="correoErrors['required']">Correo Electrónico es obligatorio</small>
+                  <small *ngIf="correoErrors['email']">Correo Electrónico no válido</small>
+              </ng-container>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="contrasena">Contraseña:</label>
+        <div class="password-container">
+            <p-password
+                [weakLabel]="'Complejidad baja '"
+                [promptLabel]="getPromptLabel()"
+                [mediumLabel]="'Complejidad media'"
+                [strongLabel]="'Contraseña fuerte'"
+                formControlName="contrasena"
+                [toggleMask]="true"
+            ></p-password>
+        </div>
+    </div>
+    <div *ngIf="registroForm.get('contrasena')?.invalid && (registroForm.get('contrasena')?.dirty || registroForm.get('contrasena')?.touched)">
+        <ng-container *ngIf="registroForm.get('contrasena')?.errors as contrasenaErrors">
+            <small class="error-message" *ngIf="contrasenaErrors['required']">Contraseña es obligatoria</small>
+        </ng-container>
+    </div>
+    
+      
+      
+      <div class="form-group">
+          <label for="telefono">Número de Teléfono:</label>
+          <input type="number" id="telefono" formControlName="telefono">
+          <div *ngIf="registroForm.get('telefono')?.invalid && (registroForm.get('telefono')?.dirty || registroForm.get('telefono')?.touched)">
+              <ng-container *ngIf="registroForm.get('telefono')?.errors as telefonoErrors">
+                  <small *ngIf="telefonoErrors['required']">Número de Teléfono es obligatorio</small>
+                  <small *ngIf="telefonoErrors['pattern']">Número de Teléfono no válido (debe tener 10 dígitos)</small>
+              </ng-container>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento">
+        <div *ngIf="registroForm.get('fechaNacimiento')?.invalid && (registroForm.get('fechaNacimiento')?.dirty || registroForm.get('fechaNacimiento')?.touched)">
+            <ng-container *ngIf="registroForm.get('fechaNacimiento')?.errors as fechaNacimientoErrors">
+                <small class="color-alerta" *ngIf="fechaNacimientoErrors['required']">La fecha de nacimiento es obligatoria</small>
+            </ng-container>
+        </div>
+    </div>
+    <!-- pregunta secreta -->
+  <div class="form-group custom-select-wrapper">
+    <label for="preguntaSecreta">Pregunta Secreta (servirá para restablacer tu contraseña en caso de olvidarla)</label>
+    <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+    <option value="" disabled selected>Selecciona una pregunta secreta</option>
+    <option value="mascota">¿Cuál es nombre de tu primer mascota?</option>
+    <option value="cancion">¿Cúal es tu canción favorita?</option>
+    <option value="pelicula">¿Cuál es tu película favorita?</option>
+    <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+    <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="respuestaSecreta">Respuesta Secreta</label>
+    <input type="text" formControlName="respuestaSecreta" id="respuestaSecreta" class="form-control">
+</div>
+
+<div id="modalAvisosPrivacidad"class="aviso-privacidad">
+  <input type="checkbox" id="aceptarPrivacidad" formControlName="aceptarPrivacidad">
+  <label for="aceptarPrivacidad">
+      He leído y acepto el 
+      <a (click)="mostrarAvisosPrivacidad()" class="aviso-link">aviso de privacidad</a>
+  </label>
+  <div class="error">{{ getErrorMessage('aceptarPrivacidad') }}</div>
+</div>
+
+<app-avisos-privacidad *ngIf="mostrarModalAvisosPrivacidad" (cerrarAvisoEvent)="cerrarAvisosPrivacidad()"></app-avisos-privacidad>     
+      <!-- reCAPTCHA -->
+      <re-captcha (resolved)="handleCaptchaChange($event)" [siteKey]="recaptchaSiteKey"></re-captcha>
+      <div class="error">{{ !isCaptchaVerified ? 'Por favor, complete el captcha.' : '' }}</div>
+
+      <button type="submit" class="registro-button" [disabled]="registroForm.invalid">Registrarse</button>
+      <p><a routerLink="/login-clientes">Ya tengo una cuenta</a></p>
+  </form>
+  <div class="login-link"></div>
+</div>
+
+<div *ngIf="faseActual === 2" class="registro-container">
+  <h2>Fase 6: Autenticación con clave de 6 dígitos</h2>
+  <p>Se te ha enviado una clave de autenticación al correo proporcionado.</p>
+  <form (ngSubmit)="onFase2Submit()" [formGroup]="fase2Form">
+      <!-- Campo para la autenticación con la clave de 6 dígitos -->
+      <label for="claveAutenticacion">Clave de 6 dígitos:</label>
+      <input type="text" id="claveAutenticacion" formControlName="claveAutenticacion" maxlength="6" [required]="true">
+      <!-- Mensaje de error si la clave de autenticación no se ha ingresado -->
+      <div *ngIf="fase2Form.get('claveAutenticacion')?.errors?.['required']" class="error-message">
+          La clave de autenticación es requerida.
+      </div>
+      <!-- Botón de enviar -->
+      <button type="submit" class="registro-button">Enviar</button>
+        <!-- Botón para regresar a la fase de recuperar cuenta -->
+        <button type="button" class="registro-button" (click)="volverAFase1()">Regresar a la Fase 1</button>
+  </form>
+</div>
+
+<footer>
+    <app-footer></app-footer>
+</footer>

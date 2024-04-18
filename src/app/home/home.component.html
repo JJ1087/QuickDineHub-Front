@@ -1,0 +1,67 @@
+ <!-- home.component.html -->
+ <header [class.scrolled]="scrolledDown">
+  <app-header></app-header>
+</header>
+  <div class="breadcrumbs">
+    <span>Home</span>
+    <span> > </span>
+  </div>
+
+  <div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+  </div>
+<div class="home-container">
+
+  
+    <div class="mensaje-bienvenida">
+      <h1>Bienvenido a QuickDineHub</h1>
+      <p>Tu experiencia culinaria excepcional comienza aquí. Descubre una variedad de restaurantes y disfruta de tus platos favoritos desde la comodidad de tu hogar. QuickDineHub es sinónimo de comodidad, calidad y elección. Es la garantía de que nunca más tendrás que sacrificar la exquisitez de una comida excepcional por la conveniencia de comer en casa. En QuickDineHub, el sabor, la frescura y la satisfacción de nuestros clientes son nuestra razón de ser.</p>
+    </div>
+  
+    <div class="repartidores-section">
+      <div class="repartidores-text">
+        <h2>Descubre a Nuestros Repartidores</h2>
+        <p>En QuickDineHub, nuestros repartidores son más que simples entregadores. Son apasionados por ofrecer un servicio excepcional y asegurarse de que cada pedido llegue a tiempo y con una sonrisa. Únete a nosotros y sé parte de un equipo dedicado a hacer que las entregas sean una experiencia agradable para nuestros clientes.</p>
+        <p>¿Interesado en unirte como repartidor? ¡Regístrate <a routerLink="/registro-repartidor">aquí</a>!</p>      </div>
+      <div class="repartidores-image">
+        <img src="assets/imagen1.png" alt="Repartidores">
+      </div>
+    </div>
+  
+    <div class="restaurantes-section">
+      <div class="restaurantes-image">
+        <img src="assets/restaurantes.png" alt="Restaurantes">
+      </div>
+      <div class="restaurantes-text">
+        <h2>Explora Nuestros Restaurantes</h2>
+        <p>Sumérgete en una experiencia culinaria única con nuestra amplia selección de restaurantes. Desde platos tradicionales hasta opciones gourmet, QuickDineHub te ofrece la libertad de elegir entre una gama diversa de sabores y experiencias gastronómicas.</p>
+        <p>¿Eres propietario de un restaurante? ¡Registra tu restaurante <a routerLink="/registro-restaurante">aquí</a>!</p>      </div>
+    </div>
+  
+    <div class="clientes-section">
+      <div class="clientes-text">
+        <h2>Disfruta como Cliente</h2>
+        <p>Descubre la comodidad de realizar pedidos en línea, seguir el proceso en tiempo real y disfrutar de tus platos favoritos en la comodidad de tu hogar. En QuickDineHub, nos esforzamos por brindarte una experiencia sin complicaciones y deliciosa cada vez que decides disfrutar de una buena comida.</p>
+        <p>¿Listo para ordenar? Explora nuestros restaurantes <a routerLink="/registro-cliente">aquí</a>!</p>      </div>
+      <div class="clientes-image">
+        <img src="assets/clientes.jpg" alt="Clientes">
+      </div>
+    </div>
+  
+    <div class="chatbot-section">
+        <div class="chatbot-text">
+            <h2>¿Necesitas Ayuda?</h2>
+            <p>Bienvenido a nuestro asistente virtual en QuickDineHub. Aquí estamos para guiarte y responder a todas tus preguntas. Desde cómo realizar pedidos hasta información detallada sobre nuestros repartidores y restaurantes, ¡estamos aquí para hacerte la vida más fácil!</p>
+            <p>Descubre la magia de QuickDineHub y encuentra el placer de la comida a tu puerta. Explora nuestra plataforma, haz preguntas al asistente y sumérgete en una experiencia culinaria sin complicaciones.</p>
+            <p>¡No dudes en explorar y disfrutar de todas las opciones que QuickDineHub tiene para ofrecer! ¿Listo para comenzar? ¡Haz tus preguntas a continuación!</p>
+        </div>
+        <div class="chatbot-container">
+            <app-chat></app-chat>
+        </div>
+    </div>
+
+      <footer>
+    <app-footer></app-footer>
+</footer>
+  </div>
