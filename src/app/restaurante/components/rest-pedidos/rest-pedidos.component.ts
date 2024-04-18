@@ -76,10 +76,10 @@ export class RestPedidosComponent implements OnInit{
                 if (response) {
                     console.log('response: ', response)
                     // Si la solicitud es exitosa, establece la propiedad isAccepted a true
-                    this.actualizarPedidos();
+                   
                     pedido.isAccepted = true;
 
-                    this.actualizarPedidos();
+                    
                 } else {
                     // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
                     console.error("Error al actualizar el estado del pedido.");
@@ -106,7 +106,6 @@ export class RestPedidosComponent implements OnInit{
       if (response) {
      // Elimina el pedido
 
-     this.actualizarPedidos();
 } else {
     // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
     console.error("Error al actualizar el estado del pedido.");
@@ -135,7 +134,7 @@ console.error("Error al comunicarse con el servidor:", error);
                       pedido.iscompleted = true;
                       this.botonesDeshabilitados = false;
 
-                      this.actualizarPedidos();
+                    
                 } else {
                     // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
                     console.error("Error al actualizar el estado del pedido.");
@@ -173,8 +172,7 @@ console.error("Error al comunicarse con el servidor:", error);
                       pedido.estadoOrden = 2; // Cambia el estado a "Producto cancelado"
                       pedido.botonesDeshabilitados = true; // Deshabilita los botones
                       pedido.cancelButtonActive = true; // Marca el botón de cancelar como activo
-                        // Vuelve a cargar los pedidos
-                        this.actualizarPedidos();
+                       
                     } else {
                         // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
                         console.error("Error al cancelar el producto del pedido.");
@@ -201,7 +199,7 @@ console.error("Error al comunicarse con el servidor:", error);
                      // Actualiza el estado del pedido y habilita el botón de completado
                     this.pedidos = this.pedidos.filter(p => p !== pedido);
 
-                    this.actualizarPedidos();
+                  
                 } else {
                     // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
                     console.error("Error al actualizar el estado del pedido.");
@@ -217,16 +215,7 @@ console.error("Error al comunicarse con el servidor:", error);
       
     }
   }
- /*
-  obtenerPedidos(): void {
-    this.authRestauranteService.mostrarPedidos(this.restauranteId).subscribe(
-      (data: any[]) => {
-        this.pedidos = data;
-      });
-  } 
-  */
-
-
+  
   actualizarPedidos() {
     this.authRestauranteService.mostrarPedidos(this.restauranteId).subscribe(
       (data: any[]) => {

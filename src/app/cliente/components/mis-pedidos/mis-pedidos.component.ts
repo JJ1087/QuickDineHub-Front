@@ -96,5 +96,11 @@ export class MisPedidosComponent implements OnInit {
 
     this.router.navigate(['../estado-envio', {idOrden, idCliente, idRestaurante, idDireccion, idCuentaBanco, nombreProducto, descripcionProducto, estadoOrden, createdAt, costoUnidad}]);
   }
+  
+// Método para generar la URL completa de la imagen
+getImageUrl(relativePath: string): string {
+  return `http://localhost:3000/${relativePath}`;
+}
+
 
 }
