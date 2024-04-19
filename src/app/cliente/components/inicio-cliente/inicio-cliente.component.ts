@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-inicio-cliente',
   templateUrl: './inicio-cliente.component.html',
@@ -13,6 +14,7 @@ export class InicioClienteComponent implements OnInit{//
   currentIndex = 0;
   showMessage = false;
   showMessage1 = false;
+  showWarning = false;
 
   images: string[] = [
     'assets/Hamburguesa.jpg',
@@ -164,14 +166,13 @@ export class InicioClienteComponent implements OnInit{//
     
      this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
        console.log('Productos:', products);
-       this.products = products;
+       this.products = products; 
      },
      (error) => {
       console.error('Error al obtener los productos:', error);
+      // Registra el error en la base de datos
+      this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
     });
-
-   
-
 
     //llamar a la funcion para recopilar las ordenes
     this.obtenerOrdenes();
@@ -179,6 +180,28 @@ export class InicioClienteComponent implements OnInit{//
     this.obtenerDatoComensal();
 
    }
+
+
+   registrarErrorEnBD(errorDetails: string, errorType: string): void {
+    this.authService.registrarError(errorDetails, errorType).subscribe(
+      (response) => {
+        console.log('Error registrado correctamente en el backend');
+        console.log('RESPUESTAS DEL BACK',response.mensaje);
+        if (response.mensaje === 'Advertencia') {
+          // Activa el mensaje de advertencia en el frontend
+          alert('Mandar Correo a admin'); 
+          
+        }
+
+      },
+      (error) => {
+        console.error('Error al registrar el error:', error);
+      }
+    );
+  }
+
+
+
     // Método para generar la URL completa de la imagen
     getImageUrl(relativePath: string): string {
       return `http://localhost:3000/${relativePath}`;

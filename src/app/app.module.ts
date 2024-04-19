@@ -64,7 +64,11 @@ import { RestaurarConCorreoRepartidorComponent } from './compartido/components/r
 import { RestaurarConPreguntaRepartidorComponent } from './compartido/components/restaurar-con-pregunta-repartidor/restaurar-con-pregunta-repartidor.component';
 import { RestaurarConPreguntaRestauranteComponent } from './compartido/components/restaurar-con-pregunta-restaurante/restaurar-con-pregunta-restaurante.component';
 import { RestaurarConCorreoRestauranteComponent } from './compartido/components/restaurar-con-correo-restaurante/restaurar-con-correo-restaurante.component';
-import { CarritoClienteComponentG } from './cliente/components/carrito-clienteG/carrito.clienteG.component';//Servicio Cliente
+import { CarritoClienteComponentG } from './cliente/components/carrito-clienteG/carrito.clienteG.component';
+import { AcercaDeNosotrosComponent } from './compartido/components/acerca-de-nosotros/acerca-de-nosotros.component';
+import { CookiesComponent } from './compartido/components/cookies/cookies.component';
+import { FaqComponent } from './compartido/components/faq/faq.component';
+import { TerminosYCondicionesComponent } from './compartido/components/terminos-y-condiciones/terminos-y-condiciones.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +117,11 @@ import { CarritoClienteComponentG } from './cliente/components/carrito-clienteG/
     RestaurarConPreguntaRepartidorComponent,
     RestaurarConPreguntaRestauranteComponent,
     RestaurarConCorreoRestauranteComponent,
-    CarritoClienteComponentG,//Servicio Cliente
+    CarritoClienteComponentG,
+    AcercaDeNosotrosComponent,
+    CookiesComponent,
+    FaqComponent,
+    TerminosYCondicionesComponent,
 
   ],
   imports: [
