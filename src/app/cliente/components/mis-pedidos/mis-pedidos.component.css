@@ -13,8 +13,8 @@
 .pedido {
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
     background-color: white;
     display: flex; /* Usar flexbox para alinear elementos */
     align-items: center; /* Centrar verticalmente los elementos */
@@ -29,7 +29,7 @@
     flex-grow: 1; /* Ocupa todo el espacio disponible */
     max-height: 100px; /* Altura máxima de la descripción */
     overflow: auto; /* Agregar desbordamiento si excede la altura máxima */
-    width: calc(100% - 150px); /* Ancho del contenedor de la descripción */
+    width: calc(100% - 120px); /* Ancho del contenedor de la descripción */
 }
 .pedido-info strong {
     display: block; /* Convertir el elemento strong en un bloque para separar líneas */
@@ -60,7 +60,7 @@
     color: white; /* Color del texto del botón */
     border: none; /* Sin borde */
     border-radius: 5px; /* Bordes redondeados */
-    padding: 5px 10px; /* Espaciado interno del botón */
+    padding: 8px 12px; /* Espaciado interno del botón */
     cursor: pointer; /* Cursor de apuntar */
 }
 

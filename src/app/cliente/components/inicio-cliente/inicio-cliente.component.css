@@ -79,21 +79,30 @@ nav a.current {
 }
 
 .products-container {
-    max-width: 80%;
-    margin: 20px auto;
+    max-width: 90%;
+    margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 20px;
 }
 
 .product {
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 29%;
+    display: flex;
+    flex-direction: column; /* Establece la dirección de los items en columna */
+    justify-content: space-between; /* Distribuye el espacio */
+    height: auto; /* Opcional: ajusta esto según tus necesidades */
     text-align: center;
+}
+
+.product-tags, .action-buttons {
+    margin-top: 4%; /* Empuja las etiquetas y los botones hacia la parte inferior */
 }
 
 .product img {
@@ -101,12 +110,12 @@ nav a.current {
     height: 300px; /* Altura de las imágenes */
     object-fit: cover; /* Ajusta el comportamiento de la imagen para cubrir la caja */
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .product h3 {
     color: #ff8c00;
-    margin-bottom: 5px;
+    margin-bottom: .02%;
 }
 
 /* Aplicamos un margen derecho solo para los productos que no son el último */
@@ -116,7 +125,7 @@ nav a.current {
 
 .product-description {
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .product-price {
@@ -127,9 +136,15 @@ nav a.current {
 }
 
 .product-tags {
-    color: #333;
+    color: #fff; /* Cambiamos el color del texto */
+    background-color: #eca74e; /* Agregamos un color de fondo */
+    border-radius: 15px; /* Hacemos que los bordes sean redondeados */
+    padding: 5px 10px; /* Añadimos padding para más espacio dentro de las etiquetas */
     margin-top: 10px;
+    display: inline-block; /* Convertimos las etiquetas en elementos de bloque */
 }
+
+
 
 .product p {
     color: #666;
@@ -137,8 +152,13 @@ nav a.current {
 
 .action-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    width: 100%; /* Asegura que los botones ocupen todo el ancho del contenedor */
+    display: flex; /* Aplica un diseño flex para los botones */
+    justify-content: space-between; /* Espacia los botones uniformemente */
+}
+
+.product-description {
+    margin-bottom: 10px; /* Asegura espacio entre la descripción y los botones/etiquetas */
 }
 
 .buy-button,

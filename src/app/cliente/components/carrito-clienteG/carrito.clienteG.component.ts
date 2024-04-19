@@ -569,12 +569,27 @@ crearOrden(idRestaurante: string, productos: any[]): void {
       const orderId = response._id; // Obtiene el ID de la orden creada desde la respuesta del backend 
       console.log('Id de la nueva orden:', orderId);
       this.crearDetallesOrden(orderId, productos);// Llama a la función para crear los detalles de la orden, pasando el ID de la orden creada
+      //this.logDeTransacciones(orderId, this.idCliente, "Pedido realizado");
+      // Registra la transacción "Pedido realizado"
+      this.logDeTransacciones(orderId);
       
+
     },
     (error) => {
       console.error('Error al crear la orden:', error);
       this.mostrarMensajeEmergente('Lo siento, no se pudo realizar la compra, intente de nuevo en unos minutos.', '');
 
+    }
+  );
+}
+
+logDeTransacciones(orderId: string): void {
+  this.authService.logDeTransacciones("Pedido realizado", orderId, this.idCliente).subscribe(
+    () => {
+      console.log('Transacción de pedido realizada registrada correctamente en el backend');
+    },
+    (error) => {
+      console.error('Error al registrar la transacción de pedido realizado:', error);
     }
   );
 }
