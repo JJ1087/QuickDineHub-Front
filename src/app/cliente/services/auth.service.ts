@@ -182,4 +182,10 @@ const body = {
 return this.httpClient.put(`${this.AUTH_SERVER}/actualizar-carrito`, body);
 }
 
+registrarError(errorDetails: string, errorType: string): Observable<any> {
+    const errorData = { errorDetails, errorType };
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/registrar-error`, errorData);
+  }
+
+
 }
