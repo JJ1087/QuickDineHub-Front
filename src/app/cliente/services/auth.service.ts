@@ -186,6 +186,22 @@ registrarError(errorDetails: string, errorType: string): Observable<any> {
     const errorData = { errorDetails, errorType };
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/registrar-error`, errorData);
   }
+//FUERZA BRUTA:
+  actualizarIntentosFallidos(userEmail: string, intentosFallidos: number): Observable<any> {
+    const body = { userEmail, intentosFallidos };
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/actualizar-intentos-fallidos`, body);
+  }
 
+  obtenerIntentosFallidos(userEmail: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-intentos-fallidos?userEmail=${userEmail}`);
+  }
+
+  enviarCorreoAdvertencia(email: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-advertencia`, { email});
+  }
+
+  enviarCorreobloqueo(email: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-bloqueo`, { email});
+  }
 
 }

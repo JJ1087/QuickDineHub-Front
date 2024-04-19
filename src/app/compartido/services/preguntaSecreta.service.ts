@@ -51,5 +51,9 @@ export class PreguntaSecretaService {
     return this.HttpClient.post<any>(url, logData);
   }
 
+
+  enviarCorreoLog(email: string): Observable<any> {
+    return this.HttpClient.post<any>(`${this.apiUrl}/enviar-correo-log`, { email});
+  }
   
 }
