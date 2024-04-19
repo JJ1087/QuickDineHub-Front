@@ -10,6 +10,10 @@ import { RestaurarConCorreoRepartidorComponent } from '../components/restaurar-c
 import { RestaurarConPreguntaRepartidorComponent } from '../components/restaurar-con-pregunta-repartidor/restaurar-con-pregunta-repartidor.component';
 import { RestaurarConCorreoRestauranteComponent } from '../components/restaurar-con-correo-restaurante/restaurar-con-correo-restaurante.component';
 import { RestaurarConPreguntaRestauranteComponent } from '../components/restaurar-con-pregunta-restaurante/restaurar-con-pregunta-restaurante.component';
+import { AcercaDeNosotrosComponent } from '../components/acerca-de-nosotros/acerca-de-nosotros.component';
+import { CookiesComponent } from '../components/cookies/cookies.component';
+import { FaqComponent } from '../components/faq/faq.component';
+import { TerminosYCondicionesComponent } from '../components/terminos-y-condiciones/terminos-y-condiciones.component';
 
 const routes: Routes = [
     { path: 'avisos-privacidad', component: AvisosPrivacidadComponent },
@@ -21,7 +25,10 @@ const routes: Routes = [
     { path: 'restaurar-con-pregunta-repartidor', component: RestaurarConPreguntaRepartidorComponent },
     { path: 'restaurar-con-correo-restaurante', component: RestaurarConCorreoRestauranteComponent },
     { path: 'restaurar-con-pregunta-restaurante', component: RestaurarConPreguntaRestauranteComponent },
-
+    { path: 'acerca-de-nosotros', component:AcercaDeNosotrosComponent},
+    { path: 'cookies', component:CookiesComponent},
+    { path: 'faq', component:FaqComponent},
+    { path: 'terminos-y-condiciones', component:TerminosYCondicionesComponent},
 ];
 
 @NgModule({

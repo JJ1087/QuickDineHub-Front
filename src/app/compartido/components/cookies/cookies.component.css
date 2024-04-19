@@ -1,0 +1,66 @@
+/* Estilos generales */
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenido de la política de cookies */
+.contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.contenido h1 {
+    color: #00B14F;
+}
+
+.contenido h2 {
+    color: #333;
+}
+
+.contenido p {
+    color: #333;
+}
+
+.contenido table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.contenido th, .contenido td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.contenido th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #2ecc71;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-top: auto;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s; /* Transición de color al pasar el cursor */
+}
+
+footer a:hover {
+    color: #00B14F; /* Color al pasar el cursor */
+}

@@ -1,0 +1,68 @@
+<!-- faq.component.html -->
+<app-header></app-header>
+<div class="faq-container">
+    <div class="faq-section" (click)="toggleFaqContent($event)">
+        <div class="faq-title"> 
+            <i class="fa fa-arrow-circle-down"></i>Preguntas Frecuentes - Usuarios/Clientes:</div>
+        <div class="faq-content">
+            <p><strong>1. ¿Cómo hago un pedido en la plataforma?</strong></p>
+            <p>Para realizar un pedido, simplemente inicie sesión en su cuenta, explore los restaurantes disponibles, seleccione los platos que desee y siga las instrucciones para completar el pedido. Puede realizar un seguimiento en tiempo real de la entrega.</p>
+            <p><strong>2. ¿Puedo programar un pedido para una hora específica?</strong></p>
+            <p>Sí, puede programar un pedido para una hora y fecha específicas. Durante el proceso de pedido, encontrará la opción para seleccionar la hora de entrega deseada.</p>
+            <p><strong>3. ¿Qué hago si tengo problemas con mi pedido?</strong></p>
+            <p>Si enfrenta algún problema con su pedido, puede ponerse en contacto con nuestro equipo de soporte al cliente a través de la aplicación. Estamos aquí para ayudarlo a resolver cualquier problema.</p>
+            <p><strong>4. ¿Cómo califico y escribo reseñas sobre restaurantes y repartidores?</strong></p>
+            <p>Después de recibir su pedido, puede calificar y escribir una reseña sobre el restaurante y el repartidor en la sección correspondiente de la aplicación. Sus comentarios son valiosos para nosotros.</p>
+            
+        </div>
+    </div>
+
+    <div class="faq-section" (click)="toggleFaqContent($event)">
+        <div class="faq-title">
+            <i class="fa fa-arrow-circle-down"></i>Preguntas Frecuentes - Restaurantes:
+        </div>
+        <div class="faq-content">
+            <p><strong>1. ¿Cómo registro mi restaurante en la plataforma?</strong></p>
+            <p>Para registrar su restaurante, vaya a la sección de registro en nuestra plataforma. Proporcione la información solicitada y nuestro equipo revisará su solicitud antes de su publicación.</p>
+            <p><strong>2. ¿Cómo puedo editar o agregar platos a mi menú?</strong></p>
+            <p>Puede administrar su menú en la sección de gestión de restaurantes. Allí, encontrará opciones para agregar, editar o eliminar elementos de su menú, incluyendo imágenes, descripciones y precios.</p>
+            <p><strong>3. ¿Cómo puedo recibir pedidos programados de los clientes?</strong></p>
+            <p>Los pedidos programados aparecerán en su tablero de control de pedidos. Simplemente prepare los pedidos según la hora programada y espere al repartidor.</p>
+            <p><strong>4. ¿Qué hago si tengo problemas con un pedido?</strong></p>
+            <p>Si surge algún problema con un pedido, comuníquese con el equipo de soporte de la plataforma. Estamos aquí para ayudar a resolver cualquier inconveniente.</p>
+
+        </div>
+    </div>
+
+    <div class="faq-section" (click)="toggleFaqContent($event)">
+        <div class="faq-title">
+            <i class="fa fa-arrow-circle-down"></i> Preguntas Frecuentes - Repartidor
+        </div>
+        <div class="faq-content">
+            <p><strong>1. ¿Cómo me convierto en un repartidor registrado?</strong></p>
+            <p>Para unirse como repartidor, complete el proceso de registro proporcionando la información requerida. Una vez aprobado, estará listo para aceptar pedidos.</p>
+            <p><strong>2. ¿Cómo acepto o rechazo pedidos?</strong></p>
+            <p>PLos pedidos pendientes aparecerán en su aplicación. Puede aceptar o rechazar pedidos según su disponibilidad. La elección es suya.</p>
+            <p><strong>3. ¿Cómo navego eficientemente para realizar entregas?</strong></p>
+            <p>Utilice las herramientas de navegación proporcionadas en la aplicación para optimizar sus rutas de entrega y entregar los pedidos de manera eficiente.</p>
+            <p><strong>4. ¿Qué hago si tengo problemas con un pedido o una calificación baja?</strong></p>
+            <p>Si se encuentra con problemas en un pedido o recibe una calificación baja, comuníquese con el soporte al repartidor para recibir asistencia y orientación.</p>
+            <p><strong>5. ¿Cómo puedo acceder a mi historial de entregas y ganancias?</strong></p>
+            <p>Puede acceder a su historial de entregas y ver sus ganancias en la aplicación. Mantenga un registro de su desempeño y ganancias en la plataforma.</p>
+
+        </div>
+        <div class="faq-support">
+            <h2>Soporte al Cliente</h2>
+            <form id="support-form">
+                <label for="issue">Estamos aquí para ayudarte. Si tienes algún problema o pregunta, por favor déjanos saber llenando el formulario a continuación. Te responderemos a la brevedad.</label>
+                <textarea id="issue" name="issue" rows="4" required></textarea>
+
+                <label for="email">Su correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

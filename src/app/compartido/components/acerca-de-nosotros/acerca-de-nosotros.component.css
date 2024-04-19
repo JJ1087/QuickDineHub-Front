@@ -1,0 +1,193 @@
+/* Estilos generales */
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.admin-menu a:hover {
+    text-decoration: underline;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+/* Encabezado */
+header {
+    background-color: #00B14F;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.logo {
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Mensaje de bienvenida */
+.mensaje-bienvenida {
+    text-align: center;
+    margin: 20px;
+}
+
+.mensaje-bienvenida h1 {
+    color: #00B14F;
+}
+
+/* Contenido de Acerca de Nosotros */
+.contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding-bottom: 4%;
+}
+
+.contenido h1 {
+    color: #00B14F;
+ }
+
+.contenido h2 {
+    color: #333;
+}
+
+.contenido p {
+    color: #333;
+}
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+.admin-current-page {
+    background-color: #00B14F;
+}
+.contenido ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Pie de página */
+footer {
+    background-color: #00B14F;
+    color: white;
+    text-align: start;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s; /* Transición de color al pasar el cursor */
+}
+
+footer a:hover {
+    color: #00B14F; /* Color al pasar el cursor */
+}
+
+/* Logo */
+.logo img {
+    width: 90px; /* Tamaño del logo */
+    border-radius: 10px;
+}
+
+/* Contenedor de imágenes */
+.imagenes-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.imagen {
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilos específicos para esta página de inicio de sesión */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 2%;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: #00B14F;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 3%;
+    margin-left: -5%;
+}
+
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+.login-button {
+    background-color: #00B14F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+footer {
+    background-color: #2ecc71;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-top: auto;
+}
