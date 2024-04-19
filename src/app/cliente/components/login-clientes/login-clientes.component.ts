@@ -40,30 +40,43 @@ export class LoginClientesComponent implements OnInit{
   async OnLogin(): Promise<void> {
     if (!this.bloqueado && this.loginForm.valid) {
       try {
-        console.log('Datos del formulario:', this.loginForm.getRawValue());
+     
         const res = await this.authService.login(this.loginForm.getRawValue()).toPromise();
-        console.log('Respuesta del servidor:', res);
-        this.router.navigateByUrl('/inicio-cliente');
-      } catch (error) {
+        
+        if (res.dataUser) {
+          // Usuario autenticado correctamente, redirige al inicio
+          this.router.navigateByUrl('/inicio-cliente');
+
+        }
+      } catch (error: any) { // <--- Declarar el tipo de error como "any"
         console.error('Error en la solicitud:', error);
+        if (error.error && error.error.message === 'EXISTE USUARIO: CONTRASEÑA INCORRECTA') {
         this.intentosFallidos++;
-        if (this.intentosFallidos >= 7) {
+        this.mostrarMensajeEmergente('La contraseña es incorrecta', '');
+        if (this.intentosFallidos >= 3) {
             this.bloquearCuentaTemporalmente();
         }
-        this.mostrarMensajeEmergente('La contraseña o email son incorrectos', '');
-      }
+      // Recibimos el email del usuario existente
+      const userEmail = error.error.datoUser.email;
+      console.log('Correo del usuario:', userEmail);
     } else {
-      if (this.bloqueado) {
-        this.mostrarMensajeEmergente('Su cuenta está bloqueada temporalmente. Intente nuevamente más tarde.', '');
-      } else {
-        this.mostrarMensajeEmergente('Por favor llene los campos de forma correcta.', '');
-      }
+      // Maneja otros errores
+      this.mostrarMensajeEmergente('La contraseña o email son incorrectos', '');
     }
   }
+} else {
+  if (this.bloqueado) {
+    this.mostrarMensajeEmergente('Su cuenta está bloqueada temporalmente. Intente nuevamente más tarde.', '');
+  } else {
+    this.mostrarMensajeEmergente('Por favor llene los campos de forma correcta.', '');
+  }
+}
+}
+
 
   bloquearCuentaTemporalmente() {
     this.bloqueado = true;
-    let tiempoRestante = 20; // 600 segundos = 10 minutos
+    let tiempoRestante = 10; // 600 segundos = 10 minutos
     const intervalo = setInterval(() => {
         tiempoRestante--;
         if (tiempoRestante <= 0) {
