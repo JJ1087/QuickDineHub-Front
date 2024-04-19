@@ -1,4 +1,5 @@
 /* login-clientes.component.css */
+
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -6,6 +7,8 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+
+
 /* login-cliente.component.css */
 
 .breadcrumbs {
@@ -14,18 +17,18 @@ body {
     color: #555;
     margin-top: 1.5%;
     margin-left: 3.5%;
-  }
-  
-  .breadcrumbs a {
+}
+
+.breadcrumbs a {
     text-decoration: none;
     color: #3498db;
     cursor: pointer;
-  }
-  
-  .breadcrumbs a:hover {
+}
+
+.breadcrumbs a:hover {
     text-decoration: underline;
-  }
-  
+}
+
 header {
     background-color: #00B14F;
     color: #fff;
@@ -36,12 +39,12 @@ header {
     align-items: center;
 }
 
-
 .logo img {
     max-width: 10%;
     height: auto;
-    border-radius: 10px; /* Añadido para borde redondeado */
-    margin-left:-80%;
+    border-radius: 10px;
+    /* Añadido para borde redondeado */
+    margin-left: -80%;
 }
 
 nav ul {
@@ -64,7 +67,8 @@ nav ul li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-.color-alerta{
+
+.color-alerta {
     color: red;
     text-align: center;
 }
@@ -125,29 +129,35 @@ footer a {
     color: #00B14F;
 }
 
+
 /*contraseña*/
+
 .password-container {
     position: relative;
 }
 
 .password-container input {
-    width: calc(100% - 40px); /* Restar el ancho del icono */
+    width: calc(100% - 40px);
+    /* Restar el ancho del icono */
 }
 
 .toggle-password {
     position: absolute;
     top: 60%;
-    right: 35px; /* Ajustar la posición según sea necesario */
+    right: 35px;
+    /* Ajustar la posición según sea necesario */
     transform: translateY(-50%);
     cursor: pointer;
-    z-index: 1; /* Asegurar que esté por encima del input */
+    z-index: 1;
+    /* Asegurar que esté por encima del input */
 }
 
 .toggle-password mat-icon {
-    font-size: 24px; /* Ajustar según sea necesario */
-    color: #000; /* Color del icono */
+    font-size: 24px;
+    /* Ajustar según sea necesario */
+    color: #000;
+    /* Color del icono */
 }
-
 
 .tipo-recuperacion-container {
     display: flex;
@@ -173,4 +183,13 @@ footer a {
 .recuperacion-icon {
     font-size: 36px;
     margin-bottom: 10px;
+}
+
+.bloqueado-snackbar {
+    background-color: #f44336;
+    /* Cambia el color de fondo a rojo */
+    color: white;
+    /* Cambia el color del texto a blanco */
+    font-size: 16px;
+    /* Cambia el tamaño del texto */
 }
