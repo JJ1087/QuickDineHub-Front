@@ -187,5 +187,15 @@ registrarError(errorDetails: string, errorType: string): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/registrar-error`, errorData);
   }
 
+  logDeTransacciones(transactionType: string, ordenId: string, comensalId: string): Observable<any> {
+    const transactionData = {
+      transactionType,
+      ordenId,
+      comensalId
+    };
+    return this.httpClient.post<any>(`${this.AUTH_SERVER}/registrar-transaccion`, transactionData);
+  }
+  
+
 
 }
