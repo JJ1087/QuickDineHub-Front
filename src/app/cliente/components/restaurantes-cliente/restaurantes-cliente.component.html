@@ -1,0 +1,49 @@
+<!-- restaurantes-cliente.component.html -->
+<app-header-cliente></app-header-cliente>
+
+<nav>
+    <a routerLink="/inicio-cliente">Inicio</a>
+    <a routerLink="/restaurantes-cliente" class="current">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos">Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+<div class="restaurant-container">
+    <!-- Ejemplo de restaurante con detalles -->
+    <div class="restaurant">
+        <img src="assets/restaurante1.jpg" alt="Restaurante 1">
+        <div class="restaurant-name">Delicias del Mar</div>
+        <p class="restaurant-description">Un acogedor restaurante que ofrece una amplia variedad de platillos preparados con los ingredientes más frescos del mar. Desde exquisitas paellas hasta su famosa sopa de mariscos, cada bocado es una experiencia de sabor que transporta a los comensales a la costa.</p>
+        <div class="restaurant-category">Categoría: Mariscos y paellas</div>
+        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
+    </div>
+
+    <div class="restaurant">
+        <img src="assets/restaurante2.jpg" alt="Restaurante 2">
+        <div class="restaurant-name">Sazón Autentico</div>
+        <p class="restaurant-description">Sazón Auténtico es un rincón de delicias tradicionales con recetas familiares transmitidas de generación en generación. Los comensales pueden disfrutar de platos caseros que reflejan la autenticidad y el amor por la cocina artesanal.</p>
+        <div class="restaurant-category">Categoría: Comida Casera y Tradicional.</div>
+        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
+    </div>
+    <div class="restaurant">
+        <img src="assets/restaurante3.jpg" alt="Restaurante 3">
+        <div class="restaurant-name">El rincon picante</div>
+        <p class="restaurant-description">Verde Saludable es un restaurante comprometido con la alimentación saludable y equilibrada. Con opciones vegetarianas y veganas, cada plato está lleno de ingredientes frescos y nutrientes, ofreciendo una alternativa deliciosa para aquellos que buscan opciones más saludables.</p>
+        <div class="restaurant-category">Categoría: Comida saludable y vegetariana.</div>
+        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
+    </div>
+
+    <div class="restaurant">
+        <img src="assets/restaurante4.jpg" alt="Restaurante 4">
+        <div class="restaurant-name">Verde Saludable</div>
+        <p class="restaurant-description">Sazón Auténtico es un rincón de delicias tradicionales con recetas familiares transmitidas de generación en generación. Los comensales pueden disfrutar de platos caseros que reflejan la autenticidad y el amor por la cocina artesanal.</p>
+        <div class="restaurant-category">Categoría: Comida Casera y Tradicional.</div>
+        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
+    </div>
+    <!-- Puedes agregar más restaurantes con detalles adicionales -->
+</div>
+<app-footer></app-footer>
