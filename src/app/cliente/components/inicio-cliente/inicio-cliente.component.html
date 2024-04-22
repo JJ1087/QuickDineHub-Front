@@ -18,7 +18,17 @@
     <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
   </div>
 
-  <app-notificaciones></app-notificaciones>
+<!-- <app-notificaciones></app-notificaciones>  -->
+<div *ngFor="let orden of ordenesConEstadoDos">
+    <app-notificaciones 
+    [nombreProducto]="orden.productoCancelado[0].nombreProducto" 
+    [fechaPedido]="orden.createdAt"
+    [idOrden]="orden._id"
+    [idCliente]="orden.idCliente">
+
+    </app-notificaciones>
+  </div>  
+  
 
 <!-- Carrusel de productos -->
 <div class="carousel-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">

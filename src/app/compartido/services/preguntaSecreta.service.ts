@@ -51,5 +51,26 @@ export class PreguntaSecretaService {
     return this.HttpClient.post<any>(url, logData);
   }
 
+  actualizarEstadoOrden(idOrden: string): Observable<any> {
+    const url = `${this.apiUrl}/ordenes/${idOrden}/actualizarEstado`; // Suponiendo que tienes una ruta en tu backend para actualizar el estado de la orden
+    return this.HttpClient.put<any>(url, null); // Envía una solicitud PUT vacía, ya que solo necesitas el ID de la orden
+  }
+
+  logDeTransacciones(transactionType: string, ordenId: string, comensalId: string): Observable<any> {
+    const transactionData = {
+      transactionType,
+      ordenId,
+      comensalId
+    };
+    return this.HttpClient.post<any>(`${this.apiUrl}/registrar-transaccion`, transactionData);
+  }
+
+  eliminarOrden(ordenId: string): Observable<any> {
+    console.log("Vamos en el servicio todo ok, id: ", ordenId);
+    return this.HttpClient.delete<any>(`${this.apiUrl}/eliminar-producto-de-orden/${ordenId}`);
+  }
+
+
+  
   
 }
