@@ -175,10 +175,29 @@ export class RestaurarConCorreoComponent implements OnInit {
       () => {
         console.log('Registro de log de autenticación agregado con éxito');
         //FUNCION PARA ENVIAR CORREO AL CLIENTE SOBRE ADVERTENCIA DE ACTUALIZACION DE CONTRASEÑA
+        this. generarCorreoLog();
       },
       error => {
         console.error('Error al agregar el registro de log de autenticación:', error);
       }
     );
   }
+
+  generarCorreoLog() {
+    const email = this.recuperarCuentaForm.get('email')?.value;
+    // Envía el código por correo electrónico
+    this.preguntaSecretaService.enviarCorreoLog(email)
+      .subscribe(
+        () => {
+          console.log('Correo electrónico enviado exitosamente');
+          // Aquí puedes realizar alguna acción adicional si es necesario
+        },
+        error => {
+          console.error('Error al enviar el correo electrónico:', error);
+        }
+      );
+  }
+
+
+
 }

@@ -1,0 +1,51 @@
+<!-- info-restaurante.component.html -->
+<app-header-cliente></app-header-cliente>
+
+<nav>
+    <a routerLink="/inicio-cliente">Inicio</a>
+    <a routerLink="/restaurantes-cliente" class="current">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos">Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+<div class="restaurant-info">
+    <img src="assets/restaurante1.jpg" alt="Logo del Restaurante" class="restaurant-logo">
+    <div class="restaurant-name">Nombre del Restaurante</div>
+    <p class="restaurant-description">Descripción detallada del restaurante. Puedes incluir información sobre la historia, la especialidad culinaria, etc.</p>
+</div>
+
+<div class="product-container">
+    <!-- Ejemplo de productos con más detalles -->
+    <div class="product">
+        <img src="assets/Hamburguesa.jpg" alt="Producto 1">
+        <h3>Nombre del Producto</h3>
+        <p class="product-description">Descripción detallada del producto.</p>
+        <div class="product-price">$29.99</div>
+        <div class="product-tags">Etiquetas: Categoría, Especialidad, etc.</div>
+        <div class="action-buttons">
+            <a href="comprar.html" class="buy-button">Comprar</a>
+            <a href="info-producto.html" class="view-button">Ver</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="assets/Tacos.jpg" alt="Producto 2">
+        <h3>Nombre del Producto</h3>
+        <p class="product-description">Descripción detallada del producto.</p>
+        <div class="product-price">$19.99</div>
+        <div class="product-tags">Etiquetas: Categoría, Especialidad, etc.</div>
+        <div class="action-buttons">
+            <a href="comprar.html" class="buy-button">Comprar</a>
+            <a href="info-producto.html" class="view-button">Ver</a>
+        </div>
+    </div>
+
+    <!-- Puedes agregar más productos con detalles adicionales -->
+</div>
+
+
+<app-footer></app-footer>

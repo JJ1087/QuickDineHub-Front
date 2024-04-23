@@ -10,6 +10,9 @@ import { RegistroClienteComponent } from '../components/registro-cliente/registr
 import { CarritoClienteComponent } from '../components/carrito-cliente/carrito-cliente.component';
 import { MisPedidosComponent } from '../components/mis-pedidos/mis-pedidos.component';
 import { CarritoClienteComponentG } from '../components/carrito-clienteG/carrito.clienteG.component';
+import { RestaurantesClienteComponent } from '../components/restaurantes-cliente/restaurantes-cliente.component';
+import { InfoRestauranteComponent } from '../components/info-restaurante/info-restaurante.component';
+
 
 const routes: Routes = [
   { path: 'login-clientes', component: LoginClientesComponent },
@@ -21,7 +24,8 @@ const routes: Routes = [
   { path: 'carrito-cliente/:id', component: CarritoClienteComponent },
   { path: 'mis-pedidos', component: MisPedidosComponent },
   { path: 'carrito-clienteG', component: CarritoClienteComponentG },
-
+  { path: 'restaurantes-cliente', component: RestaurantesClienteComponent },
+  { path: 'info-restaurante', component: InfoRestauranteComponent },
 
 ];
 

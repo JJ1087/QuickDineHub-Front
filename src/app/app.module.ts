@@ -69,6 +69,8 @@ import { AcercaDeNosotrosComponent } from './compartido/components/acerca-de-nos
 import { CookiesComponent } from './compartido/components/cookies/cookies.component';
 import { FaqComponent } from './compartido/components/faq/faq.component';
 import { TerminosYCondicionesComponent } from './compartido/components/terminos-y-condiciones/terminos-y-condiciones.component';
+import { RestaurantesClienteComponent } from './cliente/components/restaurantes-cliente/restaurantes-cliente.component';
+import { InfoRestauranteComponent } from './cliente/components/info-restaurante/info-restaurante.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import { TerminosYCondicionesComponent } from './compartido/components/terminos-
     CookiesComponent,
     FaqComponent,
     TerminosYCondicionesComponent,
+    RestaurantesClienteComponent,
+    InfoRestauranteComponent,
 
   ],
   imports: [
