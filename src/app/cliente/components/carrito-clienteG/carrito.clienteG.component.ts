@@ -547,6 +547,7 @@ crearOrdenParaRestaurante(productos: any[]): void {
 }
 
 idRepartidor: string = '000000000000000000000000';
+noProductos1: number = 1;
 
 // Modificamos crearOrden para que reciba idRestaurante como parámetro
 crearOrden(idRestaurante: string, productos: any[]): void {
@@ -596,6 +597,14 @@ logDeTransacciones(orderId: string): void {
 
 crearDetallesOrden(orderId: string, productos: any[]): void  {
   console.log('Detalle de orden llegando a funcion:', productos);
+  // Verificar si se va a crear más de un detalle de orden
+  if (productos.length > 1) {
+    //console.log("Antes del if: ", this.noProductos1);
+    this.noProductos1 = 2; // Cambiar el valor de noProductos1 si hay más de un producto
+    //console.log("Despues del if: ", this.noProductos1);
+  }
+  //console.log("Cantidad fuera del if: ", this.noProductos1);
+
   productos.forEach(producto => {
     this.authService.obtenerInfoDeProductoPorId(producto.productId).subscribe(
       (data) => {
@@ -630,6 +639,10 @@ crearDetallesOrden(orderId: string, productos: any[]): void  {
         this.mostrarCompraExitosa = true;
         this.compraRealizada = true;
 
+        if(this.noProductos1 === 2){
+          this.actualizarCantidadProductos(orderId);
+        }
+
       },
       (error) => {
         console.error('Error al crear el detalle de orden:', error);
@@ -663,6 +676,21 @@ eliminarOrdenCreada(orderId: string): void {
       // Muestra un mensaje de error al usuario si es necesario
     }
   );
+}
+
+actualizarCantidadProductos(orderId: string) {
+  this.authService.actualizarCantidadProductos(this.noProductos1, orderId)
+    .subscribe(
+      (response) => {
+        console.log('No productos actualizado en la base de datos:', response);
+        this.noProductos1 = 1;        
+      },
+      (error) => {
+        console.error('Error al actualizar la cantidad en la base de datos Beto:', error);
+        this.noProductos1 = 1;   
+        // Maneja el error según sea necesario
+      }
+    );
 }
 
 //---------------------------------------------------------------------

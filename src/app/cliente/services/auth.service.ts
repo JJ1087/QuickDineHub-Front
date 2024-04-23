@@ -164,6 +164,12 @@ actualizarCantidadEnBD(productId: string, cantidad: number, comensalId: string) 
     return this.httpClient.put(url, { productId, cantidad: cantidad }); // Enviar productId y nuevaCantidad en el cuerpo
   }
 
+  actualizarCantidadProductos(noProductos1: number, orderId: string) {
+    console.log('Enviando solicitud de actualización de cantidad de producto:', noProductos1, 'y idComensal:', orderId);
+    const url = `${this.AUTH_SERVER}/comensales/${orderId}/noProductos`; // Ruta modificada
+    return this.httpClient.put(url, {noProductos1: noProductos1 }); // Enviar productId y nuevaCantidad en el cuerpo
+  }
+
 insertarEspesificacion(especificacion: any): Observable<any> {
     console.log("Info del la espesificacion: ", especificacion);
     return this.httpClient.put(`${this.AUTH_SERVER}/insertar-especificacion`, especificacion); 
