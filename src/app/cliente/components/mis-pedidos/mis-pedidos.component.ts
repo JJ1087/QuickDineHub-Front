@@ -16,6 +16,7 @@ export class MisPedidosComponent implements OnInit {
   detalleOrdenes: any[] = [];
   productos: any[] = [];
   ordenes: any[] = [];
+  
 
   constructor(private router: Router, private authService: AuthService) { }
 
