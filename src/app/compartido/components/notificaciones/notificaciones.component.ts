@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PreguntaSecretaService } from '../../services/preguntaSecreta.service';
-
+import { EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -15,14 +15,15 @@ export class NotificacionesComponent implements OnInit {
    formattedFechaPedido: string = ''; 
    @Input() idOrden: string = '';
    @Input() idCliente: string = ''; 
+  @Input() noProductos: number = 0; 
+  @Input() idDetalle: string = ''; 
+
+  // Dentro de la clase del componente
+  @Output() actualizarOrdenes = new EventEmitter<void>();
 
   constructor( private PreguntaSecretaService: PreguntaSecretaService) { }
 
   ngOnInit(): void {
-    // Supongamos que recibes el nombre del producto y la fecha del pedido del backend
-    //this.nombreProducto = 'Tacooosss'; // lo que venga del back
-    //this.fechaPedido = '02-04-2024'; // 
-
     // Convertir la cadena de fecha en un objeto de fecha
     const fecha = new Date(this.fechaPedido);
 
@@ -39,20 +40,34 @@ export class NotificacionesComponent implements OnInit {
   }
 
   procederCompra(): void {
-    // Llamar al servicio para actualizar el estado de la orden
-    this.PreguntaSecretaService.actualizarEstadoOrden(this.idOrden).subscribe(
-      response => {
-        console.log('Estado de la orden actualizado con éxito:', response);
-        // Aquí podrías agregar lógica adicional si necesitas manejar la respuesta del servidor
-        const transactionType = "Usuario decide continuar con la compra" ;
-        this.logDeTransacciones1(transactionType, this.idOrden);
-        
-      },
-      error => {
-        console.error('Error al actualizar el estado de la orden:', error);
-        // Aquí puedes manejar errores si es necesario
-      }
-    );
+
+    console.log('numero de productos', this.noProductos);
+
+    if(this.noProductos === 2){
+
+        console.log('Eliminamod un producto de la orden');
+        // Llamar al servicio para actualizar el estado de la orden
+      this.PreguntaSecretaService.actualizarEstadoOrden(this.idOrden, this.idDetalle).subscribe(
+        response => {
+          console.log('Estado de la orden actualizado con éxito:', response);
+          // Aquí podrías agregar lógica adicional si necesitas manejar la respuesta del servidor
+          const transactionType = "Usuario decide continuar con la compra" ;
+          this.logDeTransacciones1(transactionType, this.idOrden);
+
+          this.actualizarOrdenes.emit();
+          
+        },
+        error => {
+          console.error('Error al actualizar el estado de la orden:', error);
+          // Aquí puedes manejar errores si es necesario
+        }
+      );
+
+    }else{
+      this.cancelarPedido();
+    }
+
+    
   
   }
 
@@ -68,12 +83,14 @@ export class NotificacionesComponent implements OnInit {
   }
 
   cancelarPedido(): void {
+    console.log('Entramos a eliminacion de orden completa id Detalle', this.idDetalle);
     // Lógica para cancelar todo el pedido
      this.PreguntaSecretaService.eliminarOrden(this.idOrden).subscribe(
        response => {
          console.log('SE elimino con éxito:', response);
          // Aquí podrías agregar lógica adicional si necesitas manejar la respuesta del servidor
          //this.logDeTransacciones1(this.idOrden);
+         this.actualizarOrdenes.emit();
         
        },
        error => {

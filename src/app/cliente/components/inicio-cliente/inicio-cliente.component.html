@@ -24,8 +24,11 @@
     [nombreProducto]="orden.productoCancelado[0].nombreProducto" 
     [fechaPedido]="orden.createdAt"
     [idOrden]="orden._id"
-    [idCliente]="orden.idCliente">
-
+    [idCliente]="orden.idCliente"
+    [noProductos]="orden.noProductos" 
+    [idDetalle]="orden.productoCancelado[0].idDetalle"
+    (actualizarOrdenes)="actualizarOrdenes()">
+     
     </app-notificaciones>
   </div>  
   
