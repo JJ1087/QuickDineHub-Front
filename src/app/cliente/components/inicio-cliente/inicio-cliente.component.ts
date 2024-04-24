@@ -271,4 +271,11 @@ export class InicioClienteComponent implements OnInit{//
     }
    }
 
+   actualizarOrdenes(): void {
+    console.log('Ejecutando actualizacion de ordenes');
+    this.obtenerOrdenes();
+    console.log('Si se pudo tilin');
+}
+
+
 }

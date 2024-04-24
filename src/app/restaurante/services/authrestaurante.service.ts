@@ -80,5 +80,11 @@ return this.httpClient.put(`${this.AUTH_SERVER}/cancelar-producto/${pedidoId}`, 
 }
 
 
+correoCancelarProducto(email: string, nombreProducto: string, nombreCliente: string): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-cancelarproducto`, { email, nombreProducto, nombreCliente});
+}
 
+correoCancelarOrden(email: string,  nombreCliente: string): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-cancelarOrden`, { email, nombreCliente});
+}
 }

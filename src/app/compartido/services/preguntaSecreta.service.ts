@@ -51,8 +51,9 @@ export class PreguntaSecretaService {
     return this.HttpClient.post<any>(url, logData);
   }
 
-  actualizarEstadoOrden(idOrden: string): Observable<any> {
-    const url = `${this.apiUrl}/ordenes/${idOrden}/actualizarEstado`; // Suponiendo que tienes una ruta en tu backend para actualizar el estado de la orden
+  actualizarEstadoOrden(idOrden: string, idDetalle: string,): Observable<any> {
+    console.log('idOrden:', idOrden, 'idDetalle:', idDetalle);
+    const url = `${this.apiUrl}/ordenes/${idOrden}/${idDetalle}/actualizarEstado`; // Suponiendo que tienes una ruta en tu backend para actualizar el estado de la orden
     return this.HttpClient.put<any>(url, null); // Envía una solicitud PUT vacía, ya que solo necesitas el ID de la orden
   }
 
