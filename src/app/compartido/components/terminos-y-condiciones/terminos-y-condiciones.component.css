@@ -46,12 +46,13 @@ body {
     overflow: hidden; /* Oculta el contenido que se expande y contrae */
     max-height: 0; /* Inicialmente, el contenido está oculto */
     transition: max-height 0.5s ease-out; /* Transición suave */
+    padding: 0 20px; /* Agregar padding para mejor visualización del texto */
 }
 
 .faq-content.show {
-    max-height: 500px; /* Altura máxima del contenido expandido */
+    max-height: 1000px; /* Incrementar la altura máxima o establecerla a 'none' */
+    overflow-y: auto; /* Permite scroll vertical si el contenido es muy largo */
 }
-
 
 /* Estilos específicos para el formulario de soporte */
 .faq-support {

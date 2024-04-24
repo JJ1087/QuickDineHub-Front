@@ -119,3 +119,26 @@ nav a.cart-icon-link {
 nav a.cart-icon-link i {
     margin-right: 5px;
 }
+
+/* Estilos para el contenedor de la fecha del pedido */
+.fecha-pedido {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: flex-start; /* Alinea la fecha a la derecha */
+    margin-bottom: auto; /* Espacio inferior entre la fecha y el pedido */
+    font-size: 14px; /* Tamaño de fuente de la fecha */
+    border: 1px solid #ddd; /* Agrega un contorno alrededor del contenedor */
+    border-radius: 5px; /* Añade bordes redondeados al contorno */
+    padding: 5px 10px; /* Agrega espacio interno al contorno */
+    background-color: #fff; /* Establece el fondo blanco */
+}
+
+/* Estilos para el texto 'Fecha del pedido:' */
+.fecha-texto {
+    margin-right: 10px; /* Espacio entre el texto y la fecha */
+}
+
+/* Estilos para la fecha */
+.fecha {
+    font-weight: bold; /* Hace que la fecha sea negrita */
+    color: #333; /* Color del texto de la fecha */
+}
