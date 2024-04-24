@@ -6,10 +6,10 @@
     <div class="notification-content">
     <div class="close-btn" (click)="closeNotifications()">&times;</div>
       <div class="notification">
-        <p>Tu producto <strong>{{ nombreProducto }}</strong> del pedido de la fecha <strong>{{ fechaPedido }}</strong> ha sido cancelado por el restaurante.</p>
-        <p>¿Deseas proceder con la compra sin este producto o cancelar todo el pedido?</p>
+        <p>Tu producto <strong>{{ nombreProducto }}</strong> del pedido de la fecha <strong>{{ fechaPedido | date: 'dd-MM-yyyy h:mm a' }}</strong> ha sido cancelado por el restaurante.</p> 
+        <p>¿Deseas proceder con la compra sin este producto o cancelar todo el pedido?</p> 
         <button class="btn-proceder" (click)="procederCompra()">Proceder con la compra</button>
-        <button class="btn-cancelar" (click)="cancelarPedido()">Cancelar pedido</button>
+        <button class="btn-cancelar" (click)="cancelarPedido()">Cancelar pedido</button> 
       </div>
     </div>
   </div>

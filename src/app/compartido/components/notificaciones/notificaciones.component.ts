@@ -17,9 +17,9 @@ export class NotificacionesComponent implements OnInit {
    @Input() idCliente: string = ''; 
   @Input() noProductos: number = 0; 
   @Input() idDetalle: string = ''; 
-
-  // Dentro de la clase del componente
+  // Evento que permite refrescar las notificaciones en "inicio-cliente"
   @Output() actualizarOrdenes = new EventEmitter<void>();
+
 
   constructor( private PreguntaSecretaService: PreguntaSecretaService) { }
 

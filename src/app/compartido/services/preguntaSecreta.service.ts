@@ -75,5 +75,14 @@ enviarCorreoLog(email: string): Observable<any> {
     return this.HttpClient.post<any>(`${this.apiUrl}/enviar-correo-log`, { email});
   }
 
+  obtenerRestaurante(restauranteId: string): Observable<any> {
+    return this.HttpClient.get<any>(`${this.apiUrl}/info-restauranteId/${restauranteId}`);
+}
+
+actualizarEstadoOrden2(idOrden: string): Observable<any> {
+  console.log('idOrden:', idOrden);
+  const url = `${this.apiUrl}/ordenes/${idOrden}/actualizarEstado`; // Suponiendo que tienes una ruta en tu backend para actualizar el estado de la orden
+  return this.HttpClient.put<any>(url, null); // Envía una solicitud PUT vacía, ya que solo necesitas el ID de la orden
+}
   
 }

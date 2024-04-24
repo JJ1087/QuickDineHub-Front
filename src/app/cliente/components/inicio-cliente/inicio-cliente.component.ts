@@ -210,7 +210,9 @@ export class InicioClienteComponent implements OnInit{//
 //Funcion para llamar a mis ordenes--------------------------------------------------------------------------
 
     ordenes: any[] = [];
+    ordenesConEstadoUno: any[] = [];
     ordenesConEstadoDos: any[] = [];
+    ordenesConEstadoSiete: any[] = [];
     
    comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
     obtenerOrdenes() {
@@ -227,6 +229,14 @@ export class InicioClienteComponent implements OnInit{//
         // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 2
         this.ordenesConEstadoDos = this.ordenes.filter((orden: any) => orden.estadoOrden === 2);
         console.log('Ordenes con estadoOrden igual a 2:', this.ordenesConEstadoDos);
+
+        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 1
+        this.ordenesConEstadoUno = this.ordenes.filter((orden: any) => orden.estadoOrden === 1);
+        console.log('Ordenes con estadoOrden igual a 1:', this.ordenesConEstadoDos);
+
+        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 7 esperando a finalizar la entrega
+        this.ordenesConEstadoSiete = this.ordenes.filter((orden: any) => orden.estadoOrden === 7);
+        console.log('Ordenes con estadoOrden igual a 7:', this.ordenesConEstadoSiete);
 
        },
        (error) => {

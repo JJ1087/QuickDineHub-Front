@@ -1,0 +1,14 @@
+<div class="notification-container" [class.expanded]="expanded">
+    <div class="notification-icon" (click)="toggleExpanded()">
+      <i class="fas fa-bell"></i> <!-- Icono de la campana -->
+      <div class="notification-badge">!</div> 
+    </div>
+    <div class="notification-content">
+    <div class="close-btn" (click)="closeNotifications()">&times;</div>
+      <div class="notification">
+        <p>Lo sentimos, tu orden al restaurante <strong>{{restaurante?.nombreRestaurante}}</strong> de la fecha <strong>{{ fechaPedido | date: 'dd-MM-yyyy h:mm a' }}</strong>  ha sido rechazado por el restaurante. Te recomendamos hacer un nuevo pedido a este o a otro restaurante del catalogo.</p>
+        <p>Por favor preciona "Enterado" para finalizar el proceso</p>
+        <button class="btn-proceder" (click)="enteradoDeCancelacion()">Enterado</button>
+      </div>
+    </div>
+  </div>

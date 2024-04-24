@@ -71,6 +71,8 @@ import { FaqComponent } from './compartido/components/faq/faq.component';
 import { TerminosYCondicionesComponent } from './compartido/components/terminos-y-condiciones/terminos-y-condiciones.component';
 import { RestaurantesClienteComponent } from './cliente/components/restaurantes-cliente/restaurantes-cliente.component';
 import { InfoRestauranteComponent } from './cliente/components/info-restaurante/info-restaurante.component';
+import { NotificacionesEnteradoComponent } from './compartido/components/notificaciones-enterado/notificaciones-enterado.component';
+import { NotificacionesEntregadoComponent } from './compartido/components/notificaciones-entregado/notificaciones-entregado.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,8 @@ import { InfoRestauranteComponent } from './cliente/components/info-restaurante/
     TerminosYCondicionesComponent,
     RestaurantesClienteComponent,
     InfoRestauranteComponent,
+    NotificacionesEnteradoComponent,
+    NotificacionesEntregadoComponent,
 
   ],
   imports: [

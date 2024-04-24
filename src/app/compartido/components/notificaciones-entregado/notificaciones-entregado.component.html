@@ -1,0 +1,13 @@
+<div class="notification-container" [class.expanded]="expanded">
+    <div class="notification-icon" (click)="toggleExpanded()">
+      <i class="fas fa-bell"></i> <!-- Icono de la campana -->
+      <div class="notification-badge">!</div> 
+    </div>
+    <div class="notification-content">
+    <div class="close-btn" (click)="closeNotifications()">&times;</div>
+      <div class="notification">
+        <p>Gracias por comprar con QuickDineHUB. Por favor preciona "Entregado" para finalizar el proceso de entrega</p>
+        <button class="btn-proceder" (click)="Entregado()">Entregado</button>
+      </div>
+    </div>
+  </div>

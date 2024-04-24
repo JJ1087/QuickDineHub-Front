@@ -30,8 +30,28 @@
     (actualizarOrdenes)="actualizarOrdenes()">
      
     </app-notificaciones>
-  </div>  
-  
+</div>  
+
+<div *ngFor="let orden of ordenesConEstadoUno">
+    <app-notificaciones-enterado
+    [fechaPedido]="orden.createdAt"
+    [idRestaurante]="orden.idRestaurante"
+    [idOrden]="orden._id"
+    (actualizarOrdenes)="actualizarOrdenes()">
+    
+    </app-notificaciones-enterado>
+</div> 
+
+<div *ngFor="let orden of ordenesConEstadoSiete">
+    <app-notificaciones-entregado
+    [idOrden]="orden._id"
+    (actualizarOrdenes)="actualizarOrdenes()"> 
+
+    </app-notificaciones-entregado> 
+</div> 
+
+
+
 
 <!-- Carrusel de productos -->
 <div class="carousel-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
