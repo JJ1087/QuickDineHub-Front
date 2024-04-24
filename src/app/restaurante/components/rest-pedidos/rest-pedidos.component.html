@@ -33,15 +33,15 @@
             <div class="pedido-info">
                 <div>
                     <!-- Iterar sobre cada detalle de producto -->
-                    <div *ngFor="let detalle of pedido.detallesProductos">
+                    <div *ngFor="let detalle of pedido.detallesProductos; let i = index">
                         <div style="display: flex; align-items: center;">
-                            <p>{{'PLATILLO: "' + detalle.nombreProducto + '" CANTIDAD: "'+detalle.cantidadProducto+'"' }}: </p>
+                            <p>{{'PLATILLO: "' + detalle.nombreProducto + '" CANTIDAD: "'+detalle.cantidadProducto+'" ' }} </p>
                             <!-- Botón de cancelar -->
-                            <button class="cancel-button" (click)="cancelOrder(pedido, detalle)" [ngClass]="{ 'active': pedido.cancelButtonActive }">Cancelar</button>
+                            <button class="cancel-button" (click)="cancelOrder(pedido, detalle, i)" [ngClass]="{ 'active': pedido.estadoOrden === 2 && cancelarProductoIndex === i, 'cancelado': pedido.estadoOrden === 2 && cancelarProductoIndex !== i, 'no-cancelado': pedido.estadoOrden !== 2 }"
+                                *ngIf="pedido.detallesProductos.length >= 2">Cancelar</button>
                         </div>
                         <p style="font-size: smaller;">{{'Especificaciones: '+ detalle.especificaciones}}</p>
                         <!-- Otros detalles del producto -->
-
 
                         <!-- Estado del pedido -->
                         <p [ngClass]="{

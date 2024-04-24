@@ -132,6 +132,8 @@ validarTipoYTamano(archivo: File): boolean {
   }
 
   publicarProducto(): void {
+    const confirmation = confirm("¿Estas seguro de crear un nuevo producto?");
+    if (confirmation) {
     // Validar campos vacíos
     if (this.camposVacios() || this.restauranteId === null) {
       alert('Todos los campos son obligatorios. Por favor, completa la información del producto.');
@@ -205,7 +207,7 @@ validarTipoYTamano(archivo: File): boolean {
     this.editandoProducto = false;
     this.indiceProductoAEditar = null;
   }
-
+}
   private camposVacios(): boolean {
     return (
       !this.imagenes ||

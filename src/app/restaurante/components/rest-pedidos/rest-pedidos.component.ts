@@ -116,6 +116,24 @@ export class RestPedidosComponent implements OnInit{
 console.error("Error al comunicarse con el servidor:", error);
 }
 );
+
+              const email = pedido.email;
+              const nombreCliente = pedido.nombreCliente;
+          
+              // Envía el código por correo electrónico
+              this.authRestauranteService.correoCancelarOrden
+              
+              
+              (email,nombreCliente)
+                .subscribe(
+                  () => {
+                    console.log('Correo electrónico enviado exitosamente');
+                    // Aquí puedes realizar alguna acción adicional si es necesario
+                  },
+                  error => {
+                    console.error('Error al enviar el correo electrónico:', error);
+                  }
+                );
 }
 }
 
@@ -151,40 +169,47 @@ console.error("Error al comunicarse con el servidor:", error);
 
     // Otras propiedades y métodos...
     //productoCancelado: any[] = []; // Arreglo para almacenar los productos cancelados
+    cancelarProductoIndex: number | null = null;
+    cancelButtonActive: boolean = false;
     
-    cancelOrder(pedido: any, detalle: any) {
-        // Muestra el mensaje de confirmación
-        const confirmation = confirm("¿Estás seguro de cancelar el pedido?");
-        if (confirmation) {
-            const productoCancelado = {
-                idDetalle: detalle.idDetalle,
-                idProducto: detalle.idProducto,
-                nombreProducto: detalle.nombreProducto,
-            };
-            // Almacena el producto cancelado en el arreglo
-           // this.productoCancelado.push(productoCancelado);
-            console.log('productos:',productoCancelado)
-            // Realiza la solicitud al servidor para cancelar el producto del pedido
-            this.authRestauranteService.cancelarProducto(pedido._id, productoCancelado).subscribe(
-                (response) => {
-                    // Verifica si la solicitud se realizó con éxito
-                    if (response) {
-                      pedido.estadoOrden = 2; // Cambia el estado a "Producto cancelado"
-                      pedido.botonesDeshabilitados = true; // Deshabilita los botones
-                      pedido.cancelButtonActive = true; // Marca el botón de cancelar como activo
-                       
-                    } else {
-                        // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
-                        console.error("Error al cancelar el producto del pedido.");
-                    }
+    cancelOrder(pedido: any, detalle: any, index: number) {
+    const confirmation = confirm("¿Estás seguro de cancelar el pedido?");
+    if (confirmation) {
+        const productoCancelado = {
+            idDetalle: detalle.idDetalle,
+            idProducto: detalle.idProducto,
+            nombreProducto: detalle.nombreProducto,
+        };
+        this.authRestauranteService.cancelarProducto(pedido._id, productoCancelado).subscribe(
+            (response) => {
+                if (response) {
+                    pedido.estadoOrden = 2;
+                    pedido.botonesDeshabilitados = true;
+                    // Actualizar el estado de los botones de cancelar para toda la orden
+                    pedido.cancelButtonActive = true;
+                } else {
+                    console.error("Error al cancelar el producto del pedido.");
+                }
+            },
+            (error) => {
+                console.error("Error al comunicarse con el servidor:", error);
+            }
+        );
+
+        const email = pedido.email;
+        const nombreCliente = pedido.nombreCliente;
+        const nombreProducto = detalle.nombreProducto;
+        this.authRestauranteService.correoCancelarProducto(email, nombreProducto, nombreCliente)
+            .subscribe(
+                () => {
+                    console.log('Correo electrónico enviado exitosamente');
                 },
-                (error) => {
-                    // Si hay un error en la solicitud, muestra un mensaje de error o maneja el error según sea necesario
-                    console.error("Error al comunicarse con el servidor:", error);
+                error => {
+                    console.error('Error al enviar el correo electrónico:', error);
                 }
             );
-        }
     }
+}
   
   camino(pedido: any) {
     // Muestra el mensaje de confirmación
@@ -210,9 +235,8 @@ console.error("Error al comunicarse con el servidor:", error);
                 console.error("Error al comunicarse con el servidor:", error);
           }
         );
-      
-     
-      
+
+
     }
   }
   
