@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'mis-pedidos', component: MisPedidosComponent },
   { path: 'carrito-clienteG', component: CarritoClienteComponentG },
   { path: 'restaurantes-cliente', component: RestaurantesClienteComponent },
-  { path: 'info-restaurante', component: InfoRestauranteComponent },
+  { path: 'info-restaurante/:id', component: InfoRestauranteComponent },
 
 ];
 

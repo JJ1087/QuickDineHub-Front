@@ -59,8 +59,8 @@
         <h3>{{ product?.nombre }}</h3>
         <!-- <p class="product-description">Del restaurante: <strong>{{ product?.descripcion }}</strong></p> -->
         <p class="product-description">Del restaurante: <strong>{{ restaurantes[product?.idRestaurante]?.nombreRestaurante}}</strong></p>
-        <p class="product-description">HORA APERTURA: <strong>{{ restaurantes[product?.idRestaurante]?.horaApertura}}</strong></p>
-        <p class="product-description">HORA CIERRE: <strong>{{ restaurantes[product?.idRestaurante]?.horaCierre}}</strong></p>
+        <p class="product-description">HORA APERTURA: <strong>{{formatTime( restaurantes[product?.idRestaurante]?.horaApertura)}}</strong></p>
+        <p class="product-description">HORA CIERRE: <strong>{{formatTime( restaurantes[product?.idRestaurante]?.horaCierre)}}</strong></p>
         <p class="product-description">{{ product?.descripcion }}</p>
         <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
         <div class="product-tags">

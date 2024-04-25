@@ -15,8 +15,8 @@
     </a>
 </nav>
 <div class="restaurant-info">
-    <img src="assets/restaurante1.jpg" alt="Logo del Restaurante" class="restaurant-logo">
-    <div class="restaurant-name">Nombre del Restaurante</div>
+    <img [src]="getImageUrl(Restaurante.logoRestaurant)" [alt]="Restaurante?.nombreRestaurante">
+    <div class="restaurant-name">{{ Restaurante.nombreRestaurante }}</div>
     <p class="restaurant-description">Descripción detallada del restaurante. Puedes incluir información sobre la historia, la especialidad culinaria, etc.</p>
 </div>
 
@@ -26,19 +26,31 @@
         <h3>{{ product?.nombre }}</h3>
         <p class="product-description">{{ product?.descripcion }}</p>
         <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
+        <p class="product-description">HORA APERTURA: {{ formatTime( Restaurante.horaApertura)}}</p>
+        <p class="product-description">HORA CIERRE: {{ formatTime( Restaurante.horaCierre)}}</p>
 <div class="product-tags">
     <ng-container *ngFor="let tag of product.etiquetas">
         <a href="#" class="product-tag">{{ tag }}</a>
     </ng-container>
 </div>
 
-        <div class="action-buttons">
-            <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
-            <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
-            <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+
+          <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
+          <div *ngIf="isRestaurantOpen()">
+            <div class="action-buttons">
+                <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
+                <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
+                <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+            </div>
+        </div>
+        <div *ngIf="!isRestaurantOpen()">
+           
+            <p>Estimado cliente, por el momento, el restaurante está cerrado.</p>
+            <p>*Te invitamos a volver más tarde para realizar tu compra.*</p>
         </div>
     </div>
 </div>
+
 
 
 <!-- Mensaje emergente -->

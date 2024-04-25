@@ -1,4 +1,3 @@
-<!-- restaurantes-cliente.component.html -->
 <app-header-cliente></app-header-cliente>
 
 <nav>
@@ -12,38 +11,19 @@
         <i class="fas fa-shopping-cart"></i> Carrito
     </a>
 </nav>
+
 <div class="restaurant-container">
-    <!-- Ejemplo de restaurante con detalles -->
-    <div class="restaurant">
-        <img src="assets/restaurante1.jpg" alt="Restaurante 1">
-        <div class="restaurant-name">Delicias del Mar</div>
-        <p class="restaurant-description">Un acogedor restaurante que ofrece una amplia variedad de platillos preparados con los ingredientes más frescos del mar. Desde exquisitas paellas hasta su famosa sopa de mariscos, cada bocado es una experiencia de sabor que transporta a los comensales a la costa.</p>
-        <div class="restaurant-category">Categoría: Mariscos y paellas</div>
-        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
+    <div class="restaurant" *ngFor="let restaurante of restaurantes">
+        <img [src]="getImageUrl(restaurante.logoRestaurant)" [alt]="restaurante?.nombreRestaurante">
+        <div class="restaurant-name">{{ restaurante.nombreRestaurante }}</div>
+        <p class="restaurant-description">{{ restaurante.descripcionRestaurant }}</p>
+        <div class="restaurant-category">HORA APERTURA: {{  formatTime(restaurante.horaApertura) }}</div>
+        <div class="restaurant-category">HORA CIERRE: {{ formatTime(restaurante.horaCierre) }}</div>
+        <a [routerLink]="['/info-restaurante', restaurante?._id]" class="view-button">Ver Restaurante</a>
     </div>
-
-    <div class="restaurant">
-        <img src="assets/restaurante2.jpg" alt="Restaurante 2">
-        <div class="restaurant-name">Sazón Autentico</div>
-        <p class="restaurant-description">Sazón Auténtico es un rincón de delicias tradicionales con recetas familiares transmitidas de generación en generación. Los comensales pueden disfrutar de platos caseros que reflejan la autenticidad y el amor por la cocina artesanal.</p>
-        <div class="restaurant-category">Categoría: Comida Casera y Tradicional.</div>
-        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
-    </div>
-    <div class="restaurant">
-        <img src="assets/restaurante3.jpg" alt="Restaurante 3">
-        <div class="restaurant-name">El rincon picante</div>
-        <p class="restaurant-description">Verde Saludable es un restaurante comprometido con la alimentación saludable y equilibrada. Con opciones vegetarianas y veganas, cada plato está lleno de ingredientes frescos y nutrientes, ofreciendo una alternativa deliciosa para aquellos que buscan opciones más saludables.</p>
-        <div class="restaurant-category">Categoría: Comida saludable y vegetariana.</div>
-        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
-    </div>
-
-    <div class="restaurant">
-        <img src="assets/restaurante4.jpg" alt="Restaurante 4">
-        <div class="restaurant-name">Verde Saludable</div>
-        <p class="restaurant-description">Sazón Auténtico es un rincón de delicias tradicionales con recetas familiares transmitidas de generación en generación. Los comensales pueden disfrutar de platos caseros que reflejan la autenticidad y el amor por la cocina artesanal.</p>
-        <div class="restaurant-category">Categoría: Comida Casera y Tradicional.</div>
-        <a routerLink="/info-restaurante" class="view-button">Ver Restaurante</a>
-    </div>
-    <!-- Puedes agregar más restaurantes con detalles adicionales -->
+    <div *ngIf="restaurantes.length === 0">Cargando restaurantes...</div>
 </div>
 <app-footer></app-footer>
+
+    
+

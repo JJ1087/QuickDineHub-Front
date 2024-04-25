@@ -328,5 +328,12 @@ obtenerHoraActual(): string {
     console.log('Si se pudo tilin');
 }
 
-
+formatTime(time: string): string {
+  const parts = time.split(':');
+  const hour = parseInt(parts[0], 10);
+  const minutes = parseInt(parts[1], 10);
+  const suffix = hour >= 12 ? 'pm' : 'am';
+  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+  return `${formattedHour}:${minutes < 10 ? '0' + minutes : minutes} ${suffix}`;
+}
 }

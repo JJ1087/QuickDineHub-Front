@@ -85,6 +85,9 @@ obtenerInfoDeProducto(): Observable<any[]> {
 obtenerInfoDeProductoPorId(productId: string): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-producto/${productId}`);
 }
+obtenerInfoProductoPorRestaurante(productId: string): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-productoPorRestaurante/${productId}`);
+}
 
 //metodos para la compra------------------------------------------------------------------
 // Método para insertar información de envío
@@ -219,5 +222,8 @@ registrarError(errorDetails: string, errorType: string): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-bloqueo`, { email });
   }
   
+  obtenerNombresRestaurantes(): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_SERVER}/restaurantes/nombres`);
+  }
 
 }

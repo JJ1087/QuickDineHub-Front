@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'; 
 
 @Component({
   selector: 'app-info-restaurante',
@@ -14,7 +15,7 @@ export class InfoRestauranteComponent {
   showWarning = false;
   currentIndex = 0;
 
-  constructor(private router: Router, private authService: AuthService) {}//
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) {}//
 
   //----------------Agregar al carrito-------------------------------------------------------
 
@@ -74,23 +75,49 @@ export class InfoRestauranteComponent {
   products: any[] = [];
 
   ngOnInit(): void {
-   
-    this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
-      console.log('Productos:', products);
-      this.products = products; 
+    const productId = this.route.snapshot.paramMap.get('id');
+    console.log('ID broooooo:', productId);
+
+    if (productId) {
+      this.authService.obtenerInfoProductoPorRestaurante(productId).subscribe((products: any[]) => {
+        console.log('Productos:', products);
+        this.products = products; 
+        this.obtenerRestaurante( productId);
+      },
+      (error) => {
+       console.error('Error al obtener los productos:', error);
+       // Registra el error en la base de datos
+       this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
+     });
+  
+     //llamar a la funcion para recopilar las ordenes
+     this.obtenerOrdenes();
+     //Actualizar el valor del carrito
+     this.obtenerDatoComensal();
+    }
+  }
+
+  //ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+Restaurante: any;
+obtenerRestaurante(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerRestaurante(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.Restaurante = orden;
+        console.log('RESTAURANEEEEE:', this.Restaurante);
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
     },
     (error) => {
-     console.error('Error al obtener los productos:', error);
-     // Registra el error en la base de datos
-     this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
-   });
-
-   //llamar a la funcion para recopilar las ordenes
-   this.obtenerOrdenes();
-   //Actualizar el valor del carrito
-   this.obtenerDatoComensal();
-
-  }
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
+    }
+  );
+}
 
   registrarErrorEnBD(errorDetails: string, errorType: string): void {
     this.authService.registrarError(errorDetails, errorType).subscribe(
@@ -179,6 +206,31 @@ if (this.comensalId) {
 }else{
   console.log('No se esta recibiendo el id del cliente');
 }
+}
+
+//------------------------------------------------------------------------------------------
+isRestaurantOpen(): boolean {
+  if (!this.Restaurante) {
+    return false; // Si no se encuentra la información del restaurante, se considera cerrado
+  }
+  const horaActual = this.obtenerHoraActual();
+  return horaActual >= this.Restaurante.horaApertura && horaActual <= this.Restaurante.horaCierre;
+}
+
+obtenerHoraActual(): string {
+  const ahora = new Date();
+  const hora = ahora.getHours().toString().padStart(2, '0'); // Obtener la hora en formato de 2 dígitos
+  const minutos = ahora.getMinutes().toString().padStart(2, '0'); // Obtener los minutos en formato de 2 dígitos
+  return `${hora}:${minutos}`;
+}
+
+formatTime(time: string): string {
+  const parts = time.split(':');
+  const hour = parseInt(parts[0], 10);
+  const minutes = parseInt(parts[1], 10);
+  const suffix = hour >= 12 ? 'pm' : 'am';
+  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+  return `${formattedHour}:${minutes < 10 ? '0' + minutes : minutes} ${suffix}`;
 }
 
 }
