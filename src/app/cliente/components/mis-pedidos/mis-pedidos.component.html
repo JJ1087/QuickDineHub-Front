@@ -15,26 +15,28 @@
 <div class="pedidos-container">
     <h2>Pedidos realizados</h2>
     <!-- Contenedores de pedidos -->
-    <div *ngFor="let pedido of detalleOrdenes; let i = index">
+    <div *ngFor="let orden of ordenes | keyvalue" class="pedido-container">
         <!-- Contenedor para la fecha del pedido -->
         <div class="fecha-pedido">
             <span class="fecha-texto">Fecha del pedido:</span>
-            <span class="fecha">{{ ordenes[i]?.createdAt | date:'medium' }}</span>
+            <span class="fecha">{{orden.value[0]?.fechaPedido | date:'medium'}} </span>
+            <span class="fecha-texto"> Restaurante:</span>
+            <span class="fecha">{{orden.value[0]?.nombreRestaurante}}</span>
         </div>
 
         <!-- Div de pedido -->
-        <div class="pedido">
+        <div *ngFor="let detalle of orden.value" class="pedido">
             <!-- Nombre del producto/s y Descripción -->
             <div class="pedido-info">
-                <strong>Estado:</strong> {{ obtenerEstado(ordenes[i]?.estadoOrden) }} <br>
-                <strong>Nombre del producto:</strong> {{ pedido.nombreProducto }} <br>
+                <strong>Estado:</strong> {{obtenerEstado(detalle?.estadoOrden)}}<br>
+                <strong>Nombre del producto:</strong>{{ detalle?.nombreProducto }}<br> 
             </div>
             <!-- Imagen -->
             <div class="pedido-imagen">
-                <img [src]="getImageUrl(productos[i]?.imagen[0])" [alt]="productos[i]?.nombre">
+                <img [src]="getImageUrl(detalle.producto?.imagen[0])" [alt]="detalle?.nombreProducto"> 
             </div>
             <!-- Botón para ver detalles -->
-            <button class="ver-detalles-button" (click)="verDetalles(detalleOrdenes[i]?.idOrden, ordenes[i].idCliente, ordenes[i].idRestaurante, ordenes[i].idDireccion, ordenes[i].idCuentaBanco, detalleOrdenes[i].nombreProducto, detalleOrdenes[i].descripcionProducto, ordenes[i]?.estadoOrden, ordenes[i].createdAt, detalleOrdenes[i].costoUnidad)">Ver detalles de compra</button>
+            <button class="ver-detalles-button" (click)="verDetalles(detalle?._id)">Ver detalles de compra</button>
         </div>
     </div>
 </div>

@@ -155,6 +155,24 @@ export class InicioClienteComponent implements OnInit{//
     this.router.navigate(['/carrito-clienteG']);
   }
 
+// Modificar la función obtenerRestaurante para que acepte una lista de IDs de restaurante----------------------------
+restaurantes: { [idRestaurante: string]: any } = {};
+
+obtenerRestaurante(idsRestaurante: string[]) {
+  idsRestaurante.forEach(idRestaurante => {
+    this.authService.obtenerRestaurante(idRestaurante).subscribe(
+      (data) => {
+        // Almacena la información del restaurante
+        this.restaurantes[idRestaurante] = data;
+        console.log('datos del restaurante: ', this.restaurantes );
+      },
+      (error) => {
+        console.error('Error al obtener info del restaurante:', error);
+      }
+    );
+  });
+}
+
 
 
 
@@ -167,6 +185,12 @@ export class InicioClienteComponent implements OnInit{//
      this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
        console.log('Productos:', products);
        this.products = products; 
+
+       // Obtener IDs únicos de restaurantes
+      const idsRestaurante: string[] = Array.from(new Set(products.map(product => product.idRestaurante)));
+      
+      // Obtener información de los restaurantes
+    this.obtenerRestaurante(idsRestaurante);
      },
      (error) => {
       console.error('Error al obtener los productos:', error);
@@ -182,6 +206,8 @@ export class InicioClienteComponent implements OnInit{//
    }
 
 
+
+//REGISTRO DE ERROR EN LOGS----------------------------------------------------------------------
    registrarErrorEnBD(errorDetails: string, errorType: string): void {
     this.authService.registrarError(errorDetails, errorType).subscribe(
       (response) => {
