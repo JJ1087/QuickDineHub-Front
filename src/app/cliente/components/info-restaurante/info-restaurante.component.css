@@ -72,15 +72,30 @@
     margin-top: 10px;
 }
 
-/* Etiquetas del producto */
+/* Estilos para cada etiqueta de producto */
 .product-tags {
-    color: #fff;
-    background-color: #eca74e;
-    border-radius: 15px;
-    padding: 5px 10px;
     margin-top: 10px;
-    display: inline-block;
 }
+
+.product-tag {
+    display: inline-block;
+    background-color: #eca74e; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 15px; /* Borde redondeado */
+    cursor: pointer; /* Cursor al pasar */
+    transition: background-color 0.3s; /* Transición de color al pasar */
+    text-decoration: none; /* Quitamos la subrayado de los enlaces */
+    margin-right: 5px; /* Espaciado entre etiquetas */
+}
+
+/* Estilo adicional para los botones de etiquetas en hover */
+.product-tag:hover {
+    background-color: #cc7927; /* Cambio de color al pasar el mouse */
+}
+
+
+
 .product-tags, .action-buttons {
     margin-top: 4%; /* Empuja las etiquetas y los botones hacia la parte inferior */
 }
