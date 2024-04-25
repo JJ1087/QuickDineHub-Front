@@ -58,17 +58,6 @@
 }
 /* Estilos adicionales para cada contenedor */
 
-.producto {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 3px solid #e4aa63; /* Borde para visualización */
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #ffffff; /* Fondo claro para el formulario */
-    margin-bottom: 20px;
-}
-
 .producto input[type="text"] {
     width: 100%;
     padding: 8px;
@@ -416,3 +405,108 @@ nav a.cart-icon-link i {
   .breadcrumbs a:hover {
     text-decoration: underline;
   }
+
+  .producto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid #e4aa63;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agregar sombra */
+}
+
+.producto:hover {
+    transform: translateY(-3px); /* Efecto de elevación al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumentar sombra al pasar el mouse */
+    transition: transform 0.3s, box-shadow 0.3s; /* Agregar transición suave */
+}
+
+.info-producto {
+    flex: 1;
+}
+
+.nombre {
+    font-weight: bold;
+    font-size: 1.2rem; /* Tamaño de fuente aumentado */
+}
+
+.detalles {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #4CAF50; /* Cambiar color a verde */
+}
+
+.cantidad-container {
+    width: 100px;
+    text-align: center;
+}
+
+.cantidad-container input {
+    width: 50px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.cantidad-container input:focus {
+    outline: none; /* Eliminar contorno al enfocar */
+    border-color: #4CAF50; /* Cambiar color de borde al enfocar */
+}
+
+.subtotal {
+    font-weight: bold;
+    color: #4CAF50; /* Cambiar color a verde */
+}
+
+.botones button {
+    background-color: #007bff; /* Color azul para botones */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+    padding: 8px 16px;
+}
+
+.botones button:hover {
+    background-color: #0056b3; /* Oscurecer color al pasar el mouse */
+}
+
+/* Estilo para el botón "Agregar especificación" */
+.producto .info-producto button {
+    background-color: #007bff; /* Color azul para el botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+    padding: 8px 16px;
+    margin-top: 10px; /* Espacio entre el botón y el párrafo de especificaciones */
+}
+
+.producto .info-producto button:hover {
+    background-color: #0056b3; /* Oscurecer color al pasar el mouse */
+}
+
+/* Estilo para el botón "Eliminar del carrito" */
+/* Estilo para el botón "Eliminar del carrito" */
+.producto .cantidad-container button {
+    background-color: #4CAF50; /* Color rojo para el botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+    padding: 8px 16px;
+    margin-top: 20px; /* Aumentamos el margen superior */
+}
+
+.producto .cantidad-container button:hover {
+    background-color: #0d4b13; /* Oscurecer color al pasar el mouse */
+}
+
