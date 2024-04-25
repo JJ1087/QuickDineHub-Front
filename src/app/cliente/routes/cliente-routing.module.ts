@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'login-clientes', component: LoginClientesComponent },
   { path: 'inicio-cliente', component: InicioClienteComponent },
   { path: 'header-cliente', component: HeaderClienteComponent },
-  { path: 'estado-envio', component: EstadoEnvioComponent },
+  { path: 'estado-envio/:id', component: EstadoEnvioComponent },
   { path: 'info-producto/:id', component: InfoProductoComponent },
   { path: 'registro-cliente', component: RegistroClienteComponent },
   { path: 'carrito-cliente/:id', component: CarritoClienteComponent },

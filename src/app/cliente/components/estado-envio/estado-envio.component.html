@@ -29,17 +29,20 @@
     <div class="info-container">
         <div class="product-info">
             <div class="info-title"><i class="fas fa-box-open"></i> Información del Producto</div>
-            <div class="info-field"><strong>Nombre:</strong> {{ orderInfo.nombreProducto }}</div>
-            <div class="info-field"><strong>Descripción:</strong> {{orderInfo.descripcionProducto}}</div>
-            <div class="info-field"><strong>Nombre del restaurante:</strong> {{restaurante?.nombreRestaurante}}</div>
+            <div class="info-field"><strong>Nombre: </strong>{{ detalleOrdenes[detalleId]?.nombreProducto }}</div> 
+            <div class="info-field"><strong>Descripción: </strong> {{ detalleOrdenes[detalleId]?.descripcionProducto }}</div>
+            <div class="info-field"><strong>Nombre del restaurante: </strong> {{Restaurante?.nombreRestaurante}}</div>
+            <div class="info-field"><strong>Costo del producto: </strong>${{ costoUnidad }}</div>
+            <div class="info-field"><strong>Numero de productos pedidos: </strong>{{ detalleOrdenes[detalleId]?.cantidadProducto }}</div>
             <!-- <div class="info-field"><strong>Dirección:</strong> {{orderInfo.direccion}}</div> -->
         </div>
 
         <div class="order-status">
             <div class="info-title"><i class="fas fa-check-circle"></i> Estado del Pedido</div>
-            <div class="info-field"><strong>Estado:</strong> {{obtenerEstado(orderInfo?.estadoOrden)}}</div>
-            <div class="info-field"><strong>Fecha de Pedido:</strong> {{orderInfo?.fechaPedido | date:'dd/MM/yyyy'}}</div>
-            <div class="info-field"><strong>Estimado de Entrega:</strong> {{orderInfo.estimatedDelivery}}</div>
+            <div class="info-field"><strong>Estado:</strong> {{obtenerEstado(ordenGeneral?.estadoOrden)}}</div>
+            <div class="info-field"><strong>Fecha de Pedido:</strong> {{ ordenGeneral?.createdAt | date: 'dd-MM-yyyy h:mm a'  }}</div>
+            <div class="info-field"><strong>Fecha de Entrega:</strong> {{ ordenGeneral?.fechaHoraEntrega | date: 'dd-MM-yyyy h:mm a' }}</div>
+
         </div>
     </div>
 
@@ -47,18 +50,17 @@
         <div class="shipping-info">
             <div class="info-title"><i class="fas fa-shipping-fast"></i> Información de Envío</div>
             <div class="info-field"><strong>Nombre del cliente:</strong> {{cliente?.nombre}}</div>
-            <div class="info-field"><strong>Dirección:</strong> {{direccion?.colonia}}, {{direccion?.calle}}, {{direccion?.noCasa}}, {{direccion?.datoExtra}}</div>
-            <div class="info-field"><strong>Ciudad:</strong> {{direccion?.ciudad}}</div>
+            <div class="info-field"><strong>Dirección:</strong>{{direccion?.colonia}}, {{direccion?.calle}}, {{direccion?.noCasa}}, {{direccion?.datoExtra}}</div>
+            <div class="info-field"><strong>Ciudad:</strong>{{direccion?.ciudad}}</div>
             <div class="info-field"><strong>Código Postal:</strong> {{direccion?.cp}}</div>
         </div>
 
         <div class="payment-info">
-            <div class="info-title"><i class="fas fa-credit-card"></i> Información de Pago</div>
-            <div class="info-field"><strong>Número de Tarjeta:</strong> {{cuenta?.noTarjeta}}</div>
-            <div class="info-field"><strong>Fecha de la Compra:</strong>  {{orderInfo?.fechaPedido | date:'dd/MM/yyyy'}}</div>
-            <div class="info-field"><strong>Costo Producto:</strong> {{orderInfo?.costoUnidad}}</div>
-            <div class="info-field"><strong>Costo de Envío:</strong> {{costoEnvio}}</div>
-            <div class="info-field"><strong>Costo Total:</strong> {{precioTotal}}</div>
+            <div class="info-title"><i class="fas fa-credit-card"></i> Información de Pago General</div>
+            <div class="info-field"><strong>Número de Tarjeta:</strong>{{cuenta?.noTarjeta}}</div>
+            <div class="info-field"><strong>Fecha de la Compra:</strong>{{ ordenGeneral?.createdAt | date: 'dd-MM-yyyy h:mm a'  }}</div>
+            <div class="info-field"><strong>Costo de Envío:</strong>${{costoEnvio}}</div>
+            <div class="info-field"><strong>Costo Total:</strong>${{precioTotal}}</div>
         </div>
     </div>
 </div>

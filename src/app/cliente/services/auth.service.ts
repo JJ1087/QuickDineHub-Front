@@ -136,6 +136,10 @@ obtenerInfoDeOrdenPorId(ordenId: string): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-ordenId/${ordenId}`);
 }
 
+obtenerdetalleOrdenesPorId(ordenDetalleId: string): Observable<any> {
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-detalleOrdenId/${ordenDetalleId}`);
+}
+
 //----ESTADO-PEDIDOS----------------------------------------------------------------------------
 obtenerDatoComensal(comensalId: string): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-comensalId/${comensalId}`);
