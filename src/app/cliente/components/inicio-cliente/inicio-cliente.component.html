@@ -71,7 +71,11 @@
         <h3>{{ product?.nombre }}</h3>
         <p class="product-description">{{ product?.descripcion }}</p>
         <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
-        <div class="product-tags">Etiquetas: {{ product?.etiquetas }}</div>
+        <div class="product-tags">
+            <ng-container *ngFor="let tag of product.etiquetas">
+                <a href="#" class="product-tag">{{ tag }}</a>
+            </ng-container>
+        </div>
         <div class="action-buttons">
             <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
             <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>

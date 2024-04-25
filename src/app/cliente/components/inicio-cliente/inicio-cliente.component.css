@@ -135,13 +135,26 @@ nav a.current {
     margin-top: 10px;
 }
 
+/* Estilos para cada etiqueta de producto */
 .product-tags {
-    color: #fff; /* Cambiamos el color del texto */
-    background-color: #eca74e; /* Agregamos un color de fondo */
-    border-radius: 15px; /* Hacemos que los bordes sean redondeados */
-    padding: 5px 10px; /* Añadimos padding para más espacio dentro de las etiquetas */
     margin-top: 10px;
-    display: inline-block; /* Convertimos las etiquetas en elementos de bloque */
+}
+
+.product-tag {
+    display: inline-block;
+    background-color: #eca74e; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 15px; /* Borde redondeado */
+    cursor: pointer; /* Cursor al pasar */
+    transition: background-color 0.3s; /* Transición de color al pasar */
+    text-decoration: none; /* Quitamos la subrayado de los enlaces */
+    margin-right: 5px; /* Espaciado entre etiquetas */
+}
+
+/* Estilo adicional para los botones de etiquetas en hover */
+.product-tag:hover {
+    background-color: #cc7927; /* Cambio de color al pasar el mouse */
 }
 
 
