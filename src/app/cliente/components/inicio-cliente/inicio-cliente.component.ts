@@ -173,7 +173,22 @@ obtenerRestaurante(idsRestaurante: string[]) {
   });
 }
 
+//------------------------------------------------------------------------------------------
+isRestaurantOpen(idRestaurante: string): boolean {
+  const restaurante = this.restaurantes[idRestaurante];
+  if (!restaurante) {
+      return false; // Si no se encuentra la información del restaurante, se considera cerrado
+  }
+  const horaActual = this.obtenerHoraActual();
+  return horaActual >= restaurante.horaApertura && horaActual <= restaurante.horaCierre;
+}
 
+obtenerHoraActual(): string {
+  const ahora = new Date();
+  const hora = ahora.getHours().toString().padStart(2, '0'); // Obtener la hora en formato de 2 dígitos
+  const minutos = ahora.getMinutes().toString().padStart(2, '0'); // Obtener los minutos en formato de 2 dígitos
+  return `${hora}:${minutos}`;
+}
 
 
 //-------------------------------------------------------------------------------------------
