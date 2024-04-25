@@ -12,6 +12,8 @@ export class AuthrestauranteService {
   private token: string | null = null;
 
   constructor(private httpClient: HttpClient) { }
+
+  //USUARIO RSTAURANTE
   RegistroRestaurante(usuarioRestaurante: FormData): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/registro-restaurante`, usuarioRestaurante);
   }
@@ -36,7 +38,7 @@ export class AuthrestauranteService {
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRES_IN");
   }
-//producto
+//PRODUCTOS DE RESTAURANTE
   CrearProducto(Producto: FormData): Observable<any> {
     return this.httpClient.post(`${this.AUTH_SERVER}/crear-producto`, Producto);
   }
@@ -79,7 +81,7 @@ cancelarProducto(pedidoId: string, productoCancelado: any): Observable<any> {
 return this.httpClient.put(`${this.AUTH_SERVER}/cancelar-producto/${pedidoId}`, productoCancelado);
 }
 
-
+//Correo de cambio
 correoCancelarProducto(email: string, nombreProducto: string, nombreCliente: string): Observable<any> {
   return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-cancelarproducto`, { email, nombreProducto, nombreCliente});
 }

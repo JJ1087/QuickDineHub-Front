@@ -51,9 +51,10 @@ export class LoginClientesComponent implements OnInit{
         }
       } catch (error: any) { // <--- Declarar el tipo de error como "any"
         console.error('Error en la solicitud:', error);
-        if (error.error && error.error.message === 'EXISTE USUARIO: CONTRASEÑA INCORRECTA') {
+   if (error.error && error.error.message === 'EXISTE USUARIO: CONTRASEÑA INCORRECTA') {
                // Obtener el número inicial de intentos fallidos al cargar el componente
             const email = this.loginForm.value.email;
+            this.mostrarMensajeEmergente('CONTRASEÑA INCORRECTA', '');
   if (email) {
     this.obtenerIntentosFallidos(email).then(intentosFallidos => {
       this.intentosFallidos = intentosFallidos + 1; // Incrementar en uno

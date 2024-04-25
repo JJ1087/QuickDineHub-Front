@@ -98,7 +98,7 @@
                 </ng-container>
             </div>
         </div>
-        
+
         <div class="form-group custom-select-wrapper">
             <label for="preguntaSecreta">Pregunta Secreta (servirá para restablacer tu contraseña en caso de olvidarla)</label>
             <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
@@ -150,6 +150,24 @@
                 <input type="text" id="domicilioFiscal" formControlName="domicilioFiscal">
                 <div *ngIf="segundaFaseForm.get('domicilioFiscal')?.invalid && (segundaFaseForm.get('domicilioFiscal')?.dirty || segundaFaseForm.get('domicilioFiscal')?.touched)">
                     <small *ngIf="segundaFaseForm.get('domicilioFiscal')?.errors?.['required']">Domicilio Fiscal es obligatorio</small>
+                </div>
+            </div>
+
+            <!-- Hora de apertura del restaurante -->
+            <div class="form-group">
+                <label for="horaApertura">Hora de Apertura:</label>
+                <input type="time" id="horaApertura" formControlName="horaApertura">
+                <div *ngIf="segundaFaseForm.get('horaApertura')?.invalid && (segundaFaseForm.get('horaApertura')?.dirty || segundaFaseForm.get('horaApertura')?.touched)">
+                    <small *ngIf="segundaFaseForm.get('horaApertura')?.errors?.['required']">Hora de Apertura es obligatoria</small>
+                </div>
+            </div>
+
+            <!-- Hora de cierre del restaurante -->
+            <div class="form-group">
+                <label for="horaCierre">Hora de Cierre:</label>
+                <input type="time" id="horaCierre" formControlName="horaCierre">
+                <div *ngIf="segundaFaseForm.get('horaCierre')?.invalid && (segundaFaseForm.get('horaCierre')?.dirty || segundaFaseForm.get('horaCierre')?.touched)">
+                    <small *ngIf="segundaFaseForm.get('horaCierre')?.errors?.['required']">Hora de Cierre es obligatoria</small>
                 </div>
             </div>
 

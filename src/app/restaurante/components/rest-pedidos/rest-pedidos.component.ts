@@ -187,6 +187,9 @@ console.error("Error al comunicarse con el servidor:", error);
                     pedido.botonesDeshabilitados = true;
                     // Actualizar el estado de los botones de cancelar para toda la orden
                     pedido.cancelButtonActive = true;
+                    this.cancelarProductoIndex = index;
+                    // Establecer la propiedad cancelado en true para el detalle cancelado
+                    detalle.cancelado = true;
                 } else {
                     console.error("Error al cancelar el producto del pedido.");
                 }

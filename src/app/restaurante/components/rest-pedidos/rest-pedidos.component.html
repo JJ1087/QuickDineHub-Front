@@ -35,7 +35,7 @@
                     <!-- Iterar sobre cada detalle de producto -->
                     <div *ngFor="let detalle of pedido.detallesProductos; let i = index">
                         <div style="display: flex; align-items: center;">
-                            <p>{{'PLATILLO: "' + detalle.nombreProducto + '" CANTIDAD: "'+detalle.cantidadProducto+'" ' }} </p>
+                            <p [ngStyle]="{'text-decoration': detalle.cancelado ? 'line-through' : 'none'}">{{'PLATILLO: "' + detalle.nombreProducto + '" CANTIDAD: "'+detalle.cantidadProducto+'" ' }} </p>
                             <!-- Botón de cancelar -->
                             <button class="cancel-button" (click)="cancelOrder(pedido, detalle, i)" [ngClass]="{ 'active': pedido.estadoOrden === 2 && cancelarProductoIndex === i, 'cancelado': pedido.estadoOrden === 2 && cancelarProductoIndex !== i, 'no-cancelado': pedido.estadoOrden !== 2 }"
                                 *ngIf="pedido.detallesProductos.length >= 2">Cancelar</button>
@@ -47,10 +47,12 @@
                         <p [ngClass]="{
                             'pedido-solicitado': pedido.estadoOrden === 0,
                             'pedido-espera': pedido.estadoOrden === 2,
+                            'continuar-pedido': pedido.estadoOrden === 3,
                             'pedido-proceso': pedido.estadoOrden === 4,
                             'pedido-completado': pedido.estadoOrden === 5
                           }">
-                            {{ pedido.estadoOrden === 0 ? 'Estado: Solicitados' : pedido.estadoOrden === 2 ? 'Estado: En espera' : pedido.estadoOrden === 4 ? 'Estado: En proceso' : pedido.estadoOrden === 5 ? 'Estado: Completado' : 'Estado Desconocido' }}
+                            {{ pedido.estadoOrden === 0 ? 'Estado: Solicitados' : pedido.estadoOrden === 2 ? 'Estado: En espera': pedido.estadoOrden === 3 ? 'Estado: Continuar con el pedido' : pedido.estadoOrden === 4 ? 'Estado: En proceso' : pedido.estadoOrden === 5 ? 'Estado:
+                            Completado' : 'Estado Desconocido' }}
                         </p>
                     </div>
 
@@ -74,14 +76,10 @@
                 <button class=" complete-button " *ngIf=" pedido.estadoOrden === 4 || pedido.estadoOrden === 5  " (click)="completeOrder(pedido) ">COMPLETADA</button>
                 <button class="camino-button " *ngIf=" pedido.estadoOrden === 5" (click)="camino(pedido) ">EN CAMINO</button>
             </div>
-
-            <div class="order-message " *ngIf="pedido.isAccepted ">
-
+            <div class="order-message " *ngIf="pedido.isAccepted || pedido.estadoOrden === 4 ">
                 <p>*Orden actual tomada.*</p>
             </div>
         </div>
-
-
     </div>
 </div>
 <footer>

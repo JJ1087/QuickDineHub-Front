@@ -61,7 +61,8 @@ export class RestProductosComponent implements OnInit {
         } else {
             // Mostrar un mensaje de error o realizar alguna acción si el archivo no cumple con los requisitos
             console.log("Error: La imagen principal debe ser de tipo JPEG o PNG y tener un tamaño máximo de 2MB.");
-        }
+            alert('La imagen debe de ser en formato jpg o png y no mayor a 6MG  ');
+          }
     }
 }
 
@@ -74,7 +75,8 @@ capturarImagenesExtras(event: any): void {
             } else {
                 // Mostrar un mensaje de error o realizar alguna acción si el archivo no cumple con los requisitos
                 console.log("Error: Las imágenes extras deben ser de tipo JPEG o PNG y tener un tamaño máximo de 2MB.");
-            }
+                alert('La imagen debe de ser en formato jpg o png y no mayor a 6MB  ');
+              }
         } else {
             break; // Rompe el bucle si ya se han seleccionado 3 imágenes
         }
@@ -84,7 +86,7 @@ capturarImagenesExtras(event: any): void {
 
 validarTipoYTamano(archivo: File): boolean {
     const tipoPermitido = ['image/jpeg', 'image/png']; // Tipos de archivo permitidos
-    const tamañoMaximo = 2 * 1024 * 1024; // 2MB
+    const tamañoMaximo = 6 * 1024 * 1024; // 6MB
 
     return tipoPermitido.includes(archivo.type) && archivo.size <= tamañoMaximo;
 }
@@ -141,13 +143,13 @@ validarTipoYTamano(archivo: File): boolean {
     }
 
     // Validar número negativo en el precio
-    if (parseFloat(this.precio) < 0) {
-      alert('El precio del producto no puede ser un número negativo.');
+    if (parseFloat(this.precio) < 30) {
+      alert('El precio del producto no puede ser menor a 30');
       return;
     }
     // Validar tiempo
     if (parseFloat(this.tiempoP) < 0) {
-      alert('El precio del producto no puede ser un número negativo.');
+      alert('El Tiempo no puede ser un número negativo.');
       return;
     }
 
@@ -159,7 +161,7 @@ validarTipoYTamano(archivo: File): boolean {
       categoria: this.categoria,
       tiempoP: this.tiempoP,
       precio: this.precio,
-      etiquetas: this.obtenerEtiquetasSeleccionadas(),
+      etiquetas: this.obtenerEtiquetasSeleccionadas().join(','), // Convertir el array de etiquetas a una cadena separada por comas
     };
 
     // Si estamos editando un producto, actualizamos el producto existente
@@ -262,9 +264,9 @@ validarTipoYTamano(archivo: File): boolean {
     this.tiempoP = productoAEditar.tiempoP,
     // Actualiza el estado de las etiquetas seleccionadas según el producto
     this.etiquetasSeleccionadas = {};
-    productoAEditar.etiquetas.forEach((etiqueta: string) => {
-      this.etiquetasSeleccionadas[etiqueta] = true;
-    });
+productoAEditar.etiquetas.forEach((etiqueta: string) => {
+  this.etiquetasSeleccionadas[etiqueta] = true;
+});
 
     
 
@@ -311,18 +313,34 @@ validarTipoYTamano(archivo: File): boolean {
 
   obtenerProductos(): void {
     this.authRestauranteService.getProductos(this.restauranteId).subscribe(
-      (productos) => {
-        this.productos = productos;
-      },
-      (error) => {
-        console.error('Error al obtener los productos:', error);
+  (productos) => {
+    this.productos = productos;
+    this.productos.forEach(producto => {
+      // Verifica si el producto tiene etiquetas
+      if (producto.etiquetas) {
+        // Parsea la cadena JSON de etiquetas a un arreglo
+        const etiquetasArray = JSON.parse(producto.etiquetas);
+        // Asigna el arreglo de etiquetas al producto
+        producto.etiquetas = etiquetasArray;
+      } else {
+        // Si el producto no tiene etiquetas, asigna un arreglo vacío
+        producto.etiquetas = [];
       }
-    );
+    });
+  },
+  (error) => {
+    console.error('Error al obtener los productos:', error);
+  }
+);
   }
     // Método para generar la URL completa de la imagen
     getImageUrl(relativePath: string): string {
       return `http://localhost:3000/${relativePath}`;
     }
 
-    
+    formatTiempoPreparacion(tiempoMinutos: number): string {
+      const horas = Math.floor(tiempoMinutos / 60);
+      const minutos = tiempoMinutos % 60;
+      return `${horas < 10 ? '0' + horas : horas}:${minutos < 10 ? '0' + minutos : minutos} hrs`;
+  }
 }

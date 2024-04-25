@@ -68,6 +68,8 @@ export class RegistroRestauranteComponent implements OnInit {
       numeroRestaurante: ['', Validators.required],
       razonSocial: ['', Validators.required],
       domicilioFiscal: ['', Validators.required],
+      horaApertura: ['', Validators.required],
+      horaCierre: ['', Validators.required],
       aceptarPrivacidad: [false, Validators.requiredTrue],
       menuImagen: [null, Validators.required], // Campo de carga de archivo
     });
@@ -263,7 +265,8 @@ export class RegistroRestauranteComponent implements OnInit {
         RestauranteDatos.append('ciudad', this.terceraFaseForm.get('ciudad')?.value);
         RestauranteDatos.append('codigoPostal', this.terceraFaseForm.get('codigoPostal')?.value);
         RestauranteDatos.append('numeroCLABE', this.terceraFaseForm.get('numeroCLABE')?.value);
-
+        RestauranteDatos.append('horaApertura', this.segundaFaseForm.get('horaApertura')?.value);
+        RestauranteDatos.append('horaCierre', this.segundaFaseForm.get('horaCierre')?.value);
         
         // Agregar imágenes solo si están presentes
         RestauranteDatos.append('menuImagen', this.menuImagenFile[0]);

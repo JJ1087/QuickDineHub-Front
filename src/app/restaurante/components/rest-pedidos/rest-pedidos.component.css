@@ -258,12 +258,6 @@ label {
     color: #000000;
 }
 
-.cancel-button.cancelado {
-    background-color: #e74c3c;
-    color: #ffffff;
-}
-
-.cancel-button.no-cancelado {
-    background-color: inherit;
-    color: inherit;
+.cancelled-product {
+    text-decoration: line-through;
 }
