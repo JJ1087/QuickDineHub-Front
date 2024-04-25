@@ -24,6 +24,7 @@ export class MisPedidosComponent implements OnInit {
       console.log('Detalle de órdenes:', detalleOrdenes);
       this.detalleOrdenes = detalleOrdenes;
 
+      this.obtenerOrdenes(); 
       this.organizarDetallesPorOrden(); // Llamada para organizar los detalles por "orden"
       this.obtenerEstadosOrdenes(); // Llamada para obtener el estado de cada orden
       this.obtenerDetallesProducto();
@@ -34,6 +35,54 @@ export class MisPedidosComponent implements OnInit {
     }); 
     
   }
+
+//esta funcion para traer ordenes ayuda a la parte de las notificaciones--------------------------------
+//Funcion para llamar a mis ordenes--------------------------------------------------------------------------
+
+    ordenes1: any[] = [];
+    ordenesConEstadoUno: any[] = [];
+    ordenesConEstadoDos: any[] = [];
+    ordenesConEstadoSiete: any[] = [];
+    
+   comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
+    obtenerOrdenes() {
+    
+
+    if (this.comensalId) {
+     // Llama a la función del servicio para obtener las direcciones desde el backend
+     this.authService.obtenerOrdenes(this.comensalId).subscribe(
+       (data) => {
+         // Actualiza la lista de ordenes con los datos obtenidos
+         this.ordenes1 = data;
+         console.log('Ordenes recibidas', this.ordenes1);
+         
+        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 2
+        this.ordenesConEstadoDos = this.ordenes1.filter((orden: any) => orden.estadoOrden === 2);
+        console.log('Ordenes con estadoOrden igual a 2:', this.ordenesConEstadoDos);
+
+        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 1
+        this.ordenesConEstadoUno = this.ordenes1.filter((orden: any) => orden.estadoOrden === 1);
+        console.log('Ordenes con estadoOrden igual a 1:', this.ordenesConEstadoDos);
+
+        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 7 esperando a finalizar la entrega
+        this.ordenesConEstadoSiete = this.ordenes1.filter((orden: any) => orden.estadoOrden === 7);
+        console.log('Ordenes con estadoOrden igual a 7:', this.ordenesConEstadoSiete);
+
+       },
+       (error) => {
+         console.error('Error al obtener las ordenes:', error);
+         
+         // Maneja el error según sea necesario
+       }
+     );
+
+    }else{
+      console.log('No se esta recibiendo el id de la orden');
+    }
+   }
+
+
+//ORganizar y agrupar los productos de las ordenes---------------------------------------------------------------
 
   ordenes: { [idOrden: string]: any[] } = {}; 
  
@@ -54,6 +103,7 @@ export class MisPedidosComponent implements OnInit {
     console.log('Detalles de órdenes organizados por orden:', this.ordenes);
   }
 
+  //este funciona para la lista y las agrupaciones
   obtenerEstadosOrdenes() {
     const idsOrdenes = Object.keys(this.ordenes);
     idsOrdenes.forEach(ordenId => {
@@ -151,14 +201,16 @@ getImageUrl(relativePath: string): string {
 
   // Función para ver detalles de compra
   verDetalles(detalleId: string) {
-    // Redireccionar a la página de detalles de compra, pasando el ID del pedido
-    //this.router.navigate(['../estado-envio']);
-    //console.log("IDS: ", estadoOrden);
-    // Extraer el valor numérico de costoEnvio
 
     this.router.navigate(['../estado-envio', detalleId]);
   }
   
+  actualizarOrdenes(): void {
+    console.log('Ejecutando actualizacion de ordenes');
+    this.obtenerOrdenes();
+    this.ngOnInit();  
+    console.log('Si se pudo tilin');
+}
 
 
 }

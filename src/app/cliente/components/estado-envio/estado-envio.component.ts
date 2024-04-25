@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-estado-envio',
@@ -10,257 +11,215 @@ import { AuthService } from '../../services/auth.service';
 
 export class EstadoEnvioComponent implements OnInit {
 
-  orderInfo: any;  // Aquí deberías tener una lógica para obtener los datos del pedido desde la BD
-
-  private synth!: SpeechSynthesis;
-  private utterance: SpeechSynthesisUtterance | null = null!;
+ 
+  
 
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
-  //orderInfo: any = {};
-
+  detalleId: string='';
 
   ngOnInit(): void {
+    // Obtén el ID del detalleOrden de la URL
+    this.route.params.subscribe(params => {
+      this.detalleId = params['id']; // El 'id' corresponde al parámetro definido en la ruta
+      console.log('ID del detalleOrden:', this.detalleId); 
 
-    const routeSnapshot: ActivatedRouteSnapshot = this.route.snapshot;
-
-    const nombreProducto = routeSnapshot.paramMap.get('nombreProducto');
-    const descripcionProducto = routeSnapshot.paramMap.get('descripcionProducto');
-    const idCliente = routeSnapshot.paramMap.get('idCliente');
-    const idDireccion = routeSnapshot.paramMap.get('idDireccion');
-    const estadoOrden = routeSnapshot.paramMap.get('estadoOrden');
-    const fechaPedido = routeSnapshot.paramMap.get('createdAt');
-    const costoUnidad = routeSnapshot.paramMap.get('costoUnidad');
-    const idRestaurante = routeSnapshot.paramMap.get('idRestaurante');
-    const idCuentaBanco = routeSnapshot.paramMap.get('idCuentaBanco');
-    const idOrden = routeSnapshot.paramMap.get('idOrden');
-
-    
-    // Asignando los valores a orderInfo
-    this.orderInfo = {
-      nombreProducto,
-      descripcionProducto,
-      idCliente,
-      idDireccion,
-      estadoOrden,
-      fechaPedido,
-      costoUnidad,
-      idRestaurante,
-      idCuentaBanco,
-      idOrden,
-      // idCuentaBanco,
-    };
-
-    //traerDatos
-    this.obtenerDatoComensal();
-    this.obtenerDirecciones();
-    this.obtenerRestaurante();
-    this.obtenercuentaBancoId();
-
-    
-
-    this.obtenerInfoDeOrdenPorId();
-
-
-    
-
+      this.obtenerDetalleOrdenid(this.detalleId);
+    });
   }
 
-//-----ObtenerDatos del cliente----------------------------------------------------
 
-  cliente: any;
+//comenzaremos trallendo los datos de el detalle orden---------------------------------------
 
-  obtenerDatoComensal() {
-    if (this.orderInfo.idCliente) {
-     // Llama a la función del servicio para obtener las direcciones desde el backend
-     this.authService.obtenerDatoComensal(this.orderInfo.idCliente).subscribe(
-       (data) => {
-         // Actualiza la lista de direcciones con los datos obtenidos
-         this.cliente = data;
-         console.log('Datos comensal recibidas', this.cliente);
-         
-       },
-       (error) => {
-         console.error('Error al obtener las direcciones:', error);
-         
-         // Maneja el error según sea necesario
-       }
-     );
+detalleOrdenes: { [idDetalle: string]: any } = {};
+costoUnidad: number=0;
 
-    }else{
-      console.log('No se esta recibiendo el id del cliente');
+
+obtenerDetalleOrdenid(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerdetalleOrdenesPorId(detalleId).subscribe((orden: any) => {
+    // Verifica si la orden existe
+    if (orden) {
+      // Itera sobre cada detalle de orden correspondiente a la orden
+
+      
+      this.detalleOrdenes[detalleId] = orden;
+      console.log('DATOS DE ORDEN', this.detalleOrdenes); 
+
+       this.costoUnidad = Number(this.detalleOrdenes[detalleId]?.costoUnidad.$numberDecimal); 
+      
+
+      console.log("YA CASIIIIII: ", this.costoEnvio);
+      console.log("YA CASIIIIII: ", this.precioTotal);
+
+      console.log('DETALLE DE ORDEN GUARDADO:', this.costoUnidad); 
+
+      this.obtenerOrdenPorId(this.detalleOrdenes[detalleId]. idOrden);
+
+      
+
+
+    } else {
+      console.error('No se encontró la orden con ID', detalleId);
     }
-   }
-
-//Obtener Datos de direccion---------------------------------------------------------------
-direccion: any;
-
-obtenerDirecciones() {
-
-  if (this.orderInfo.idDireccion) {
-   // Llama a la función del servicio para obtener las direcciones desde el backend
-   this.authService.obtenerDirecciones2(this.orderInfo.idDireccion).subscribe(
-     (data) => {
-       // Actualiza la lista de direcciones con los datos obtenidos
-       this.direccion = data;
-       console.log('Direcciones recibidas', this.direccion);
-       
-     },
-     (error) => {
-       console.error('Error al obtener las direcciones:', error);
-       
-       // Maneja el error según sea necesario
-     }
-   );
-
-  }else{
-    console.log('No se esta recibiendo el id del comensal');
-  }
- }
+  }, (error) => {
+    console.error('Error al obtener la orden con ID', detalleId, ':', error);
+  });
+}
 
 
- //Obtener Datos de Restaurante---------------------------------------------------------------
- restaurante: any;
-
- obtenerRestaurante() {
-
-   if (this.orderInfo.idRestaurante) {
-    // Llama a la función del servicio para obtener las direcciones desde el backend
-    this.authService.obtenerRestaurante(this.orderInfo.idRestaurante).subscribe(
-      (data) => {
-        this.restaurante = data;
-        // Actualiza la lista de direcciones con los datos obtenidos/        
-        console.log('Info restaurante recibido', this.restaurante);
-       
-      },
-      (error) => {
-        console.error('Error al obtener info restaurante:', error);
-       
-       // Maneja el error según sea necesario
-      }
-    );
-
-   }else{     console.log('No se esta recibiendo el id del comensal');
-   }
-  }
-
- //Obtener Datos de Restaurante---------------------------------------------------------------
-cuenta: any;
-
-
-obtenercuentaBancoId() {
-
-  if (this.orderInfo.idCuentaBanco) {
-   // Llama a la función del servicio para obtener las direcciones desde el backend
-   this.authService.obtenercuentaBancoId(this.orderInfo.idCuentaBanco).subscribe(
-     (data) => {
-       // Actualiza la lista de direcciones con los datos obtenidos
-       this.cuenta = data;
-       console.log('Info restaurante recibido', this.cuenta);
-       
-     },
-     (error) => {
-       console.error('Error al obtener info restaurante:', error);
-       
-       // Maneja el error según sea necesario
-     }
-   );
-
-  }else{
-    console.log('No se esta recibiendo el id del comensal');
-  }
- }
-
- //Obtener Datos de Restaurante---------------------------------------------------------------
-orden: any;
+//ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+ordenGeneral: any;
 costoEnvio: number=0;
 precioTotal: number=0;
-obtenerInfoDeOrdenPorId() {
+obtenerOrdenPorId(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerInfoDeOrdenPorId(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.ordenGeneral = orden;
+        console.log('Datos de la orden:', this.ordenGeneral);
 
-  if (this.orderInfo.idOrden) {
-   // Llama a la función del servicio para obtener las direcciones desde el backend
-   this.authService.obtenerInfoDeOrdenPorId(this.orderInfo.idOrden).subscribe(
-     (data) => {
-       // Actualiza la lista de direcciones con los datos obtenidos
-       this.orden = data;
-       console.log('Info restaurante recibido', this.orden);
+      this.costoEnvio = Number(this.ordenGeneral.costoEnvio.$numberDecimal); 
+      this.precioTotal = Number(this.ordenGeneral.precioTotal.$numberDecimal); 
 
-       this.costoEnvio = Number(this.orden.costoEnvio.$numberDecimal);
-    
-        this.precioTotal = Number(this.orden.precioTotal.$numberDecimal);
-        console.log(this.precioTotal);
-       
-     },
-     (error) => {
-       console.error('Error al obtener info restaurante:', error);
-       
-       // Maneja el error según sea necesario
-     }
-   );
+        this.obtenerRestaurante(this.ordenGeneral.idRestaurante);
+        this.obtenerDirecciones(this.ordenGeneral.idDireccion);
+        this.obtenerDatoComensal(this.ordenGeneral.idCliente);
+        this.obtenercuentaBancoId(this.ordenGeneral.idCuentaBanco);
+        
+        
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
+    },
+    (error) => {
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
+    }
+  );
+}
 
-  }else{
-    console.log('No se esta recibiendo el id del comensal');
-  }
- }
 
- //---Generar estados--------------------------------------------------
+//---Generar estados--------------------------------------------------
  
  // Método para obtener el estado legible de la orden
-  obtenerEstado(estadoOrden: string): string {
+ obtenerEstado(estadoOrden: number): string {
 
-    switch (estadoOrden) {
-      case '0':
+  switch (estadoOrden) {
+    case 0:
         return 'Pedido en espera de ser aceptado por el restaurante';
-      case '1':
-        return 'Orden rechazada';
-      case '2':
-        return '¿Desea continuar con la compra?';
-      case '3':
-        return 'Pedido en espera de ser aceptado por el restaurante';//Esta vez despues de haber quitado algun producto
-      case '4':
+      case 1:
+        return 'Orden rechazada';//Mensaje de enterado, cuando de aceptar eliminar los detalles de la orden cancelada
+      case 2:
+        return '¿Desea continuar con la compra?';//Mensaje de que alimento se quito,si rechaza eliminar orden completa, si no solo eliminar un detalle de orden
+      case 3:
+        return 'Pedido en espera de ser aceptado por el restaurante';
+      case 4:
         return 'En preparación';
-      case '5':
+      case 5:
         return 'Esperando repartidor';
-      case '6':
+      case 6:
         return 'Salio de cocina, en camino';
-      case '7':
+      case 7:
+        return 'Confirmar entrega';//Alarma para finalizar pedido
+      case 8:
+        return 'Pedido cancelado';
+      case 9:
         return 'Entregado';
       default:
         return 'Cargando estado';
+  }
+}
+
+//ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+Restaurante: any;
+obtenerRestaurante(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerRestaurante(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.Restaurante = orden;
+        console.log('Datos de la orden:', this.Restaurante);
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
+    },
+    (error) => {
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
     }
-  }
+  );
+}
 
-//Lector web------------------------------------
+//ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+direccion: any;
+obtenerDirecciones(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerDirecciones2(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.direccion = orden;
+        console.log('Datos de la orden:', this.direccion);
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
+    },
+    (error) => {
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
+    }
+  );
+}
 
+//ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+cliente: any;
+obtenerDatoComensal(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenerDatoComensal(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.cliente = orden;
+        console.log('Datos de la orden:', this.cliente);
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
+    },
+    (error) => {
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
+    }
+  );
+}
 
-  toggleVozAlta() {
-    const enableVozAlta = document.getElementById('enableVozAlta') as HTMLInputElement;
-    this.synth = window.speechSynthesis;
+//ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
+cuenta: any;
+obtenercuentaBancoId(detalleId: string) {
+  // Utiliza el ID del detalle de orden para obtener la información de la orden
+  this.authService.obtenercuentaBancoId(detalleId).subscribe(
+    (orden: any) => {
+      // Verifica si la orden existe
+      if (orden) {
+        // Llama a la función para procesar la orden
+        this.cuenta = orden;
+        console.log('Datos de la orden:', this.cuenta);
+        
+      } else {
+        console.error('No se encontró la orden con ID', detalleId);
+      }
+    },
+    (error) => {
+      console.error('Error al obtener la orden con ID', detalleId, ':', error);
+    }
+  );
+}
   
-    const elementos = document.querySelectorAll('a, img, h1, p, h2, .title, .option, label, button, .info-title, .info-field' );
-  
-    elementos.forEach(elemento => {
-      elemento.addEventListener('mouseover', () => {
-        if (enableVozAlta.checked) {
-          if (this.synth.speaking && this.utterance) {
-            this.synth.cancel();
-          }
-  
-          let texto = '';
-  
-          // Verificar si el elemento es una imagen antes de acceder a 'alt'
-          if (elemento instanceof HTMLImageElement) {
-            texto = elemento.alt;
-          } else if (elemento instanceof HTMLElement) {
-            texto = elemento.innerText || elemento.textContent || '';
-          }
-  
-          if (texto.trim() !== '') {
-            this.utterance = new SpeechSynthesisUtterance(texto);
-            this.synth.speak(this.utterance);
-          }
-        }
-      });
-    });
-  }
 }
