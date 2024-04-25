@@ -16,39 +16,26 @@
 <div class="voz-alta-container">
     <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
     <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
-  </div>
+</div>
 
 <!-- <app-notificaciones></app-notificaciones>  -->
 <div *ngFor="let orden of ordenesConEstadoDos">
-    <app-notificaciones 
-    [nombreProducto]="orden.productoCancelado[0].nombreProducto" 
-    [fechaPedido]="orden.createdAt"
-    [idOrden]="orden._id"
-    [idCliente]="orden.idCliente"
-    [noProductos]="orden.noProductos" 
-    [idDetalle]="orden.productoCancelado[0].idDetalle"
-    (actualizarOrdenes)="actualizarOrdenes()">
-     
+    <app-notificaciones [nombreProducto]="orden.productoCancelado[0].nombreProducto" [fechaPedido]="orden.createdAt" [idOrden]="orden._id" [idCliente]="orden.idCliente" [noProductos]="orden.noProductos" [idDetalle]="orden.productoCancelado[0].idDetalle" (actualizarOrdenes)="actualizarOrdenes()">
+
     </app-notificaciones>
-</div>  
+</div>
 
 <div *ngFor="let orden of ordenesConEstadoUno">
-    <app-notificaciones-enterado
-    [fechaPedido]="orden.createdAt"
-    [idRestaurante]="orden.idRestaurante"
-    [idOrden]="orden._id"
-    (actualizarOrdenes)="actualizarOrdenes()">
-    
+    <app-notificaciones-enterado [fechaPedido]="orden.createdAt" [idRestaurante]="orden.idRestaurante" [idOrden]="orden._id" (actualizarOrdenes)="actualizarOrdenes()">
+
     </app-notificaciones-enterado>
-</div> 
+</div>
 
 <div *ngFor="let orden of ordenesConEstadoSiete">
-    <app-notificaciones-entregado
-    [idOrden]="orden._id"
-    (actualizarOrdenes)="actualizarOrdenes()"> 
+    <app-notificaciones-entregado [idOrden]="orden._id" (actualizarOrdenes)="actualizarOrdenes()">
 
-    </app-notificaciones-entregado> 
-</div> 
+    </app-notificaciones-entregado>
+</div>
 
 
 
@@ -66,11 +53,14 @@
 
 
 <div class="products-container">
-    <div *ngFor="let product of products" class="product"><!---->
+    <div *ngFor="let product of products" class="product">
+        <!---->
         <img [src]="getImageUrl(product.imagen[0])" [alt]="product?.nombre">
         <h3>{{ product?.nombre }}</h3>
         <!-- <p class="product-description">Del restaurante: <strong>{{ product?.descripcion }}</strong></p> -->
-        <p class="product-description">Del restaurante: <strong>{{ restaurantes[product?.idRestaurante]?.nombreRestaurante }}</strong></p>
+        <p class="product-description">Del restaurante: <strong>{{ restaurantes[product?.idRestaurante]?.nombreRestaurante}}</strong></p>
+        <p class="product-description">HORA APERTURA: <strong>{{ restaurantes[product?.idRestaurante]?.horaApertura}}</strong></p>
+        <p class="product-description">HORA CIERRE: <strong>{{ restaurantes[product?.idRestaurante]?.horaCierre}}</strong></p>
         <p class="product-description">{{ product?.descripcion }}</p>
         <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
         <div class="product-tags">
@@ -78,31 +68,37 @@
                 <a href="#" class="product-tag">{{ tag }}</a>
             </ng-container>
         </div>
-        <div class="action-buttons">
-            <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
-            <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
-            <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+        <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
+        <div *ngIf="isRestaurantOpen(product.idRestaurante)">
+            <div class="action-buttons">
+                <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
+                <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
+                <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+            </div>
+        </div>
+        <div *ngIf="!isRestaurantOpen(product.idRestaurante)">
+            <p>Estimado cliente, por el momento, el restaurante está cerrado.</p>
+            <p>*Te invitamos a volver más tarde para realizar tu compra.*</p>
         </div>
     </div>
-</div>
 
 
-<!-- Mensaje emergente -->
+    <!-- Mensaje emergente -->
     <div *ngIf="showMessage" class="message-container">
-    <i class="fas fa-exclamation-circle icon"></i>
-    <p class="message">Producto agregado al carrito</p>
-    <i class="fas fa-shopping-cart"></i>
-    <a (click)="goToCart()" class="link" >Ir al carrito</a>
-  </div>
+        <i class="fas fa-exclamation-circle icon"></i>
+        <p class="message">Producto agregado al carrito</p>
+        <i class="fas fa-shopping-cart"></i>
+        <a (click)="goToCart()" class="link">Ir al carrito</a>
+    </div>
 
-  <!-- Mensaje emergente -->
-  <div *ngIf="showMessage1" class="message-container">
-    <i class="fas fa-exclamation-circle icon"></i>
-    <p class="message">El producto ya se encuentra en el carrito</p>
-    <i class="fas fa-shopping-cart"></i>
-    <a (click)="goToCart()" class="link" >Ir al carrito</a>
-  </div>
+    <!-- Mensaje emergente -->
+    <div *ngIf="showMessage1" class="message-container">
+        <i class="fas fa-exclamation-circle icon"></i>
+        <p class="message">El producto ya se encuentra en el carrito</p>
+        <i class="fas fa-shopping-cart"></i>
+        <a (click)="goToCart()" class="link">Ir al carrito</a>
+    </div>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
