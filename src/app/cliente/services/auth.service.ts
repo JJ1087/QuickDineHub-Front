@@ -6,6 +6,10 @@ import { Observable} from 'rxjs';
 //import { response } from 'express';
 import { MatDialog } from '@angular/material/dialog';//AJUSTE
 import { MensajeComponent} from '../../compartido/components/mensaje/mensaje.component';//AJUSTE
+import { Producto } from '../interfaces/producto.interface';
+
+
+
 
 
 @Injectable({
@@ -35,7 +39,7 @@ export class AuthService {
         //     })
         //     );
     }
-    
+
     //------------------------------------------------------
 
     login(user:any): Observable<any>{
@@ -83,7 +87,7 @@ obtenerInfoDeProducto(): Observable<any[]> {
 }
 
 obtenerInfoDeProductoPorId(productId: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-producto/${productId}`);
+    return this.httpClient.get<Producto>(`${this.AUTH_SERVER}/info-producto/${productId}`);
 }
 obtenerInfoProductoPorRestaurante(productId: string): Observable<any> {
   return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-productoPorRestaurante/${productId}`);
@@ -102,7 +106,7 @@ crearDetalleOrden(ordenDetalleData: any): Observable<any> {
 eliminarOrden(orderId: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.AUTH_SERVER}/eliminar-orden/${orderId}`);
   }
-  
+
 
 // Método para insertar información de pago-----------------------------------------------------------------------------------
 insertarCuenta(pagoData: any): Observable<any> {
@@ -164,7 +168,7 @@ obtenerOrdenes(comensalId: string): Observable<any> {
 guardarCarrito(comensalId: string, carrito: { productId: string, idRestaurante: string }[]): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/guardar-carrito/${comensalId}`, { carrito });
   }
-  
+
 actualizarCantidadEnBD(productId: string, cantidad: number, comensalId: string) {
     console.log('Enviando solicitud de actualización de cantidad con productId:', productId, 'y nuevaCantidad:', cantidad, 'y idComensal:', comensalId);
     const url = `${this.AUTH_SERVER}/comensales/${comensalId}/carrito/cantidad`; // Ruta modificada
@@ -179,7 +183,7 @@ actualizarCantidadEnBD(productId: string, cantidad: number, comensalId: string) 
 
 insertarEspesificacion(especificacion: any): Observable<any> {
     console.log("Info del la espesificacion: ", especificacion);
-    return this.httpClient.put(`${this.AUTH_SERVER}/insertar-especificacion`, especificacion); 
+    return this.httpClient.put(`${this.AUTH_SERVER}/insertar-especificacion`, especificacion);
 }
 
 eliminarDeCarrito(productId: string, comensalId: string): Observable<any> {
@@ -225,9 +229,13 @@ registrarError(errorDetails: string, errorType: string): Observable<any> {
   enviarCorreobloqueo(email: string): Observable<any> {
     return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-bloqueo`, { email });
   }
-  
+
   obtenerNombresRestaurantes(): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/restaurantes/nombres`);
+  }
+
+  pagoCompra(data:any){
+    return this.httpClient.post<{url_pago:string}>(`${this.AUTH_SERVER}/pago`,data)
   }
 
 }

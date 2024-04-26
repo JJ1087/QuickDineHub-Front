@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MensajeComponent } from '../../../compartido/components/mensaje/mensaje.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Producto } from '../../interfaces/producto.interface';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class CarritoClienteComponentG implements OnInit{
 
 //LOGICA PARA LAS DIRECCIONES------------------------------------------------------------------------------------------
 
-  idCliente: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE  
+  idCliente: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE
 
 
   agregarDireccion() {
@@ -92,11 +93,11 @@ export class CarritoClienteComponentG implements OnInit{
         // Actualiza la lista de direcciones con los datos obtenidos
         this.direcciones = data;
         console.log('Direcciones recibidas');
-        
+
       },
       (error) => {
         console.error('Error al obtener las direcciones:', error);
-        
+
         // Maneja el error según sea necesario
       }
     );
@@ -108,14 +109,14 @@ export class CarritoClienteComponentG implements OnInit{
 
   private mostrarMensajeEmergente(mensaje: string, redireccion: string) {
     // Abre el cuadro de diálogo con el mensaje
-    console.log('Redireccion:', redireccion); 
+    console.log('Redireccion:', redireccion);
     this.dialog.open(MensajeComponent, {
       width: '400px',
       data: { mensaje: mensaje, redireccion: redireccion }
     });
   }
 
-coloniaSeleccionada: string = ''; 
+coloniaSeleccionada: string = '';
 colonia:string="";
 idDireccion:string="";
 precioEnvio1:number=0;
@@ -198,11 +199,11 @@ obtenerPrecioEnvio(colonia: string): number {
          // Actualiza la lista de cuentas con los datos obtenidos
          this.cuentas = data;
          console.log('Cuentas recibidas');
-         
+
        },
        (error) => {
          console.error('Error al obtener las cuentas:', error);
-         
+
          // Maneja el error según sea necesario
        }
      );
@@ -212,8 +213,8 @@ obtenerPrecioEnvio(colonia: string): number {
     }
    }
 
-   cuentaSeleccionada: string = ''; 
-   idCuentaBanco:string="";   
+   cuentaSeleccionada: string = '';
+   idCuentaBanco:string="";
    seleccionarCuentaBanco() {
      const selectedOption: any = this.cuentaSeleccionada;
      this.idCuentaBanco = selectedOption.idCuentaBanco;
@@ -227,13 +228,13 @@ obtenerPrecioEnvio(colonia: string): number {
   product: any;
 
   ngOnInit(): void {
-    
+
     // Llama a la función para obtener las direcciones al iniciar el componente
     this.obtenerDirecciones();
     this.obtenerCuentas();
     this.obtenerDatoComensal();
-    
-    
+
+
   }
 
 
@@ -255,13 +256,13 @@ obtenerDatoComensal() {
      (data) => {
        // Actualiza la lista de direcciones con los datos obtenidos
        this.cliente = data;
-       
+
        console.log('Datos comensal recibidas', this.cliente);
 
        // Actualiza la variable carrito con los datos del carrito del comensal
         this.carritoConsulta = this.cliente.carrito;
         console.log('Carrito del comensal:', this.carritoConsulta);
-      
+
         // Contar el número de productos en el carrito
         this.noProductos = this.carritoConsulta.length;
         console.log('Número de productos en el carrito:', this.noProductos);
@@ -282,7 +283,7 @@ obtenerDatoComensal() {
      },
      (error) => {
        console.error('Error al obtener las direcciones:', error);
-       
+
        // Maneja el error según sea necesario
      }
    );
@@ -295,7 +296,7 @@ obtenerDatoComensal() {
 //---------------------------------------Traer informacion de los productos----------------------------------
 productos: { [productId: string]: any } = {};
 showMessage = true;
-
+productosParaElpago:{id:string,cantidad:number}[] = [];
 idRestaurante: string[] = [];
 restaurantes: { [idRestaurante: string]: any } = {};
 
@@ -307,7 +308,13 @@ obtenerInformacionProductos() {
   this.carritoConsulta.forEach(item => {
     this.authService.obtenerInfoDeProductoPorId(item.productId).subscribe(
       (data) => {
-        
+        //console.log("LA DATA ES:",data);
+        this.productosParaElpago.push(
+          {
+            id: data._id,
+            cantidad: data.cantidad
+          }
+        );
         // Almacena la información del producto en el objeto 'productos' utilizando su ID como clave
         this.productos[item.productId] = data;
 
@@ -322,8 +329,8 @@ obtenerInformacionProductos() {
         // Una vez que se carga un producto, verificamos si todos los productos han sido cargados
          const todosLosProductosCargados = Object.keys(this.productos).length === this.carritoConsulta.length;
          if (todosLosProductosCargados) {
-             this.showMessage = false; 
-             this.obtenerRestaurante();  
+             this.showMessage = false;
+             this.obtenerRestaurante();
          }
 
          // Sumar el subtotal de todos los productos
@@ -372,8 +379,8 @@ calcularTotalGeneral() {
 
 //Obtener Datos de Restaurante---------------------------------------------------------------
 obtenerRestaurante() {
-  
-  
+
+
   // Eliminar duplicados de la lista de IDs de restaurante
   const idsUnicos = Array.from(new Set(this.idRestaurante));
   // Iterar sobre cada ID de restaurante y obtener la información del restaurante
@@ -382,7 +389,7 @@ obtenerRestaurante() {
       (data) => {
         // Almacena la información del restaurante
         this.restaurantes[idRestaurante] = data;
-        
+
       },
       (error) => {
         console.error('Error al obtener info del restaurante:', error);
@@ -421,7 +428,7 @@ actualizarCantidadEnBD(productId: string, nuevaCantidad: number) {
         console.log('Cantidad actualizada en la base de datos:', response);
         this.eliminoProducto = 0;
         this.obtenerDatoComensal();
-        
+
       },
       (error) => {
         console.error('Error al actualizar la cantidad en la base de datos Beto:', error);
@@ -453,7 +460,7 @@ especificacionProducto: string = "";
 agregarEspecificacion() {
   this.nuevaEspesificacion.idCliente = this.comensalId;
   console.log("Formulario de espesificaciones: ", this.nuevaEspesificacion);
-  
+
 
   this.authService.insertarEspesificacion(this.nuevaEspesificacion).subscribe(
     (response) => {
@@ -500,7 +507,7 @@ actualizarPrecioTotal(productId: string) {
   const subtotalEliminado = costoUnidadEliminado * productoEliminado.cantidad;
   // Restar el subtotal del producto eliminado de la suma total
   this.sumaSubTotales -= subtotalEliminado;
-  
+
   console.log('Suma de subtotales FUNCTION:', this.sumaSubTotales);
   console.log('BOUDELER:', this.eliminoProducto);
 }
@@ -509,15 +516,28 @@ actualizarPrecioTotal(productId: string) {
 //-LOGICA CREACION DE ORDENES-------------------------------------------------------------------
 realizarCompra() {
   // Agrupar productos por restaurante
+  console.log(this.productosParaElpago)
   const productosPorRestaurante = this.agruparProductosPorRestaurante();
+  console.log(productosPorRestaurante)
+
+   const datosPago = {
+     productos:this.productosParaElpago
+   }
+   this.authService.pagoCompra(datosPago).subscribe(data =>{
+     window.open(data.url_pago)
+     console.log(data);
+   })
 
   // Para cada grupo de productos del mismo restaurante, crear una orden de pedido
-  for (const restauranteId in productosPorRestaurante) {
-    if (productosPorRestaurante.hasOwnProperty(restauranteId)) {
-      const productos = productosPorRestaurante[restauranteId];
-      this.crearOrdenParaRestaurante(productos);
+    for (const restauranteId in productosPorRestaurante) {
+      if (productosPorRestaurante.hasOwnProperty(restauranteId)) {
+        const productos = productosPorRestaurante[restauranteId];
+
+        this.crearOrdenParaRestaurante(productos);
+      }
     }
-  }
+
+
 }
 
 agruparProductosPorRestaurante(): { [restauranteId: string]: any[] } {
@@ -539,7 +559,7 @@ crearOrdenParaRestaurante(productos: any[]): void {
   if (productos.length > 0) {
     // Obtenemos el idRestaurante del primer producto
     const idRestaurante = productos[0].idRestaurante;
-    
+
     // Luego, puedes utilizar idRestaurante en la lógica para crear la orden
     // Aquí estoy llamando a la función crearOrden y pasando idRestaurante
     this.crearOrden(idRestaurante, productos);
@@ -567,13 +587,13 @@ crearOrden(idRestaurante: string, productos: any[]): void {
       // Maneja la respuesta del backend según sea necesario
       console.log('Orden creada exitosamente:', response);
       // Restablece los valores de las propiedades para la próxima orden
-      const orderId = response._id; // Obtiene el ID de la orden creada desde la respuesta del backend 
+      const orderId = response._id; // Obtiene el ID de la orden creada desde la respuesta del backend
       console.log('Id de la nueva orden:', orderId);
       this.crearDetallesOrden(orderId, productos);// Llama a la función para crear los detalles de la orden, pasando el ID de la orden creada
       //this.logDeTransacciones(orderId, this.idCliente, "Pedido realizado");
       // Registra la transacción "Pedido realizado"
       this.logDeTransacciones(orderId);
-      
+
 
     },
     (error) => {
@@ -611,7 +631,7 @@ crearDetallesOrden(orderId: string, productos: any[]): void  {
 
         // Extraer el costo unitario del producto
         const costoUnidad = Number(data.precio.$numberDecimal);
-      
+
         console.log('DATA:', producto);
         // Calcular el subtotal
         const subtotal = costoUnidad * producto.cantidad;
@@ -646,7 +666,7 @@ crearDetallesOrden(orderId: string, productos: any[]): void  {
       },
       (error) => {
         console.error('Error al crear el detalle de orden:', error);
-       
+
         // Muestra un mensaje de error al usuario si es necesario
       this.mostrarMensajeEmergente('Lo siento, no se pudo realizar la compra, intente de nuevo en unos minutos2.', '');
         this.eliminarOrdenCreada(orderId);
@@ -658,8 +678,8 @@ crearDetallesOrden(orderId: string, productos: any[]): void  {
         // Maneja el error según sea necesario
       }
     );
-    
-    
+
+
   });
 }
 
@@ -667,7 +687,7 @@ eliminarOrdenCreada(orderId: string): void {
   console.log('Id que se quiere eliminar: ', orderId);
   // Llama al servicio para eliminar la orden utilizando el ID orderId
   this.authService.eliminarOrden(orderId).subscribe(
-    
+
     (response) => {
       console.log('Orden eliminada exitosamente:', response);
     },
@@ -683,11 +703,11 @@ actualizarCantidadProductos(orderId: string) {
     .subscribe(
       (response) => {
         console.log('No productos actualizado en la base de datos:', response);
-        this.noProductos1 = 1;        
+        this.noProductos1 = 1;
       },
       (error) => {
         console.error('Error al actualizar la cantidad en la base de datos Beto:', error);
-        this.noProductos1 = 1;   
+        this.noProductos1 = 1;
         // Maneja el error según sea necesario
       }
     );
@@ -697,7 +717,7 @@ actualizarCantidadProductos(orderId: string) {
   realizarCompra1() {
     this.mostrarCompraExitosa = true;
     this.compraRealizada = true;
-    
+
   }
   seguirComprando() {
     this.router.navigateByUrl('/inicio-cliente');
@@ -707,7 +727,7 @@ actualizarCantidadProductos(orderId: string) {
   vaciarCarrito(): void {
     // Define un arreglo vacío para el carrito
     const carritoVacio: any[] = [];
-    
+
     // Utiliza el servicio para reemplazar el carrito actual con el carrito vacío en la base de datos
     this.authService.actualizarCarrito(carritoVacio, this.comensalId).subscribe(
       (response) => {
