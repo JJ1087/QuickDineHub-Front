@@ -69,7 +69,7 @@
             </ng-container>
         </div>
         <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
-        <div *ngIf="isRestaurantOpen(product.idRestaurante)">
+        <div *ngIf="!isRestaurantOpen(product.idRestaurante)">
             <div class="action-buttons">
                 <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
                 <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
