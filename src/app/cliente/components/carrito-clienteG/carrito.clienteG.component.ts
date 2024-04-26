@@ -520,22 +520,24 @@ realizarCompra() {
   const productosPorRestaurante = this.agruparProductosPorRestaurante();
   console.log(productosPorRestaurante)
 
-   const datosPago = {
-     productos:this.productosParaElpago
-   }
-   this.authService.pagoCompra(datosPago).subscribe(data =>{
-     window.open(data.url_pago)
-     console.log(data);
-   })
+  //  const datosPago = {
+  //    productos:this.productosParaElpago
+  //  }
 
-  // Para cada grupo de productos del mismo restaurante, crear una orden de pedido
-    for (const restauranteId in productosPorRestaurante) {
-      if (productosPorRestaurante.hasOwnProperty(restauranteId)) {
-        const productos = productosPorRestaurante[restauranteId];
+  console.log(this.precioTotalGeneral)
+    this.authService.pagoCompra({total_pago:this.precioTotalGeneral}).subscribe(data =>{
+      window.open(data.url_pago)
+      console.log(data);
+    })
 
-        this.crearOrdenParaRestaurante(productos);
-      }
-    }
+   // Para cada grupo de productos del mismo restaurante, crear una orden de pedido
+     for (const restauranteId in productosPorRestaurante) {
+       if (productosPorRestaurante.hasOwnProperty(restauranteId)) {
+         const productos = productosPorRestaurante[restauranteId];
+
+         this.crearOrdenParaRestaurante(productos);
+       }
+     }
 
 
 }
